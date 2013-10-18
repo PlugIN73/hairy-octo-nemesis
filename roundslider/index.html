@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<br><br><br>
+<div id="Container">
+    <div id="Indicator"></div>
+  </div>
+<style type="text/css">
+#Container
+{
+  position: relative;
+  background-image: url('./images/rheostat.png');
+  width: 64px;
+  height: 64px;
+}
+
+#Indicator
+{
+  position: absolute;
+  background-image: url('./images/indicator.png');
+  width: 4px;
+  height: 4px;
+}
+</style>
+
+<!--<script src="mootools-1.2.6-core-yc.js"></script>-->
+<script src="jquery-1.10.1.min.js"></script>
+<script src="rheostat.js"></script>
+<script type="text/javascript">
+
+var c = $('#Indicator');
+c.setposition = function (h) {
+	c.css(h);
+}
+
+var rheostat = new Rheostat($('#Container'), c, {minAngle: 0});
+
+</script>
+
+</body>
+</html>
+

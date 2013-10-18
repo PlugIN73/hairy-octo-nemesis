@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
+<head>
+</head>
+<body>
+
+  
+  <!--[if lt IE 9]>
+    <script src="jquery-1.10.1.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+    <script src="jquery.min.js"></script>
+<!--<![endif]-->
+
+	
+	
+	<script type="text/javascript">
+	
+	function k(s) {
+		return s.split('"').join('');
+	}
+	
+	function process() {
+		var txt = $('#in').val();
+		var a = txt.split('<');
+		var out = '';
+		for(var i = 0; i < a.length; i++) {
+			var o = {}
+			var s = a[i];
+			if (s.indexOf('area') != 0)
+				continue;
+			s = s.split(' ');
+			for(var n = 0; n < s.length; n++) {
+				var p = s[n].split('=');
+				if (p.length > 1)
+					o[k(p[0])] = k(p[1]);
+			}
+			console.log(o);
+			out += 'area.push({shape: "' + o.shape + '", key: "' + o.alt + '", coords: "' + o.coords + '"});\n';
+		}
+		$('#out').val(out);
+		
+	}
+		
+	</script>
+	
+	<textarea id="in" cols=80 rows=20></textarea>
+	<button onclick="process()">process</button>
+	<textarea id="out" cols=80 rows=20></textarea>
+
+</body>
+</html>

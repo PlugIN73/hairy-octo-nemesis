@@ -1,0 +1,51 @@
+div#tutor_ex_menu ul {
+	padding-left: 0px;
+}
+
+div#tutor_ex_menu ul li ul {
+	padding-left: 14px;
+	font-weight: none;
+}
+
+div#tutor_ex_menu ul li {
+	list-style-type: circle;
+	margin-bottom: 5px;
+}
+
+div#tutor_ex_menu ul li.selected {
+	list-style-type: disc;
+	font-weight: bold;
+	background-color: rgba(138, 138, 138, 0.18);
+}
+
+div#exercise_list ul {
+	list-style-type: decimal;
+	padding-left: 0px;
+}
+
+div#exercise_list ul li {
+	padding-bottom: 10px;
+}
+
+.button_hint {
+	font-style: italic;
+	font-size: 75%;
+}
+
+img.button_img {
+	max-height: 25px;
+	vertical-align: middle;
+	border: solid;
+	border-width: 1px;
+	border-color: grey;
+}
+
+.ui-dialog-titlebar-close {
+	display: none;
+}
+
+.withclose .ui-dialog-titlebar-close {display: inline }
+
+.user_name {
+	font-style: italic;
+}
