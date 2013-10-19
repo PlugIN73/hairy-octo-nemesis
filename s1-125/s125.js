@@ -2,7 +2,7 @@ function DeviceS125(node, width, height) {
 	DeviceS125.superclass.constructor.call(this, node, width, height);
 
 	this.name = "s1-125";											// Название папки для поиска изображений
-	this.title = 'Осцилограф С1-125';
+	this.title = 'Осциллограф С1-125';
 }
 
 extend(DeviceS125, Map);
