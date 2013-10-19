@@ -130,7 +130,7 @@
 		return s;
 	}
 	
-	var g5;
+	var s125;
 	//var c5; // Добавление этого устройства вызывает ошибки js и мешает отладке. Пока выключу. Троицкий
 	
 	// TODO: Должно быть спрятано. Троицкий
@@ -157,20 +157,20 @@
 	// TODO: Должно быть спрятано. Троицкий
 	
 	function setMode(map, mode)	{
-		setMode2(g5, mode);
+		setMode2(s125, mode);
 		//setMode2(c3, mode); // Добавление этого устройства вызывает ошибки js и мешает отладке. Пока выключу. Троицкий
 
-		g5.GetControlByName('menu').ModeChanged(mode);			//Отображение текущего режима в меню. Троицкий // TODO: нужно сделать собтие изменения режима. Ато топорно как-то Троицкий
+		s125.GetControlByName('menu').ModeChanged(mode);			//Отображение текущего режима в меню. Троицкий // TODO: нужно сделать собтие изменения режима. Ато топорно как-то Троицкий
 
 	}
 	
 	function startstopmap() {
-		if (g5.startstate) {
+		if (s125.startstate) {
 			$('#startstop').attr('src', 'img/play.png');
-			g5.stop();
+			s125.stop();
 		} else {
 			$('#startstop').attr('src', 'img/stop.png');
-			g5.start();
+			s125.start();
 		}
 		
 		return false;
@@ -180,25 +180,25 @@
 	$(document).ready(function() {
 		$('#tabs').tabs({ heightStyle: "fill" });
 
-		var g5_menu = {};
+		var s125_menu = {};
 
-		//g5 = new DeviceS125($('#map'), 640, 417);
-		g5 = new DeviceS125($('#map'), 800, 521);
-		g5.renderAreaControl();
+		//s125 = new DeviceS125($('#map'), 640, 417);
+		s125 = new DeviceS125($('#map'), 800, 521);
+		s125.renderAreaControl();
 		
 		var outer = new Oscilloscope('outer_pulse', {container : $('#outer_pulse'), options: {yaxis: {max: 5, axisLabel: 'Вольты'}, xaxis: {axisLabel: 'Наносекунды'}}, scale: 100});
-		g5.add(outer);
+		s125.add(outer);
 		
 		var clock = new Oscilloscope('clock_pulse', {container : $('#clock_pulse'), options: {yaxis: {max: 2, axisLabel: 'Вольты'}, xaxis: {axisLabel: 'Наносекунды'}}, scale: 100});
-		g5.add(clock);
+		s125.add(clock);
 		
-		g5_menu = g5.GetControlByName('menu');
-		g5.draw();
-		g5_menu.initTooltips();
-		g5_menu.initMenuUI();
-		g5.start();
+		s125_menu = s125.GetControlByName('menu');
+		s125.draw();
+		s125_menu.initTooltips();
+		s125_menu.initMenuUI();
+		s125.start();
 
-		//g5.GetControlByName('tutor').enableExerciseEditor();
+		//s125.GetControlByName('tutor').enableExerciseEditor();
 
 		
 
@@ -210,12 +210,12 @@
 	});
 	
 	</script>
-<!-- 	<input type="radio" name="mode" checked onclick="setMode(g5, deviceMode.EMULATOR)"> - режим эмулятора |		// Перенес в меню. Троицкий
-	<input type="radio" name="mode" onclick="setMode(g5, deviceMode.HELP)">  - режим справки |
-	<input type="radio" name="mode" onclick="setMode(g5, deviceMode.TRAINING)">  - режим обучения | -->
+<!-- 	<input type="radio" name="mode" checked onclick="setMode(s125, deviceMode.EMULATOR)"> - режим эмулятора |		// Перенес в меню. Троицкий
+	<input type="radio" name="mode" onclick="setMode(s125, deviceMode.HELP)">  - режим справки |
+	<input type="radio" name="mode" onclick="setMode(s125, deviceMode.TRAINING)">  - режим обучения | -->
 	<!-- <input style="display: none" type="button" value="История" onclick="viewHistory()"> -->
 	<div style="text-align:right">
-	<a href="#" onclick="teststat(g5);return false;">Посмотреть статистику</a>
+	<a href="#" onclick="teststat(s125);return false;">Посмотреть статистику</a>
 	</div>
 	<table>
 		<tr>
@@ -238,10 +238,10 @@
 							</div>
 							<h3 id="mode_header">Режим тренажера: Режим эмулятора</h3>
 							<div id="state_list">
-								<input type="radio" name="mode" checked onclick="setMode(g5, deviceMode.EMULATOR)"> Режим эмулятора<br/>
-								<input type="radio" name="mode" onclick="setMode(g5, deviceMode.HELP)"> Режим справки<br/>
-								<input type="radio" name="mode" onclick="setMode(g5, deviceMode.TRAINING)"> Режим обучения<br/>
-								<input type="radio" name="mode" onclick="setMode(g5, deviceMode.CONTROL)"> Режим контроля
+								<input type="radio" name="mode" checked onclick="setMode(s125, deviceMode.EMULATOR)"> Режим эмулятора<br/>
+								<input type="radio" name="mode" onclick="setMode(s125, deviceMode.HELP)"> Режим справки<br/>
+								<input type="radio" name="mode" onclick="setMode(s125, deviceMode.TRAINING)"> Режим обучения<br/>
+								<input type="radio" name="mode" onclick="setMode(s125, deviceMode.CONTROL)"> Режим контроля
 							</div>
 						</div>
 					</div>
@@ -682,13 +682,13 @@
 </p>
 <p>
     4.3. Перед включением прибора в сеть необходимо надежно заземлить корпус прибора через зажим защитного заземления “
-    <img width="47" height="36" src="g5\desc\clip_image002.jpg"/>
+    <img width="47" height="36" src="s125\desc\clip_image002.jpg"/>
     ”. Присоединение зажима защитного заземления к заземляющей шине должно производиться до других присоединений, а отсоединение – после всех отсоединений.
 </p>
 <p>
     4.4. При проведении измерений при обслуживании и ремонте в случае использования прибора совместно с другими приборами или включения его в состав установок
     необходимо для выравнивания потенциалов корпусов соединить между собой соединенные с корпусом клеммы всех приборов “
-    <img width="47" height="36" src="g5\desc\clip_image003.jpg"/>
+    <img width="47" height="36" src="s125\desc\clip_image003.jpg"/>
     ”.
 </p>
 <p>
@@ -748,7 +748,7 @@
     Таблица 2
 </p>
 <p>
-    <img width="623" height="617" src="g5\desc\clip_image005.png"/>
+    <img width="623" height="617" src="s125\desc\clip_image005.png"/>
 </p>
 <p>
     Кнопка ПОЛЕ переключает значение поля.
@@ -770,24 +770,24 @@
 </p>
 <p>
     Проверка исправности работы прибора производится с помощью осциллографа CI-65A. Генератор Г5-75 установить в режим внутреннего запуска (кнопка “
-    <img width="25" height="23" src="g5\desc\clip_image007.jpg"/>
+    <img width="25" height="23" src="s125\desc\clip_image007.jpg"/>
     ”), выход синхроимпульса “
-    <img width="43" height="28" src="g5\desc\clip_image009.jpg"/>
+    <img width="43" height="28" src="s125\desc\clip_image009.jpg"/>
     ” соединить со входом синхронизации осциллографа. На вход “
-    <img width="37" height="29" src="g5\desc\clip_image011.jpg"/>
+    <img width="37" height="29" src="s125\desc\clip_image011.jpg"/>
     ” осциллографа подать сигнал с выносного блока генератора. На экране должны наблюдаться основные импульсы, должны регулироваться период, длительность,
     временной сдвиг и амплитуда. Схема соединения прибора с осциллографом CI-65A приведена на рисунке ниже. Установить наименьшую длительность импульсов генератора.
 </p>
 <p>
     Для проверки работы в режиме внешнего запуска генератор Г5-75 перевести в соответствующий режим (нажать кнопку “
-    <img width="36" height="18" src="g5\desc\clip_image013.jpg"/>
+    <img width="36" height="18" src="s125\desc\clip_image013.jpg"/>
     ”) и на разъем “
-    <img width="91" height="24" src="g5\desc\clip_image015.jpg"/>
+    <img width="91" height="24" src="s125\desc\clip_image015.jpg"/>
     ” подать внешние запускающие импульсы с выхода генератора Г5-60.
 </p>
 <p>
     Режим разового механического пуска осуществляется нажатием кнопки “
-    <img width="31" height="17" src="g5\desc\clip_image017.jpg"/>
+    <img width="31" height="17" src="s125\desc\clip_image017.jpg"/>
     ”. При последующих нажатиях на эту кнопку на экране должно появиться мелькающее изображение одного импульса.
 </p>
 <p>
@@ -795,7 +795,7 @@
 </p>
 <p>
     установить режим внутреннего запуска (кнопка “
-    <img width="25" height="23" src="g5\desc\clip_image007.jpg"/>
+    <img width="25" height="23" src="s125\desc\clip_image007.jpg"/>
     ”);
 </p>
 <p>
@@ -803,12 +803,12 @@
 </p>
 <p>
     нажать кнопку “
-    <img width="26" height="13" src="g5\desc\clip_image019.jpg"/>
+    <img width="26" height="13" src="s125\desc\clip_image019.jpg"/>
     ”, вместо значения установленной амплитуды на индикаторах высветится значение первого калибровочного напряжения;
 </p>
 <p>
     нажать кнопку “
-    <img width="22" height="14" src="g5\desc\clip_image021.jpg"/>
+    <img width="22" height="14" src="s125\desc\clip_image021.jpg"/>
     ”, вместо значения первого калибровочного напряжения высветится значение второго калибровочного напряжения;
 </p>
 <p>
@@ -823,14 +823,14 @@
 </p>
 <p>
     нажать кнопку “
-    <img width="22" height="14" src="g5\desc\clip_image021.jpg"/>
+    <img width="22" height="14" src="s125\desc\clip_image021.jpg"/>
     ”, вместо значения установленной амплитуды на индикаторах высветится значение частоты;
 </p>
 <p>
     вращая ручку потенциометра ПОДСТР. ЧАСТ. на передней панели, установить на индикаторах нули.
 </p>
 <p>
-    <img width="623" height="302" src="g5\desc\clip_image023.png"/>
+    <img width="623" height="302" src="s125\desc\clip_image023.png"/>
 </p>
 <p>
     6.2. Проведение измерений.
@@ -840,7 +840,7 @@
 </p>
 <p>
     Для работы в этом режиме необходимо нажать кнопку “
-    <img width="25" height="23" src="g5\desc\clip_image024.jpg"/>
+    <img width="25" height="23" src="s125\desc\clip_image024.jpg"/>
     ” и установить нужные параметры выходного сигнала.
 </p>
 <p>
@@ -848,11 +848,11 @@
 </p>
 <p>
     Для работы в этом режиме необходимо нажать кнопку “
-    <img width="30" height="21" src="g5\desc\clip_image026.jpg"/>
+    <img width="30" height="21" src="s125\desc\clip_image026.jpg"/>
     ” или “
-    <img width="36" height="18" src="g5\desc\clip_image013.jpg"/>
+    <img width="36" height="18" src="s125\desc\clip_image013.jpg"/>
     ” в зависимости от полярности запускающих импульсов, подаваемых на гнездо “
-    <img width="60" height="23" src="g5\desc\clip_image028.jpg"/>
+    <img width="60" height="23" src="s125\desc\clip_image028.jpg"/>
     ”.
 </p>
 <p>
@@ -860,7 +860,7 @@
 </p>
 <p>
     Для работы в этом режиме необходимо нажать кнопку “
-    <img width="31" height="17" src="g5\desc\clip_image029.jpg"/>
+    <img width="31" height="17" src="s125\desc\clip_image029.jpg"/>
     ”.
 </p>
 <p>
