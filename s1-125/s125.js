@@ -56,13 +56,7 @@ DeviceS125.prototype.getAreaPre = function () {
 DeviceS125.prototype.definitionControl = function () {
 	var c = []
 
-
-
 	c.push({key: 'power', cls: Button, param: 'd.power = !s.power; d.shiftUp=1; d.mode=0; d.at=0; d.outerPulse=d.def.outerPulsePos; d.calibration=0;d.T=0;d.D=0;d.R=0;d.K=0;d.U=0;d.calibration=0;d.set=0;d.param=0;d.set=0;d.tact=0,d.up=1'});
-
-
-
-
 
 	// Мои компоненты. Троицкий
 	c.push({key: 'menu', cls: Menu, param: null});
