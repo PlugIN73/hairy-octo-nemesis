@@ -48,7 +48,7 @@ DeviceS125.prototype.getAreaPre = function () {
 	var area = [];
 	//добавляю новые поле параметров tooltip для вывода подсказок в режиме справки. Троицкий
 	//добавляю новые поле параметров hint_text для вывода текста в боковом меню в режиме справки. Троицкий
-	area.push({shape: "rect", key: "power", coords: "55,335,79,355", tooltip: "Кнопка включения прибора", hint_text: "Кнопка включения прибора"});
+	area.push({shape: "rect", key: "power", coords: "120,280,145,300", tooltip: "Кнопка включения прибора", hint_text: "Кнопка включения прибора"});
 
 	return area;
 }
