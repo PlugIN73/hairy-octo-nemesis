@@ -2,11 +2,25 @@ function DeviceS125(node, width, height) {
 	DeviceS125.superclass.constructor.call(this, node, width, height);
     this.state = {
         power: 0, shiftUp: 1, mode: 0, outerPulse: 0, at: 0, auto: 0, calibration: 0,
-        set:0, discharge: 0, param: 0, tact: 0, signal: 0,
-        p: [], clockpulseInput: 0, outerpulseInput: 0, levelRun: 0,
+        T: 3, D: 0, R: 1, K: 0, U: 1234, set:0, discharge: 0, param: 0, tact: 0, signal: 0,
+        p: [], np: 0, up: 1, clockpulseInput: 0, outerpulseInput: 0, levelRun: 0,
         def: {innerWork:1, externalPulsePos: 2, externalPulseNeg: 3, hand: 4, direct: 5, at1: 6, at2: 7, outerPulsePos: 8,
             outerPulseNeg: 9, pT: 10, pD: 11, pR: 12, pK: 13, pU: 14, pNP: 15}
     };
+    for(var i = 0; i < 10; i++) {
+        this.state.p.push({T: 0, D: 0, R: 0, K: 0, U: 0});
+    }
+    this.state.def.pvalue = {};
+    this.state.def.pvalue[this.state.def.pT] = {count: 3, name: 'T'};
+    this.state.def.pvalue[this.state.def.pD] = {count: 3, name: 'D'};
+    this.state.def.pvalue[this.state.def.pR] = {count: 3, name: 'R'};
+    this.state.def.pvalue[this.state.def.pK] = {count: 1, name: 'K'};
+    this.state.def.pvalue[this.state.def.pU] = {count: 4, name: 'U'};
+
+    this.start_state = jQuery.extend(true, {}, this.state);
+    this.statedef = this.state.def;
+
+    this.state_time_variables = ["tact", "signal"];
 
     this.name = "s1-125";											// Название папки для поиска изображений
 	this.title = 'Осциллограф С1-125';
@@ -57,7 +71,7 @@ DeviceS125.prototype.getAreaPre = function () {
 	//добавляю новые поле параметров hint_text для вывода текста в боковом меню в режиме справки. Троицкий
 	area.push({shape: "rect", key: "power", coords: "120,280,145,300", tooltip: "Кнопка включения прибора", hint_text: "Кнопка включения прибора"});
 
-	return area;
+    return area;
 }
 
 DeviceS125.prototype.definitionControl = function () {
@@ -65,7 +79,7 @@ DeviceS125.prototype.definitionControl = function () {
 
 	c.push({key: 'power', cls: Button, param: 'd.power = !s.power; d.shiftUp=1; d.mode=0; d.at=0; d.outerPulse=d.def.outerPulsePos; d.calibration=0;d.T=0;d.D=0;d.R=0;d.K=0;d.U=0;d.calibration=0;d.set=0;d.param=0;d.set=0;d.tact=0,d.up=1'});
 
-	// Мои компоненты. Троицкий
+    // Мои компоненты. Троицкий
 	c.push({key: 'menu', cls: Menu, param: null});
     c.push({key: 'graph', cls: GraphVisio, param: null});
 
