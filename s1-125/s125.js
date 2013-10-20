@@ -1,7 +1,14 @@
 function DeviceS125(node, width, height) {
 	DeviceS125.superclass.constructor.call(this, node, width, height);
+    this.state = {
+        power: 0, shiftUp: 1, mode: 0, outerPulse: 0, at: 0, auto: 0, calibration: 0,
+        set:0, discharge: 0, param: 0, tact: 0, signal: 0,
+        p: [], clockpulseInput: 0, outerpulseInput: 0, levelRun: 0,
+        def: {innerWork:1, externalPulsePos: 2, externalPulseNeg: 3, hand: 4, direct: 5, at1: 6, at2: 7, outerPulsePos: 8,
+            outerPulseNeg: 9, pT: 10, pD: 11, pR: 12, pK: 13, pU: 14, pNP: 15}
+    };
 
-	this.name = "s1-125";											// Название папки для поиска изображений
+    this.name = "s1-125";											// Название папки для поиска изображений
 	this.title = 'Осциллограф С1-125';
 }
 
@@ -60,8 +67,9 @@ DeviceS125.prototype.definitionControl = function () {
 
 	// Мои компоненты. Троицкий
 	c.push({key: 'menu', cls: Menu, param: null});
+    c.push({key: 'graph', cls: GraphVisio, param: null});
 
-	return c;
+    return c;
 }
 
 var S125 = {};
