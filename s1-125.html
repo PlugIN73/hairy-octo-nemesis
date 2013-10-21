@@ -245,42 +245,37 @@
 							</div>
 						</div>
 					</div>
-					<div id="tab-2">
-						<div>
-							Выход:  (Замедление времени 1 к <span id="time">1 000 000</span>):
-							<div id="placeholder"></div>
-							<a href="#" onclick="return startstopmap()"><img id="startstop" style="max-height: 50px" src="img/stop.png"></a>
-						</div>
-					</div>
-					<div id="tab-3">
-						Внешний импульс (Замедление времени 1 к 1 000 000):
-						<div style="width:400px;height:150px" id="outer_pulse"></div>
-					</div>
-					<div id="tab-4">
-							Синхроимпульс (Замедление времени 1 к 1 000 000):
-							<div style="width:400px;height:150px" id="clock_pulse"></div>
-					</div>
-					<div id="tab-5"> <!-- Вынес в отдельную вкладку. Троицкий -->
-							<textarea rows=2 cols=30 id='idea_path'>Power_on->T_17->Mode_Inner
-						Power_on->Mode_Inner->T_17</textarea><br/>
- 							<table>
-							<tr>
-							<td>
-							<textarea rows=15 cols=10 id='path'></textarea>
-							</td>
-							<td>
-							<textarea rows=15 cols=30 id='path_t'></textarea>
-							</td>
-							<td>
-							<textarea rows=15 cols=10 id='path_min'></textarea>
-							</td><td>
-							<textarea rows=15 cols=30 id='path_min_t'></textarea>
-							</td>
-							</tr>
-							</table>
-							<textarea rows=15 cols=30 id='recomend'></textarea>
-					</div>
+                    <div id="tab-2">
+                        <div>
+                            Выход:  (Замедление времени 1 к <span id="time">1 000 000</span>):
+                            <div id="placeholder"></div>
+                            <a href="#" onclick="return startstopmap()"><img id="startstop" style="max-height: 50px" src="img/stop.png"></a>
+                        </div>
+                    </div>
+                    <div id="tab-3">
+                        <div id="attrGen">
+                            <ul>
+                                <li><input type="radio" name="input" value="sin|150|1|500000000|10000000" checked> -  sin, 0.15В, 1Гц, дл:500мс, смещение:10м </li>
+                                <li><input type="radio" name="input" value="imp|230|15|30000000|50000000"> -  имульс, 0.23В, 15Гц,  дл:30 мс, смещение:50м </li>
+                                <li><input type="radio" name="input" value="sin|7000|15000000|30|10"> -  sin, 7В, 15МГц, дл:30нс, смещение:10нс </li>
+                                <li><input type="radio" name="input" value="sin|500|512345678|1|2"> -  sin, 0.5В, 512МГц, дл:1нс, смещение:2нс  </li>
+                                <li><input type="radio" name="input" value="0"> -  своё</li>
+                            </ul>
+                            <table>
+                                <tr><td>импульс: </td><td><input type="checkbox" name="type"></td><td></td><td></td><td></td><td></td></tr>
+                                <tr>
+                                    <td>амплитуда, мВ: </td><td><input type="text" name="amp" value="0"></td>
+                                    <td>длительность, нс: </td><td><input type="text" name="t" value="0"></td>
+                                    <td>смещение, нс: </td><td><input type="text" name="of" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="radio" name="signal" value="hz"> частота, Гц: </td><td><input type="text" name="hz" value="0"></td>
+                                    <td><input type="radio" name="signal" value="period"> период, нс: </td><td><input type="text" name="period" value="0"></td><td></td><td></td></td>
+                                </tr>
 
+                            </table>
+                        </div>
+                    </div>
 				</div>
 			</td>
 		</tr>
