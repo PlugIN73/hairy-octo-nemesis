@@ -20,7 +20,7 @@ S125.GeneratorOne = function(param) {
 }
 
 S125.GeneratorOne.prototype.start = function() {
-	var interval = 100;
+	var interval = 1;
 	var scale = this.param.scale;
 	var param = this.param;
 	var g = this;
@@ -107,63 +107,17 @@ S125.Generator.prototype.hand = function () {
 
 S125.Generator.prototype.startSignal = function() {
 	var g = this;
-	var interval = 100;
+	var interval = 1000;
 	var scale = 1000000;
 	this.timerSignal = setInterval(function() {
-		if (g.map == null) return;
+
 		var t = g.map.state;
 		var u = t.U;
-		if (t.at == t.def.at1)
-			u = u / 10;
-		if (t.at == t.def.at2)
-			u = u / 100;
 		if (t.power == 0)
 			return;
 		if (t.mode == 0)
 			return g.signal(0, u);
-		var tact = 0;
-		if (t.T == 0 || t.R == 0 || u == 0)
-			return g.signal(0, u);
 
-		var p = Math.pow(10, t.K);
-
-		var ns = g.nsecond;
-		if (t.mode == t.def.externalPulsePos || t.mode == t.def.externalPulseNeg) {
-			if (!t.outerpulseInput) {
-				g.outer = 0;
-				return g.signal(0, u);
-			}
-			ns -= t.D * p / 10 * 1000;
-
-			if (t.mode == t.def.externalPulseNeg) {
-				ns -= 100;
-			}
-
-			ns -= g.nseconddif;
-			if (ns < 0 || !g.outer) {
-				g.nsecond += interval * 1000000/ scale;
-				return g.signal(0, u);
-			}
-		}
-
-
-		var period  = t.T * p / 10 * 1000;
-		var s = ns;
-
-		if (t.mode == t.def.hand && s >= period) {
-			t.mode = 0;
-			return g.signal(0, u);
-		}
-
-		var k = s / period;
-		var signal = s - period * Math.floor(k);
-		signal = (signal < t.R * p / 10 * 1000) * u / 1000;
-		if (t.mode == t.def.direct)
-			signal = u / 1000;
-
-		if (t.outerPulse == t.def.outerPulseNeg) {
-			signal = -signal;
-		}
 
 		t.signal = signal;
 		g.map.action(this, 'signal', signal);
@@ -178,9 +132,9 @@ S125.Generator.prototype.stopSignal = function() {
 
 S125.Generator.prototype.startAuto = function() {
 	var g = this;
-	var interval = 500;
+	var interval = 5;
 	this.timerAuto = setInterval(function() {
-					console.log("1");
+		console.log("1");
 		if (g.map == null) return;
 		var t = g.map.state;
 		if (t.param == 0) return;
