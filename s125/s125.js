@@ -33,10 +33,10 @@ DeviceS125.prototype.getArea = function () {
 	var  multi = 1.25
 	for(var i = 0; i < as.length; i++){
 		var shape = as[i];
-		
+
 		switch (shape.shape)
 		{
-			case 'rect': 
+			case 'rect':
 				c = shape.coords.split(',');
 				x = parseInt(c[0]) * multi;
 				y = parseInt(c[1]) * multi;
@@ -46,15 +46,15 @@ DeviceS125.prototype.getArea = function () {
 				c[1] = y;
 				c[2] = x2;
 				c[3] = y2;
-				
+
 				shape.coords = c.join(',')
 			break;
-			case 'circle': 
+			case 'circle':
 				c = shape.coords.split(',');
 				x = parseInt(c[0]) * multi;
 				y = parseInt(c[1]) * multi;
 				r = parseInt(c[2]) * multi;
-				
+
 				c[0] = x;
 				c[1] = y;
 				c[2] = r;
@@ -81,7 +81,8 @@ DeviceS125.prototype.definitionControl = function () {
 
     // Мои компоненты. Троицкий
 	c.push({key: 'menu', cls: Menu, param: null});
-    c.push({key: 'graph', cls: GraphVisio, param: null});
+  c.push({key: 'graph', cls: GraphVisio, param: null});
+  c.push({key: 'generator', cls: S125.Generator, param: null});
 
     return c;
 }
@@ -92,7 +93,7 @@ S125.modework = function(d, s, map, mode) {
 	d.mode = mode;
 	map.control("generator").hand();
 }
-	
+
 S125.getStateIndicator = function(t, name) {
 	if (!t.power) return false;
 	if (t.up) return true;
@@ -109,7 +110,7 @@ S125.getStateIndicator = function(t, name) {
 	m['indOuterPulsePos'] = t.power && (t.outerPulse == t.def.outerPulsePos);
 	m['indOuterPulseNeg'] = t.power && (t.outerPulse == t.def.outerPulseNeg);
 	m['indCalibration'] = t.power && (t.calibration > 0);
-	
+
 	return m[name];
 }
 
@@ -143,24 +144,24 @@ S125.eventNumber = function (state, state_new, digit) {
 		S125.changeNumber(state, state_new, digit);
 		return;
 	}
-	
+
 	if (!state.set && state.param != state.def.pNP && state.param != 0) {
 		var p = state.def.pvalue[state.param];
 		if (state.discharge + 1 > p.count) return;
 		state_new.discharge ++;
-		
+
 		state_new[p.name] = changeNumberDigit(state[p.name], digit, state_new.discharge, p.count);
-		
+
 		S125.saveProgram(state, state_new);
 		state_new.tact=0;
 		return;
 	}
-	
+
 	if (state.param == state.def.pNP) {
 		state_new.np = digit;
 		S125.loadProgram(state, state_new);
 		return;
-	}		
+	}
 }
 
 S125.getTranslateDigitNumber = function (discharge, max) {
@@ -180,3 +181,6 @@ S125.changeNumber = function (state, state_new, digit) {
 	var p = state.def.pvalue[state.param];
 	var number_digit = S125.getTranslateDigitNumber(state.discharge, p.count);
 	return getNumberDigit(state[p.name], number_digit, p.count); }
+
+
+

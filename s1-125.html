@@ -10,21 +10,21 @@
 		opacity: 0.8;
 	}
 
-    .control:hover { 
+    .control:hover {
       /*cursor:pointer;*/
     }
-	
+
 	/*
 	@font-face {
 		font-family: Crystal;
 		src: url(font.ttf);
    }*/
-   
+
    .text {
 	font-family: Crystal;
 	display:none;
    }
-   
+
    #map {
 		background: url('s125/s1-125.jpg') no-repeat;
 		position: relative;
@@ -35,22 +35,22 @@
 	width: 400px;
 	height: 250px;
    }
-   
+
     #c3 {
 		background: url('c3/c32.jpg') no-repeat;
    }
-   
+
    #path, #path_min, #recomend, #idea_path {
 		display:none;
    }
-   
+
    .xaxisLabel {
 		margin-top: 20px;
    }
 
 
   </style>
-  
+
   <script src="jquery-1.10.1.min.js"></script>
   <!--[if lt IE 9]>
     <script src="jquery-1.10.1.min.js"></script>
@@ -68,7 +68,7 @@
 	<script src="jquery.flot.min.js"></script>
 	<script src="jquery.flot.axislabels.js"></script>
 	<script src="hash_calc.js"></script>
-	<script src="std.js"></script> 
+	<script src="std.js"></script>
 	<script src="render.js"></script>
 	<script src="actionManager.js"></script>
 	<script src="map.js"></script>
@@ -89,12 +89,13 @@
 	<script src="reostat.js"></script>
 
 	<script src="s125/s125.js"></script>
+  <script src="s125/generator.js"></script>
 
 
-	
+
 	<script type="text/javascript">
-	
-	
+
+
 	function changeNumberDigit(val, digit, pos, w) {
 		if (w < pos)
 			return;
@@ -104,22 +105,22 @@
 		var v = val - p * pw + pw * digit;
 		return v;
 	}
-		
+
 	function getNumberDigit(val, pos, w) {
 		pos = w - pos;
 		var pw = Math.pow(10, pos);
 		var p = Math.floor((val % (pw * 10)) / pw);
 		return p;
 	}
-		
+
 
 	function zeroFill(number, int, fract) {
 		var int_number = Math.floor(number / Math.pow(10, fract));
 		var width = int - int_number.toString().length;
 		var s = "0";
-		if ( width > 0 ) 
+		if ( width > 0 )
 			s =  Array(width + 1).join('0') + int_number;
-		else 
+		else
 			s = int_number.toString();
 
 		if (fract > 0) {
@@ -129,16 +130,16 @@
 		}
 		return s;
 	}
-	
+
 	var s125;
 	//var c5; // Добавление этого устройства вызывает ошибки js и мешает отладке. Пока выключу. Троицкий
-	
+
 	// TODO: Должно быть спрятано. Троицкий
 
 	function setMode2(map, mode)	{
 		map.setMode(mode);
 		map.draw();
-		
+
 		switch(mode)
 		{
 			case deviceMode.EMULATOR:
@@ -155,7 +156,7 @@
 	}
 
 	// TODO: Должно быть спрятано. Троицкий
-	
+
 	function setMode(map, mode)	{
 		setMode2(s125, mode);
 		//setMode2(c3, mode); // Добавление этого устройства вызывает ошибки js и мешает отладке. Пока выключу. Троицкий
@@ -163,7 +164,7 @@
 		s125.GetControlByName('menu').ModeChanged(mode);			//Отображение текущего режима в меню. Троицкий // TODO: нужно сделать собтие изменения режима. Ато топорно как-то Троицкий
 
 	}
-	
+
 	function startstopmap() {
 		if (s125.startstate) {
 			$('#startstop').attr('src', 'img/play.png');
@@ -172,11 +173,11 @@
 			$('#startstop').attr('src', 'img/stop.png');
 			s125.start();
 		}
-		
+
 		return false;
 	}
-	
-	
+
+
 	$(document).ready(function() {
 		$('#tabs').tabs({ heightStyle: "fill" });
 
@@ -185,13 +186,13 @@
 		//s125 = new DeviceS125($('#map'), 640, 417);
 		s125 = new DeviceS125($('#map'), 800, 521);
 		s125.renderAreaControl();
-		
+
 		var outer = new Oscilloscope('outer_pulse', {container : $('#outer_pulse'), options: {yaxis: {max: 5, axisLabel: 'Вольты'}, xaxis: {axisLabel: 'Наносекунды'}}, scale: 100});
 		s125.add(outer);
-		
+
 		var clock = new Oscilloscope('clock_pulse', {container : $('#clock_pulse'), options: {yaxis: {max: 2, axisLabel: 'Вольты'}, xaxis: {axisLabel: 'Наносекунды'}}, scale: 100});
 		s125.add(clock);
-		
+
 		s125_menu = s125.GetControlByName('menu');
 		s125.draw();
 		s125_menu.initTooltips();
@@ -200,7 +201,7 @@
 
 		//s125.GetControlByName('tutor').enableExerciseEditor();
 
-		
+
 
 		// Добавление этого устройства вызывает ошибки js и мешает отладке. Пока выключу. Троицкий
 		// c3 = new DeviceC3($('#c3'), 668, 353);
@@ -208,7 +209,7 @@
 		// c3.draw();
 
 	});
-	
+
 	</script>
 <!-- 	<input type="radio" name="mode" checked onclick="setMode(s125, deviceMode.EMULATOR)"> - режим эмулятора |		// Перенес в меню. Троицкий
 	<input type="radio" name="mode" onclick="setMode(s125, deviceMode.HELP)">  - режим справки |
@@ -763,7 +764,7 @@
     внешний запуск импульсами положительной полярности;
 </p>
 <p>
-    внешний запуск импульсами отрицательной полярности;	
+    внешний запуск импульсами отрицательной полярности;
 </p>
 <p>
     разовый механический запуск.
