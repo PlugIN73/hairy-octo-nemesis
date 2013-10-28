@@ -7,7 +7,7 @@ extend(GraphVisio, Logic);
 GraphVisio.prototype.setMap = function (map) {
 	GraphVisio.superclass.setMap.call(this, map);
 	this.container = $("#placeholder");
-	this.max = 30;
+	this.max = 160;
 	var series = [{data: [], lines: {fill: true	}}];
 	this.plot = $.plot(this.container, series, {
 		grid: {	borderWidth: 1,	minBorderMargin: 20,labelMargin: 10,
@@ -61,6 +61,7 @@ GraphVisio.prototype.setMap = function (map) {
 		}
 		
 		var series = [{data: res, lines: {fill: true}, color: "#33CC66"}];
+    console.log(series)
 		this.plot.setData(series);
 		this.plot.draw();
 	});

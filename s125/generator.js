@@ -107,8 +107,8 @@ S125.Generator.prototype.hand = function () {
 
 S125.Generator.prototype.startSignal = function() {
 	var g = this;
-	var interval = 1000;
-	var scale = 1000000;
+	var interval = 50;
+	var scale = 10000;
 	this.timerSignal = setInterval(function() {
 
 		var t = g.map.state;
@@ -122,7 +122,7 @@ S125.Generator.prototype.startSignal = function() {
 		t.signal = signal;
 		g.map.action(this, 'signal', signal);
 
-		g.nsecond += interval * 1000000 / scale;
+		g.nsecond += interval * 10 / scale;
 	}, interval );
 }
 
@@ -134,7 +134,6 @@ S125.Generator.prototype.startAuto = function() {
 	var g = this;
 	var interval = 5;
 	this.timerAuto = setInterval(function() {
-		console.log("1");
 		if (g.map == null) return;
 		var t = g.map.state;
 		if (t.param == 0) return;
@@ -158,11 +157,15 @@ S125.Generator.prototype.stopAuto = function() {
 	clearInterval(this.timerAuto);
 }
 
+var x3 = -1;
 S125.Generator.prototype.signal = function(tact, max) {
 	var t = this.map.state;
 
 
-	t.signal = 0;
+	t.signal = 3* Math.sin(x3);
+  x3 += 0.05;
+  console.log(x3)
+  console.log(t.signal)
 	this.map.action(this, 'signal', t.signal);
 	t.tact++;
 }
