@@ -81,7 +81,6 @@ DeviceS125.prototype.definitionControl = function () {
   c.push({key: 'vertical', cls: Reostat, param: {action: 'd.vertical_offset=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
 
-    // Мои компоненты. Троицкий
 	c.push({key: 'menu', cls: Menu, param: null});
   c.push({key: 'graph', cls: GraphVisio, param: null});
   c.push({key: 'generator', cls: S125.Generator, param: null});
