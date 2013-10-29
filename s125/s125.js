@@ -70,7 +70,7 @@ DeviceS125.prototype.getAreaPre = function () {
 	//добавляю новые поле параметров tooltip для вывода подсказок в режиме справки. Троицкий
 	//добавляю новые поле параметров hint_text для вывода текста в боковом меню в режиме справки. Троицкий
 	area.push({shape: "rect", key: "power", coords: "120,280,145,300", tooltip: "Кнопка включения прибора", hint_text: "Кнопка включения прибора"});
-  area.push({shape: "circle", key: "vertical", coords: "375, 145, 10", tooltip: "Регулировка по высоте", hint_text: ""});
+  area.push({shape: "circle", key: "vertical", coords: "380, 145, 15", tooltip: "Регулировка по высоте", hint_text: ""});
     return area;
 }
 
@@ -78,8 +78,8 @@ DeviceS125.prototype.definitionControl = function () {
 	var c = []
 
 	c.push({key: 'power', cls: Button, param: 'd.power = !s.power; d.shiftUp=1; d.mode=0; d.at=0; d.outerPulse=d.def.outerPulsePos; d.calibration=0;d.T=0;d.D=0;d.R=0;d.K=0;d.U=0;d.calibration=0;d.set=0;d.param=0;d.set=0;d.tact=0,d.up=1'});
-  c.push({key: 'vertical', cls: Reostat, param: {action: 'd.vertical_offset=val', options: {minAngle: 0, angle: 90, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
-         fill: 'red'}, indr: 3, inddr: -13}}});
+  c.push({key: 'vertical', cls: Reostat, param: {action: 'd.vertical_offset=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
+         fill: 'red'}, indr: 3, inddr: -11}}});
 
     // Мои компоненты. Троицкий
 	c.push({key: 'menu', cls: Menu, param: null});
