@@ -165,6 +165,6 @@ S125.Generator.prototype.signal = function(tact, max) {
 
 	t.signal = 3* Math.sin(x3);
   x3 += 0.05;
-	this.map.action(this, 'signal', t.signal);
+	this.map.action(this, 'signal', this.map.state.vertical_offset + t.signal);
 	t.tact++;
 }
