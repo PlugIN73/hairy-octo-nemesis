@@ -59,9 +59,10 @@ GraphVisio.prototype.setMap = function (map) {
 			res.push([i, d])
 			last = this.data[i];
 		}
-		
-		var series = [{data: res, lines: {fill: true}, color: "#33CC66"}];
-    console.log(series)
+    if (source.fill_lines == void 0){
+      source.fill_lines = true;
+    }
+		var series = [{data: res, lines: {fill: source.fill_lines}, color: "#33CC66"}];
 		this.plot.setData(series);
 		this.plot.draw();
 	});

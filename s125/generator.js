@@ -161,11 +161,10 @@ var x3 = -1;
 S125.Generator.prototype.signal = function(tact, max) {
 	var t = this.map.state;
 
+  this.fill_lines = false;
 
 	t.signal = 3* Math.sin(x3);
   x3 += 0.05;
-  console.log(x3)
-  console.log(t.signal)
 	this.map.action(this, 'signal', t.signal);
 	t.tact++;
 }
