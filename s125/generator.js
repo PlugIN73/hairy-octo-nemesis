@@ -165,6 +165,20 @@ S125.Generator.prototype.signal = function(tact, max) {
 
 	t.signal = 3* Math.sin(x3);
   x3 += 0.05;
-	this.map.action(this, 'signal', this.map.state.vertical_offset + t.signal);
+
+
+ 	signal = this.map.state.vertical_offset + t.signal;
+
+
+ 	if (this.map.state.inversion == true) {
+ 		signal = signal * -1;
+ 	}
+
+ 	if (this.map.state.earthA == true) {
+ 		signal = signal * 0;
+ 	}
+
+
+	this.map.action(this, 'signal', signal);
 	t.tact++;
 }
