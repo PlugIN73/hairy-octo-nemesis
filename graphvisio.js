@@ -7,7 +7,7 @@ extend(GraphVisio, Logic);
 GraphVisio.prototype.setMap = function (map) {
 	GraphVisio.superclass.setMap.call(this, map);
 	this.container = $("#placeholder");
-	this.max = 160;
+	this.max = 10;
 	var series = [{data: [], lines: {fill: true	}}];
 	this.plot = $.plot(this.container, series, {
 		grid: {	borderWidth: 1,	minBorderMargin: 20,labelMargin: 10,
@@ -26,7 +26,7 @@ GraphVisio.prototype.setMap = function (map) {
 			min: 0,
 			max: this.max, 
 			axisLabel: 'Наносекунды', 
-			tickFormatter: function (val, axis) {return 100 * val;},
+			tickFormatter: function (val, axis) {return val;},
 		},
 		yaxis: {
 			min: -10,
@@ -39,30 +39,29 @@ GraphVisio.prototype.setMap = function (map) {
 	});
 
 	
-	map.addListener('signal', this, function(source, signal) {
+	map.addListener('signal', this, function(source, data) {
+			// if (this.data.length >= this.max) {
+		// 	this.data = this.data.slice(1);
+		// }		
+		// this.data.push(signal);
 		
-		if (this.data.length >= this.max) {
-			this.data = this.data.slice(1);
-		}		
-		this.data.push(signal);
-		
-		var res = [];
-		var last = 0;
-		for (var i = 0; i < this.data.length; ++i) {
-			var d = this.data[i];
+		// var res = [];
+		// var last = 0;
+		// for (var i = 0; i < this.data.length; ++i) {
+		// 	var d = this.data[i];
 			/*
 			if (last != 0 && d == 0 && i > 0) 
 				res.push([i, last]);
 			if (last == 0 && d > 0 && i > 0) */
 			
-			res.push([i, last]);
-			res.push([i, d])
-			last = this.data[i];
-		}
+		// 	res.push([i, last]);
+		// 	res.push([i, d])
+		// 	last = this.data[i];
+		// }
     if (source.fill_lines == void 0){
       source.fill_lines = true;
     }
-		var series = [{data: res, lines: {fill: source.fill_lines}, color: "#33CC66"}];
+		var series = [{data: data, lines: {fill: source.fill_lines}, color: "#33CC66"}];
 		this.plot.setData(series);
 		this.plot.draw();
 	});

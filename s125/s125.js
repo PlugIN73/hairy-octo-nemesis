@@ -1,29 +1,29 @@
 function DeviceS125(node, width, height) {
 	DeviceS125.superclass.constructor.call(this, node, width, height);
-    this.state = {
-        power: 0, shiftUp: 1, mode: 0, outerPulse: 0, at: 0, auto: 0, calibration: 0,
-        T: 3, D: 0, R: 1, K: 0, U: 1234, set:0, discharge: 0, param: 0, tact: 0, signal: 0,
-        p: [], np: 0, up: 1, clockpulseInput: 0, outerpulseInput: 0, vertical_offset: 0,
-        def: {innerWork:1, externalPulsePos: 2, externalPulseNeg: 3, hand: 4, direct: 5, at1: 6, at2: 7, outerPulsePos: 8,
-            outerPulseNeg: 9, pT: 10, pD: 11, pR: 12, pK: 13, pU: 14, pNP: 15}
-    };
-    for(var i = 0; i < 10; i++) {
-        this.state.p.push({T: 0, D: 0, R: 0, K: 0, U: 0});
-    }
-    this.state.def.pvalue = {};
-    this.state.def.pvalue[this.state.def.pT] = {count: 3, name: 'T'};
-    this.state.def.pvalue[this.state.def.pD] = {count: 3, name: 'D'};
-    this.state.def.pvalue[this.state.def.pR] = {count: 3, name: 'R'};
-    this.state.def.pvalue[this.state.def.pK] = {count: 1, name: 'K'};
-    this.state.def.pvalue[this.state.def.pU] = {count: 4, name: 'U'};
+  this.state = {
+    power: 0, shiftUp: 1, mode: 0, outerPulse: 0, at: 0, auto: 0, calibration: 0,
+    T: 3, D: 0, R: 1, K: 0, U: 1234, set:0, discharge: 0, param: 0, tact: 0, signal: 0,
+    p: [], np: 0, up: 1, clockpulseInput: 0, outerpulseInput: 0, vertical_offset: 0,
+    def: {innerWork:1, externalPulsePos: 2, externalPulseNeg: 3, hand: 4, direct: 5, at1: 6, at2: 7, outerPulsePos: 8,
+      outerPulseNeg: 9, pT: 10, pD: 11, pR: 12, pK: 13, pU: 14, pNP: 15}
+  };
+  for(var i = 0; i < 10; i++) {
+    this.state.p.push({T: 0, D: 0, R: 0, K: 0, U: 0});
+  }
+  this.state.def.pvalue = {};
+  this.state.def.pvalue[this.state.def.pT] = {count: 3, name: 'T'};
+  this.state.def.pvalue[this.state.def.pD] = {count: 3, name: 'D'};
+  this.state.def.pvalue[this.state.def.pR] = {count: 3, name: 'R'};
+  this.state.def.pvalue[this.state.def.pK] = {count: 1, name: 'K'};
+  this.state.def.pvalue[this.state.def.pU] = {count: 4, name: 'U'};
 
-    this.start_state = jQuery.extend(true, {}, this.state);
-    this.statedef = this.state.def;
+  this.start_state = jQuery.extend(true, {}, this.state);
+  this.statedef = this.state.def;
 
-    this.state_time_variables = ["tact", "signal"];
+  this.state_time_variables = ["tact", "signal"];
 
-    this.name = "s1-125";											// Название папки для поиска изображений
-	this.title = 'Осциллограф С1-125';
+  this.name = "s1-125";											// Название папки для поиска изображений
+  this.title = 'Осциллограф С1-125';
 }
 
 extend(DeviceS125, Map);

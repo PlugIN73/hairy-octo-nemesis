@@ -33,10 +33,12 @@ S125.GeneratorOne.prototype.start = function() {
 
 		for(var i = 0; i < param.generator.length; i++) {
 			var p = param.generator[i];
-			if (eval(p.param.cond))
+      console.log(p)
+			if (eval(p.param.cond)) {
 				p.signal(g.nsecond);
-			else
+      }	else {
 				p.param.funcsingal(0);
+      }
 		}
 		g.nsecond += interval * 1000000;
 
@@ -158,27 +160,41 @@ S125.Generator.prototype.stopAuto = function() {
 }
 
 var x3 = -1;
+
+
+// Здесь в этой функции идет основное преобразование координаты X в Y
+function yFunction(x, state) {
+  var y = 3 * Math.sin(x);
+
+ 	if (state.inversion == true) {
+ 		y = y * -1;
+ 	}
+
+  y += state.vertical_offset;
+
+
+ 	if (state.earthA == true) {
+ 		y = y * 0;
+ 	}
+
+  return y;
+}
+
 S125.Generator.prototype.signal = function(tact, max) {
-	var t = this.map.state;
-
+  // console.log(tact, max)
+	// var t = this.map.state;
   this.fill_lines = false;
+	// t.signal = 3* Math.sin(x3);
 
-	t.signal = 3* Math.sin(x3);
-  x3 += 0.05;
+  var points = [];
+  for (var i = 0; i < 14; i += 0.5) {
+    var point = [
+      i,
+      yFunction(i, this.map.state)
+    ]
+    points.push(point);
+  }
 
-
- 	signal = this.map.state.vertical_offset + t.signal;
-
-
- 	if (this.map.state.inversion == true) {
- 		signal = signal * -1;
- 	}
-
- 	if (this.map.state.earthA == true) {
- 		signal = signal * 0;
- 	}
-
-
-	this.map.action(this, 'signal', signal);
-	t.tact++;
+	this.map.action(this, 'signal', points); // this.map.state.vertical_offset + t.signal);
+	// t.tact++;
 }

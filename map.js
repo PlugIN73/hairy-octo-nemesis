@@ -126,6 +126,8 @@ Map.prototype.draw = function (c) {
 
 Map.prototype.action = function (control, name, params) {
 	var m = this.listener[name];
+  console.log(name)
+  console.log(m)
 	if (m === undefined) {
 		return;
 	}
