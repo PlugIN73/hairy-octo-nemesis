@@ -94,7 +94,7 @@ var S125 = {};
 S125.getStateIndicator = function(t, name) {
 	if (!t.power) return false;
 	m = {};
-  //вот так делаюцца ебаные индикаторы
+  //вот так делаюцца индикаторы
 	// m['indShiftDown'] = t.power && !t.shiftUp;
   m['closeAIndicator'] = t.power && t.closedA
   m['earthAIndicator'] = t.power && t.earthA
