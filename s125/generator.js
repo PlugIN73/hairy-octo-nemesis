@@ -180,16 +180,15 @@ S125.Generator.prototype.yFunction = function(x, state) {
  		y = y * -1;
  	}
 
+  // Если подключена "Земля"
+ 	if (state.earthA == true) {
+ 		y = 0;
+ 	}
+
   // Добавляем смещение по вертикали
   y += state.vertical_offset;
 
-
-  // Если подключена "Земля"
- 	if (state.earthA == true) {
- 		y = y * 0;
- 	}
-
-  return y;
+ return y;
 }
 
 // Здесь идет генерация точек для графика
