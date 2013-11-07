@@ -173,7 +173,7 @@ S125.Generator.prototype.yFunction = function(x, state) {
   var y = inputPulseFn(x);
 
   // Тестовая хрень для рандомной генерации графика
-  y *= Math.random() * 4 - 2;
+  //y *= Math.random() * 4 - 2;
 
   // Если включен переключатель инвертирования, то инвертируем график
  	if (state.inversion == true) {
