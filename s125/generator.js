@@ -185,6 +185,11 @@ S125.Generator.prototype.yFunction = function(x, state) {
  		y = 0;
  	}
 
+  // Если канал А закрыт. Если у кого-то есть идеи как это сделать лучше - велкам.
+  if (state.closedA == true) {
+    y = -2000000;
+  }
+
   // Добавляем смещение по вертикали
   y += state.vertical_offset;
 
