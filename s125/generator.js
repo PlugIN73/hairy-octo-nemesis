@@ -205,10 +205,20 @@ S125.Generator.prototype.signal = function() {
   // Шаг по X
   var STEP_X = 0.5;
 
-  var points = [];
+  var points1 = [];
+  var points2 = [];
   for (var i = 0; i < MAX_X; i += STEP_X) {
-    points.push([ i, this.yFunction(i) ]);
+    points1.push([ i, this.yFunction(i) ]);
   }
 
-  this.map.action(this, 'signal', points);
+  for (var i = 0; i < MAX_X; i += STEP_X) {
+    points2.push([ i, 2 + this.yFunction(i) ]);
+  }
+
+  var series = [
+    {data: points1, lines: {fill: this.fill_lines}, color: "#33CC66"},
+    {data: points2, lines: {fill: this.fill_lines}, color: "#33CC66"}
+  ];
+
+  this.map.action(this, 'signal', series);
 }

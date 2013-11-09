@@ -39,7 +39,7 @@ GraphVisio.prototype.setMap = function (map) {
 	});
 
 	
-	map.addListener('signal', this, function(source, data) {
+	map.addListener('signal', this, function(source, series) {
 			// if (this.data.length >= this.max) {
 		// 	this.data = this.data.slice(1);
 		// }		
@@ -61,7 +61,6 @@ GraphVisio.prototype.setMap = function (map) {
     if (source.fill_lines == void 0){
       source.fill_lines = true;
     }
-		var series = [{data: data, lines: {fill: source.fill_lines}, color: "#33CC66"}];
 		this.plot.setData(series);
 		this.plot.draw();
 	});
