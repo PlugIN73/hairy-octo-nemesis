@@ -98,7 +98,7 @@ DeviceS125.prototype.definitionControl = function () {
 	c.push({key: 'earthAIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
 	c.push({key: 'openAIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
 
-	c.push({key: 'power', cls: Button, param: 'd.power = !s.power; d.mode=0;'});
+	c.push({key: 'power', cls: Button, param: 'd.power = !s.power;'});
   c.push({key: 'verticalA', cls: Reostat, param: {action: 'd.verticalA=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
   c.push({key: 'earthA', cls: Button, param: 'd.earthA = 1; d.closedA = 0; d.openA = 0;'});
