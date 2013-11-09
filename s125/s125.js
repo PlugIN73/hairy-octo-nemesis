@@ -142,5 +142,8 @@ S125.getStateIndicator = function(t, name) {
   m['earthAIndicator'] = t.power && t.earthA
   m['openAIndicator'] = t.power && t.openA
 
+  m['closeBIndicator'] = t.power && t.closedB
+  m['earthBIndicator'] = t.power && t.earthB
+  m['openBIndicator'] = t.power && t.openB
 	return m[name];
 }
