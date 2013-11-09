@@ -31,7 +31,8 @@ S125.Generator.prototype.startSignal = function() {
 	this.timerSignal = setInterval(function() {
 		var state = this.map.state;
     // Если прибор выключен то ничего не делаем
-		if (state.power == 0) {
+    console.log(state.connectedSignalA)
+		if (state.power == 0 || state.connectedSignalA == 0) {
       return;
     // Если какой то режим (надо посмотреть какой), то генерируем график
     // агада, приходит из s125.js definitionControl, при нажатии на кнопку повера
