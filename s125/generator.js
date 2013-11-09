@@ -26,7 +26,7 @@ S125.Generator.prototype.setMap = function (map) {
 
 S125.Generator.prototype.startSignal = function() {
   // Интервал проверки сигнала (генерации графика)
-	var interval = 100;
+	var interval = 500;
 
 	this.timerSignal = setInterval(function() {
 		var state = this.map.state;
@@ -51,22 +51,11 @@ S125.Generator.prototype.stopAuto = function() {
 	clearInterval(this.timerAuto);
 }
 
-// Функция для получения входного импульса
-// Здесь пока захардкожена синусоида, надо будет динамически получать
-S125.Generator.prototype.getInputPulse = function() {
-  return function(x) { return Math.sin(x); }
-}
-
 // Здесь в этой функции идет основное преобразование координаты X в Y
 S125.Generator.prototype.yFunction = function(x, state) {
-  var state = this.map.state;
 
   // Получаем функцию входного импульса и применяем ее
-  var inputPulseFn = this.getInputPulse();
-  var y = inputPulseFn(x);
-
-  // Тестовая хрень для рандомной генерации графика
-  //y *= Math.random() * 4 - 2;
+  var y = state.inputPulseFn(x);
 
   // Если включен переключатель инвертирования, то инвертируем график
  	if (state.inversion == true) {
@@ -74,12 +63,12 @@ S125.Generator.prototype.yFunction = function(x, state) {
  	}
 
   // Если подключена "Земля"
- 	if (state.earthA == true) {
+ 	if (state.earth == true) {
  		y = 0;
  	}
 
   // Если канал А закрыт. Если у кого-то есть идеи как это сделать лучше - велкам.
-  if (state.closedA == true) {
+  if (state.closed == true) {
     y = -2000000;
   }
 
@@ -89,30 +78,63 @@ S125.Generator.prototype.yFunction = function(x, state) {
  return y;
 }
 
-// Здесь идет генерация точек для графика
-S125.Generator.prototype.signal = function() {
+// Функция для получения импульса A канала
+// Здесь пока захардкожена синусоида, надо будет динамически получать
+S125.Generator.prototype.getAOptions = function() {
   var state = this.map.state;
-  this.fill_lines = false;
+  return {
+    inputPulseFn: function(x) { return 5 * Math.sin(x); },
+    inversion: state.inversion,
+    earth: state.earthA,
+    closed: state.closed,
+    vertical_offset: state.vertical_offset
+  };
+}
 
+// Функция для получения импульса B канала
+S125.Generator.prototype.getBOptions = function() {
+  var state = this.map.state;
+  return {
+    inputPulseFn: function(x) { return 3 * Math.cos(x); },
+    inversion: state.inversion,
+    earth: state.earthA,
+    closed: state.closed,
+    vertical_offset: state.vertical_offset
+  };
+}
+
+S125.Generator.prototype.generatePlot = function(options, color) {
   // Максимальное значение по X
   var MAX_X = 14;
   // Шаг по X
   var STEP_X = 0.5;
 
-  var points1 = [];
-  var points2 = [];
+  var points = [];
   for (var i = 0; i < MAX_X; i += STEP_X) {
-    points1.push([ i, this.yFunction(i) ]);
+    points.push([ i, this.yFunction(i, options) ]);
   }
 
-  for (var i = 0; i < MAX_X; i += STEP_X) {
-    points2.push([ i, 2 + this.yFunction(i) ]);
-  }
+  return {data: points, lines: {fill: false}, color: color};
+}
 
-  var series = [
-    {data: points1, lines: {fill: this.fill_lines}, color: "#33CC66"},
-    {data: points2, lines: {fill: this.fill_lines}, color: "#33CC66"}
-  ];
+// Здесь идет генерация точек для графика
+S125.Generator.prototype.signal = function() {
+  var state = this.map.state;
 
-  this.map.action(this, 'signal', series);
+  var colorA =  0; //"#33CC66";
+  var colorB =  1; //"#43CC86";
+
+  var graphics = [];
+
+  // if (state.openA == 1) {
+  var plotA = this.generatePlot(this.getAOptions(), colorA);
+  graphics.push(plotA);
+  // }
+
+  // if (state.openB == 1) {
+  var plotB = this.generatePlot(this.getBOptions(), colorB);
+  graphics.push(plotB);
+  // }
+
+  this.map.action(this, 'signal', graphics);
 }

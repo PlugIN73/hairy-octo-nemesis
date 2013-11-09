@@ -58,9 +58,9 @@ GraphVisio.prototype.setMap = function (map) {
 		// 	res.push([i, d])
 		// 	last = this.data[i];
 		// }
-    if (source.fill_lines == void 0){
-      source.fill_lines = true;
-    }
+    // if (source.fill_lines == void 0){
+    //   source.fill_lines = true;
+    // }
 		this.plot.setData(series);
 		this.plot.draw();
 	});
