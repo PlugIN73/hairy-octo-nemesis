@@ -128,19 +128,26 @@ S125.Generator.prototype.signal = function() {
 
   var graphics = [];
 
+  // Если подключен 1 сигнал
   if (state.connectedSignalA == 1) {
+    // Генерируем график для него 
     var plotA = this.generatePlot(this.getAOptions(), colorA);
     graphics.push(plotA);
   }
 
+  // Если подключен 2 сигнал
   if (state.connectedSignalB == 1) {
+    // Генерируем график для него 
     var plotB = this.generatePlot(this.getBOptions(), colorB);
     graphics.push(plotB);
   }
 
+  // Если прибор включен и есть графики то 
   if (state.power && graphics.length > 0) {
+    // Рисуем графики
     this.map.action(this, 'signal', graphics);
   } else {
+    // Очищаем график
     this.map.action(this, 'signal', [{data: [[0, 0]], lines: {fill: false}, color: 1}]);
   }
 }
