@@ -1,7 +1,7 @@
 function DeviceS125(node, width, height) {
 	DeviceS125.superclass.constructor.call(this, node, width, height);
   this.state = {
-    power: 0, inversionA: 0, closedA: 0, earthA: 0, openA: 1, connectedSignalA: 0, connectedSignalB: 0,
+    power: 0, inversionA: 0, closedA: 0, earthA: 0, openA: 1, connectedSignalA: 0, connectedSignalB: 0, ampA: 1000,
     earthB:0, closedB: 1, openB: 0,
     p: [], verticalA: 0, verticalB:0,
     def: {}
@@ -60,6 +60,7 @@ DeviceS125.prototype.getAreaPre = function () {
   //Канал А
   area.push({shape: "rect", key: "inversionA", coords: "355,90,390,110", tooltip: "Кнопка инвертирования", hint_text: "Кнопка инвертирования канала А"});
   area.push({shape: "circle", key: "verticalA", coords: "380, 145, 15", tooltip: "Регулировка по высоте", hint_text: ""});
+  area.push({shape: "circle", key: "ampA", coords: "375, 200, 20", tooltip: "Регулировка по высоте", hint_text: ""});
   area.push({shape: "rect", key: "earthA", coords: "360,222,375,242", tooltip: "Кнопка земли", hint_text: "Кнопка земли"});
   area.push({shape: "rect", key: "closedA", coords: "375, 222, 390, 242",
             tooltip: "", hint_text: "Закрыть канал А"});
@@ -109,6 +110,8 @@ DeviceS125.prototype.definitionControl = function () {
 	c.push({key: 'power', cls: Button, param: 'd.power = !s.power;'});
   c.push({key: 'verticalA', cls: Reostat, param: {action: 'd.verticalA=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
+  c.push({key: 'ampA', cls: Reostat, param: {action: 'd.ampA=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: 1, maxValue: 5000}, ropt: {cont: {opacity: 0}, ind: {
+         fill: 'red'}, indr: 3, inddr: -11}}});
   c.push({key: 'earthA', cls: Button, param: 'd.earthA = 1; d.closedA = 0; d.openA = 0;'});
 	c.push({key: 'closedA', cls: Button, param: 'd.closedA = 1; d.earthA = 0; d.openA = 0;'});
 	c.push({key: 'openA', cls: Button, param: 'd.openA = 1; d.closedA = 0; d.earthA = 0;'});
@@ -145,15 +148,16 @@ var S125 = {};
 S125.getStateIndicator = function(t, name) {
 	if (!t.power) return false;
 	m = {};
-  m['powerIndicator'] = t.power
-  m['closeAIndicator'] = t.power && t.closedA
-  m['earthAIndicator'] = t.power && t.earthA
-  m['openAIndicator'] = t.power && t.openA
-  m['inversionAIndicator'] = t.inversionA
-  m['noinversionAIndicator'] = !t.inversionA
+  m['powerIndicator'] = t.power;
+  m['closeAIndicator'] = t.power && t.closedA;
+  m['earthAIndicator'] = t.power && t.earthA;
+  m['openAIndicator'] = t.power && t.openA;
+  m['ampA'] = t.power && t.ampA;
+  m['inversionAIndicator'] = t.inversionA;
+  m['noinversionAIndicator'] = !t.inversionA;
 
-  m['closeBIndicator'] = t.power && t.closedB
-  m['earthBIndicator'] = t.power && t.earthB
-  m['openBIndicator'] = t.power && t.openB
+  m['closeBIndicator'] = t.power && t.closedB;
+  m['earthBIndicator'] = t.power && t.earthB;
+  m['openBIndicator'] = t.power && t.openB;
 	return m[name];
 }
