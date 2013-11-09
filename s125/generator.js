@@ -80,7 +80,7 @@ S125.Generator.prototype.getAOptions = function() {
 S125.Generator.prototype.getBOptions = function() {
   var state = this.map.state;
   return {
-    inputPulseFn: function(x) { return Math.cos(x); },
+    inputPulseFn: function(x) { return -Math.sin(x); },
     inversionA: state.inversionA,
     earth: state.earthB,
     closed: state.closedB,
@@ -104,24 +104,95 @@ S125.Generator.prototype.generatePlot = function(options, color) {
   return {data: points, lines: {fill: false}, color: color};
 }
 
+// Функция для генерирования алгебраич. суммы 2ух графиков
+S125.Generator.prototype.generatePlot = function(options, color) {
+  // Максимальное oзначение по X
+  var MAX_X = 14;
+  // Шаг по X
+  var STEP_X = 0.5;
+
+  var points = [];
+  for (var i = 0; i < MAX_X + 0; i += STEP_X) {
+    var y1 = 
+    points.push([ i, this.yFunction(i + options.gorizont, options) ]);
+  }
+
+  return {data: points, lines: {fill: false}, color: color};
+}
+S125.Generator.prototype.generateComboPlot = function(options1, options2, color) {
+  // Максимальное oзначение по X
+  var MAX_X = 14;
+  // Шаг по X
+  var STEP_X = 0.5;
+
+  var points = [];
+  for (var i = 0; i < MAX_X + 0; i += STEP_X) {
+    var y1 = this.yFunction(i + options1.gorizont, options1);
+    var y2 = this.yFunction(i + options2.gorizont, options2);
+    points.push([ i, y1 + y2]);
+  }
+
+  return {data: points, lines: {fill: false}, color: color};
+}
+
+function isShowSignalA(state) {
+  return state.connectedSignalA && !state.closedA && (state.showSignalA || state.showSignalAB);
+}
+
+function isShowSignalAWithB(state) {
+  return ( state.connectedSignalA && !state.closedA)
+      && ( state.connectedSignalB && !state.closedB) && state.showSignalAB;
+}
+
+function isShowSignalB(state) {
+  return state.connectedSignalB && !state.closedB && (state.showSignalB || state.showSignalAB);
+}
+
 // Здесь идет генерация точек для графика
 S125.Generator.prototype.signal = function() {
   var state = this.map.state;
 
-  var colorA =  0; //"#33CC66";
-  var colorB =  1; //"#43CC86";
+  var colorA = 0;
+  var colorB = 1;
+  var colorAB = 2;
 
   var graphics = [];
 
+  // если включен переключатель A и Б
+  if (isShowSignalAWithB(state)) {
+    // Показываем оба графика
+    if (state.showSignalComboAB) {
+      graphics = [
+        this.generatePlot(this.getAOptions(), colorA),
+        this.generatePlot(this.getBOptions(), colorB)
+      ];
+    } else
+      // Показываем алгебраическую сумму 2ух графиков
+      if (state.showSignalComboAwithB) {
+        graphics.push( this.generateComboPlot(this.getAOptions(), this.getBOptions(), colorAB) );
+      } else
+      // Попеременно показываем 1 или 2ой график
+      if (state.showSignalComboBlink) {
+        if (typeof this.currentSignal == 'undefined') {this.currentSignal = 'A';}
+        if (this.currentSignal == 'A') {
+          var plotA = this.generatePlot(this.getAOptions(), colorA);
+          graphics.push(plotA);
+          this.currentSignal = 'B';
+        } else if (this.currentSignal == 'B') {
+          var plotB = this.generatePlot(this.getBOptions(), colorB);
+          graphics.push(plotB);
+          this.currentSignal = 'A';
+        }
+      }
+  } else
   // Если подключен сигнал А и он не закрыт и включен тумблер показа сигнала
-  if (state.connectedSignalA && !state.closedA && (state.showSignalA || state.showSignalAB)) {
+  if (isShowSignalA(state)) {
     // Генерируем график для него
     var plotA = this.generatePlot(this.getAOptions(), colorA);
     graphics.push(plotA);
-  }
-
+  } else
   // Если подключен сигнал B и он не закрыт и включен тумблер показа сигнала
-  if (state.connectedSignalB && !state.closedB && (state.showSignalB || state.showSignalAB))  {
+  if (isShowSignalB(state))  {
     // Генерируем график для него
     var plotB = this.generatePlot(this.getBOptions(), colorB);
     graphics.push(plotB);
