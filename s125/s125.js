@@ -2,7 +2,8 @@ function DeviceS125(node, width, height) {
 	DeviceS125.superclass.constructor.call(this, node, width, height);
   this.state = {
     power: 0, inversionA: 0, closedA: 0, earthA: 0, openA: 1, connectedSignalA: 0, connectedSignalB: 0, ampA: 1000,
-    earthB:0, closedB: 1, openB: 0, ampB: 1000,
+    showSignalA: 1, showSignalB: 0, showSignalAB: 0,
+    earthB:0, closedB: 1, openB: 0,
     p: [], verticalA: 0, verticalB:0,
     def: {}
   };
@@ -80,10 +81,8 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "circle", key: "verticalB", coords: "453, 145, 15", tooltip: "Регулировка по высоте", hint_text: "Регулировка по высоте в канале Б"});
   area.push({shape: "circle", key: "ampB", coords: "448, 200, 20", tooltip: "Регулировка по высоте", hint_text: ""});
   area.push({shape: "rect", key: "earthB", coords: "433,222,448,242", tooltip: "Кнопка земли", hint_text: "Кнопка земли"});
-  area.push({shape: "rect", key: "closedB", coords: "448, 222, 463, 242",
-            tooltip: "", hint_text: "Закрыть канал Б"});
-  area.push({shape: "rect", key: "openB", coords: "418, 222, 433, 242",
-            tooltip: "", hint_text: "Открыть канал Б"});
+  area.push({shape: "rect", key: "closedB", coords: "448, 222, 463, 242", tooltip: "", hint_text: "Закрыть канал Б"});
+  area.push({shape: "rect", key: "openB", coords: "418, 222, 433, 242", tooltip: "", hint_text: "Открыть канал Б"});
   area.push({shape: "circle", key: "closeBIndicator", coords: "463, 232, 3", tooltip: "Индикатор закрытого канала Б", hint_text: "Канал Б закрыт"});
   area.push({shape: "circle", key: "earthBIndicator", coords: "443, 242, 3", tooltip: "Индикатор закрытого канала Б", hint_text: "Канал Б закрыт"});
   area.push({shape: "circle", key: "openBIndicator", coords: "423, 232, 3", tooltip: "Индикатор закрытого канала Б", hint_text: "Канал Б закрыт"});
@@ -91,6 +90,15 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "circle", key: "connectedSignalB", coords: "443,280,18", tooltip: "Индикатор подключения канала B", hint_text: "Индикатор подключения канала B"});
 
   //Каналы А и Б
+
+  area.push({shape: "rect", key: "showSignalA", coords: "395,83,420,98", tooltip: "Тумблер отображения сигнала А", hint_text: "Отображение сигнала А"});
+  area.push({shape: "rect", key: "showSignalB", coords: "395,98,420,107", tooltip: "Тумблер отображения сигнала B", hint_text: "Отображение сигнала B"});
+  area.push({shape: "rect", key: "showSignalAB", coords: "395,107,420,119", tooltip: "Тумблер отображения сигнала АB", hint_text: "Отображение сигнала АB"});
+
+  area.push({shape: "circle", key: "showSignalAIndicator", coords: "395, 90, 3", tooltip: "Индикатор отображения сигнала А", hint_text: "Отображаем А"});
+  area.push({shape: "circle", key: "showSignalBIndicator", coords: "395, 100, 3", tooltip: "Индикатор отображения сигнала B", hint_text: "Отображаем B"});
+  area.push({shape: "circle", key: "showSignalABIndicator", coords: "395, 115, 3", tooltip: "Индикатор отображения сигнала АB", hint_text: "Отображаем АB"});
+
 
   return area;
 }
@@ -142,6 +150,14 @@ DeviceS125.prototype.definitionControl = function () {
 
   c.push({key: 'connectedSignalB', cls: ButtonBoxImage, param: {act: 'd.connectedSignalB=!s.connectedSignalB', on: 't.connectedSignalB', image_on: "s125/s125-signal.png;41;53", image_off: null}});
 
+  //Канал А и В
+  c.push({key: 'showSignalA', cls: Button, param: 'd.showSignalA = 1; d.showSignalB = 0; d.showSignalAB = 0;'});
+  c.push({key: 'showSignalB', cls: Button, param: 'd.showSignalA = 0; d.showSignalB = 1; d.showSignalAB = 0;'});
+  c.push({key: 'showSignalAB', cls: Button, param: 'd.showSignalA = 0; d.showSignalB = 0; d.showSignalAB = 1;'});
+
+  c.push({key: 'showSignalAIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
+  c.push({key: 'showSignalBIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
+  c.push({key: 'showSignalABIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
 
   return c;
 }
@@ -163,5 +179,10 @@ S125.getStateIndicator = function(t, name) {
   m['earthBIndicator'] = t.power && t.earthB;
   m['openBIndicator'] = t.power && t.openB;
   m['ampB'] = t.power && t.ampB;
+
+  m['showSignalAIndicator'] = t.power && t.showSignalA
+  m['showSignalBIndicator'] = t.power && t.showSignalB
+  m['showSignalABIndicator'] = t.power && t.showSignalAB
+
 	return m[name];
 }
