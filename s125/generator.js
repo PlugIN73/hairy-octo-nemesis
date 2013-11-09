@@ -68,9 +68,9 @@ S125.Generator.prototype.yFunction = function(x, state) {
  	}
 
   // Если канал А закрыт. Если у кого-то есть идеи как это сделать лучше - велкам.
-  if (state.closed == true) {
-    y = -2000000;
-  }
+  // if (state.closed == true) {
+  //   y = -2000000;
+  // }
 
   // Добавляем смещение по вертикали
   y += state.vertical;
@@ -129,14 +129,14 @@ S125.Generator.prototype.signal = function() {
   var graphics = [];
 
   // Если подключен 1 сигнал
-  if (state.connectedSignalA == 1) {
+  if (state.connectedSignalA && !state.closedA) {
     // Генерируем график для него 
     var plotA = this.generatePlot(this.getAOptions(), colorA);
     graphics.push(plotA);
   }
 
   // Если подключен 2 сигнал
-  if (state.connectedSignalB == 1) {
+  if (state.connectedSignalB && !state.closedB) {
     // Генерируем график для него 
     var plotB = this.generatePlot(this.getBOptions(), colorB);
     graphics.push(plotB);
