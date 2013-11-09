@@ -3,7 +3,7 @@ function DeviceS125(node, width, height) {
   this.state = {
     power: 0, inversion: 0, closedA: 0, earthA: 0, openA: 1, connectedSignalA: 0,
     earthB:0, closedB: 1, openB: 0,
-    p: [], verticalA: 0, verticalB:0;
+    p: [], verticalA: 0, verticalB:0,
     def: {}
   };
 
