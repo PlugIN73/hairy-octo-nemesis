@@ -3,7 +3,7 @@ function DeviceS125(node, width, height) {
   this.state = {
     power: 0, inversion: 0, closedA: 0, earthA: 0, openA: 1, connectedSignalA: 0,
     earthB:0, closedB: 1, openB: 0,
-    p: [], vertical_offset: 0,
+    p: [], verticalA: 0, verticalB:0;
     def: {}
   };
 
@@ -95,7 +95,7 @@ DeviceS125.prototype.definitionControl = function () {
 	c.push({key: 'openAIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
 
 	c.push({key: 'power', cls: Button, param: 'd.power = !s.power; d.mode=0;'});
-  c.push({key: 'verticalA', cls: Reostat, param: {action: 'd.vertical_offset=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
+  c.push({key: 'verticalA', cls: Reostat, param: {action: 'd.verticalA=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
   c.push({key: 'earthA', cls: Button, param: 'd.earthA = 1; d.closedA = 0; d.openA = 0;'});
 	c.push({key: 'closedA', cls: Button, param: 'd.closedA = 1; d.earthA = 0; d.openA = 0;'});
@@ -112,7 +112,7 @@ DeviceS125.prototype.definitionControl = function () {
 	c.push({key: 'earthBIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
 	c.push({key: 'openBIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
 
-  c.push({key: 'verticalB', cls: Reostat, param: {action: 'd.vertical_offset=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
+  c.push({key: 'verticalB', cls: Reostat, param: {action: 'd.verticalB=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
   c.push({key: 'earthB', cls: Button, param: 'd.earthB = 1; d.closedB = 0; d.openB = 0;'});
 	c.push({key: 'closedB', cls: Button, param: 'd.closedB = 1; d.earthB = 0; d.openB = 0;'});
