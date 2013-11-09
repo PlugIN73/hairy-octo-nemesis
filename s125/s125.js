@@ -3,7 +3,7 @@ function DeviceS125(node, width, height) {
   this.state = {
     power: 0, inversionA: 0, closedA: 0, earthA: 0, openA: 1, connectedSignalA: 0, connectedSignalB: 0, ampA: 1000, ampB: 1000,
     showSignalA: 1, showSignalB: 0, showSignalAB: 0, showSignalComboAB: 1, showSignalComboAwithB: 0, showSignalComboBlink: 0,
-    earthB:0, closedB: 1, openB: 0,
+    earthB:0, closedB: 1, openB: 0, signalX5: 0, signalX1: 1, signalXY: 0,
     p: [], verticalA: 0, verticalB:0, gorizont:0, vremya: 1,
     def: {}
   };
@@ -107,6 +107,15 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "circle", key: "showSignalComboAwithBIndicator", coords: "432, 100, 3", tooltip: "Индикатор отображения доп сигнала B", hint_text: "Отображаем B"});
   area.push({shape: "circle", key: "showSignalComboBlinkIndicator", coords: "432, 115, 3", tooltip: "Индикатор отображения доп сигнала АB", hint_text: "Отображаем АB"});
 
+  area.push({shape: "rect", key: "signalX5", coords: "460,83,490,98", tooltip: "Тумблер множителя на 5", hint_text: ""});
+  area.push({shape: "rect", key: "signalX1", coords: "460,98,490,107", tooltip: "Тумблер множителя на 1", hint_text: ""});
+  area.push({shape: "rect", key: "signalXY", coords: "460,107,490,119", tooltip: "Тумблер множителя X-Y", hint_text: ""});
+
+  area.push({shape: "circle", key: "signalX5Indicator", coords: "477, 90, 3", tooltip: "Индикатор множителя на 5", hint_text: ""});
+  area.push({shape: "circle", key: "signalX1Indicator", coords: "477, 100, 3", tooltip: "Индикатор множителя на 1", hint_text: ""});
+  area.push({shape: "circle", key: "signalXYIndicator", coords: "477, 115, 3", tooltip: "Индикатор множителя X-Y", hint_text: ""});
+
+
   return area;
 }
 
@@ -179,6 +188,14 @@ DeviceS125.prototype.definitionControl = function () {
   c.push({key: 'showSignalComboAwithBIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
   c.push({key: 'showSignalComboBlinkIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
 
+  c.push({key: 'signalX5', cls: Button, param: 'd.signalX5 = 1; d.signalX1 = 0; d.signalXY = 0;'});
+  c.push({key: 'signalX1', cls: Button, param: 'd.signalX5 = 0; d.signalX1 = 1; d.signalXY = 0;'});
+  c.push({key: 'signalXY', cls: Button, param: 'd.signalX5 = 0; d.signalX1 = 0; d.signalXY = 1;'});
+
+  c.push({key: 'signalX5Indicator', cls: IndicatorDiode, param: S125.getStateIndicator});
+  c.push({key: 'signalX1Indicator', cls: IndicatorDiode, param: S125.getStateIndicator});
+  c.push({key: 'signalXYIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
+
   return c;
 }
 
@@ -209,6 +226,10 @@ S125.getStateIndicator = function(t, name) {
   m['showSignalComboABIndicator'] = t.power && t.showSignalComboAB
   m['showSignalComboAwithBIndicator'] = t.power && t.showSignalComboAwithB
   m['showSignalComboBlinkIndicator'] = t.power && t.showSignalComboBlink
+
+  m['signalX5Indicator'] = t.power && t.signalX5
+  m['signalX1Indicator'] = t.power && t.signalX1
+  m['signalXYIndicator'] = t.power && t.signalXY
 
 	return m[name];
 }
