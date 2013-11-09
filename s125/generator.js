@@ -133,5 +133,7 @@ S125.Generator.prototype.signal = function() {
     graphics.push(plotB);
   }
 
-  this.map.action(this, 'signal', graphics);
+  if (graphics.length > 0) {
+    this.map.action(this, 'signal', graphics);
+  }
 }
