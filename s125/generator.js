@@ -31,8 +31,7 @@ S125.Generator.prototype.startSignal = function() {
 	this.timerSignal = setInterval(function() {
 		var state = this.map.state;
     // Если прибор выключен то ничего не делаем
-    console.log(state.connectedSignalA)
-		if (state.power == 0 || state.connectedSignalA == 0) {
+		if (state.power == 0) {
       return;
     // Если какой то режим (надо посмотреть какой), то генерируем график
     // агада, приходит из s125.js definitionControl, при нажатии на кнопку повера
@@ -73,7 +72,7 @@ S125.Generator.prototype.yFunction = function(x, state) {
   }
 
   // Добавляем смещение по вертикали
-  y += state.vertical_offset;
+  y += state.vertical;
 
  return y;
 }
@@ -87,7 +86,7 @@ S125.Generator.prototype.getAOptions = function() {
     inversion: state.inversion,
     earth: state.earthA,
     closed: state.closedA,
-    vertical_offset: state.verticalA
+    vertical: state.verticalA
   };
 }
 
@@ -99,7 +98,7 @@ S125.Generator.prototype.getBOptions = function() {
     inversion: state.inversion,
     earth: state.earthB,
     closed: state.closedB,
-    vertical_offset: state.verticalB
+    vertical: state.verticalB
   };
 }
 
@@ -126,15 +125,15 @@ S125.Generator.prototype.signal = function() {
 
   var graphics = [];
 
-  // if (state.openA == 1) {
-  var plotA = this.generatePlot(this.getAOptions(), colorA);
-  graphics.push(plotA);
-  // }
+  if (state.connectedSignalA == 1) {
+    var plotA = this.generatePlot(this.getAOptions(), colorA);
+    graphics.push(plotA);
+  }
 
-  // if (state.openB == 1) {
-  var plotB = this.generatePlot(this.getBOptions(), colorB);
-  graphics.push(plotB);
-  // }
+  if (state.connectedSignalB == 1) {
+    var plotB = this.generatePlot(this.getBOptions(), colorB);
+    graphics.push(plotB);
+  }
 
   this.map.action(this, 'signal', graphics);
 }
