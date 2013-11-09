@@ -55,7 +55,9 @@ S125.Generator.prototype.yFunction = function(x, state) {
   var y = state.inputPulseFn(x);
 
   // Если включен переключатель инвертирования, то инвертируем график
- 	if (state.inversionA == true) {
+
+  // Инвертирование работает только для канала А
+ 	if (state.inversion == true && state.isSignalA == true) {
  		y = y * -1;
  	}
 
@@ -81,10 +83,11 @@ S125.Generator.prototype.getAOptions = function() {
   var state = this.map.state;
   return {
     inputPulseFn: function(x) { return 5 * Math.sin(x); },
-    inversionA: state.inversionA,
+    inversion: state.inversionA,
     earth: state.earthA,
     closed: state.closedA,
-    vertical: state.verticalA
+    vertical: state.verticalA,
+    isSignalA: true
   };
 }
 
@@ -93,10 +96,10 @@ S125.Generator.prototype.getBOptions = function() {
   var state = this.map.state;
   return {
     inputPulseFn: function(x) { return 3 * Math.cos(x); },
-    inversionA: state.inversionA,
     earth: state.earthB,
     closed: state.closedB,
-    vertical: state.verticalB
+    vertical: state.verticalB,
+    isSignalB: true
   };
 }
 
