@@ -2,7 +2,7 @@ function DeviceS125(node, width, height) {
 	DeviceS125.superclass.constructor.call(this, node, width, height);
   this.state = {
     power: 0, inversionA: 0, closedA: 0, earthA: 0, openA: 1, connectedSignalA: 0, connectedSignalB: 0, ampA: 1000,
-    earthB:0, closedB: 1, openB: 0,
+    earthB:0, closedB: 1, openB: 0, ampB: 1000,
     p: [], verticalA: 0, verticalB:0,
     def: {}
   };
@@ -78,6 +78,7 @@ DeviceS125.prototype.getAreaPre = function () {
 
   //Канал Б
   area.push({shape: "circle", key: "verticalB", coords: "453, 145, 15", tooltip: "Регулировка по высоте", hint_text: "Регулировка по высоте в канале Б"});
+  area.push({shape: "circle", key: "ampB", coords: "448, 200, 20", tooltip: "Регулировка по высоте", hint_text: ""});
   area.push({shape: "rect", key: "earthB", coords: "433,222,448,242", tooltip: "Кнопка земли", hint_text: "Кнопка земли"});
   area.push({shape: "rect", key: "closedB", coords: "448, 222, 463, 242",
             tooltip: "", hint_text: "Закрыть канал Б"});
@@ -129,6 +130,8 @@ DeviceS125.prototype.definitionControl = function () {
 
   c.push({key: 'verticalB', cls: Reostat, param: {action: 'd.verticalB=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
+  c.push({key: 'ampB', cls: Reostat, param: {action: 'd.ampB=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: 1, maxValue: 5000}, ropt: {cont: {opacity: 0}, ind: {
+         fill: 'red'}, indr: 3, inddr: -11}}});
   c.push({key: 'earthB', cls: Button, param: 'd.earthB = 1; d.closedB = 0; d.openB = 0;'});
 	c.push({key: 'closedB', cls: Button, param: 'd.closedB = 1; d.earthB = 0; d.openB = 0;'});
 	c.push({key: 'openB', cls: Button, param: 'd.openB = 1; d.closedB = 0; d.earthB = 0;'});
@@ -159,5 +162,6 @@ S125.getStateIndicator = function(t, name) {
   m['closeBIndicator'] = t.power && t.closedB;
   m['earthBIndicator'] = t.power && t.earthB;
   m['openBIndicator'] = t.power && t.openB;
+  m['ampB'] = t.power && t.ampB;
 	return m[name];
 }
