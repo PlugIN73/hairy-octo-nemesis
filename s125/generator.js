@@ -47,7 +47,6 @@ S125.Generator.prototype.stopSignal = function() {
 	clearInterval(this.timerSignal);
 }
 
-
 S125.Generator.prototype.stopAuto = function() {
 	clearInterval(this.timerAuto);
 }
@@ -92,6 +91,7 @@ S125.Generator.prototype.yFunction = function(x, state) {
 
 // Здесь идет генерация точек для графика
 S125.Generator.prototype.signal = function() {
+  var state = this.map.state;
   this.fill_lines = false;
 
   // Максимальное значение по X
