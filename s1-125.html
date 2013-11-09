@@ -96,75 +96,6 @@
 	<script type="text/javascript">
 
 
-	function changeNumberDigit(val, digit, pos, w) {
-		if (w < pos)
-			return;
-		pos = w - pos;
-		var pw = Math.pow(10, pos);
-		var p = Math.floor((val % (pw * 10)) / pw);
-		var v = val - p * pw + pw * digit;
-		return v;
-	}
-
-	function getNumberDigit(val, pos, w) {
-		pos = w - pos;
-		var pw = Math.pow(10, pos);
-		var p = Math.floor((val % (pw * 10)) / pw);
-		return p;
-	}
-
-
-	function zeroFill(number, int, fract) {
-		var int_number = Math.floor(number / Math.pow(10, fract));
-		var width = int - int_number.toString().length;
-		var s = "0";
-		if ( width > 0 )
-			s =  Array(width + 1).join('0') + int_number;
-		else
-			s = int_number.toString();
-
-		if (fract > 0) {
-			var fract_number = number % Math.pow(10, fract);
-			width = fract - fract_number.toString().length;
-			s += '.' + Array(width + 1).join('0') + fract_number;
-		}
-		return s;
-	}
-
-	var s125;
-	//var c5; // Добавление этого устройства вызывает ошибки js и мешает отладке. Пока выключу. Троицкий
-
-	// TODO: Должно быть спрятано. Троицкий
-
-	function setMode2(map, mode)	{
-		map.setMode(mode);
-		map.draw();
-
-		switch(mode)
-		{
-			case deviceMode.EMULATOR:
-				map.start();
-			break;
-			case deviceMode.HELP:
-				map.stop();
-			break;
-			case deviceMode.TRAINING:
-			case deviceMode.CONTROL:
-				map.restart();
-			break;
-		}
-	}
-
-	// TODO: Должно быть спрятано. Троицкий
-
-	function setMode(map, mode)	{
-		setMode2(s125, mode);
-		//setMode2(c3, mode); // Добавление этого устройства вызывает ошибки js и мешает отладке. Пока выключу. Троицкий
-
-		s125.GetControlByName('menu').ModeChanged(mode);			//Отображение текущего режима в меню. Троицкий // TODO: нужно сделать собтие изменения режима. Ато топорно как-то Троицкий
-
-	}
-
 	function startstopmap() {
 		if (s125.startstate) {
 			$('#startstop').attr('src', 'img/play.png');
@@ -199,22 +130,10 @@
 		s125_menu.initMenuUI();
 		s125.start();
 
-		//s125.GetControlByName('tutor').enableExerciseEditor();
-
-
-
-		// Добавление этого устройства вызывает ошибки js и мешает отладке. Пока выключу. Троицкий
-		// c3 = new DeviceC3($('#c3'), 668, 353);
-		// c3.renderAreaControl();
-		// c3.draw();
-
 	});
 
 	</script>
-<!-- 	<input type="radio" name="mode" checked onclick="setMode(s125, deviceMode.EMULATOR)"> - режим эмулятора |		// Перенес в меню. Троицкий
-	<input type="radio" name="mode" onclick="setMode(s125, deviceMode.HELP)">  - режим справки |
-	<input type="radio" name="mode" onclick="setMode(s125, deviceMode.TRAINING)">  - режим обучения | -->
-	<!-- <input style="display: none" type="button" value="История" onclick="viewHistory()"> -->
+
 	<div style="text-align:right">
 	<a href="#" onclick="teststat(s125);return false;">Посмотреть статистику</a>
 	</div>
