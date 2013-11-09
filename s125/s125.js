@@ -4,7 +4,7 @@ function DeviceS125(node, width, height) {
     power: 0, inversionA: 0, closedA: 0, earthA: 0, openA: 1, connectedSignalA: 0, connectedSignalB: 0, ampA: 1000, ampB: 1000,
     showSignalA: 1, showSignalB: 0, showSignalAB: 0, showSignalComboAB: 1, showSignalComboAwithB: 0, showSignalComboBlink: 0,
     earthB:0, closedB: 1, openB: 0,
-    p: [], verticalA: 0, verticalB:0, gorizont:0,
+    p: [], verticalA: 0, verticalB:0, gorizont:0, vremya: 1,
     def: {}
   };
 
@@ -58,6 +58,7 @@ DeviceS125.prototype.getAreaPre = function () {
 	area.push({shape: "rect", key: "power", coords: "120,280,145,300", tooltip: "Кнопка включения прибора", hint_text: "Кнопка включения прибора"});
   area.push({shape: "circle", key: "powerIndicator", coords: "127,275,3", tooltip: "Индикатор кнопки включения прибора", hint_text: "Прибор включен"});
   area.push({shape: "circle", key: "gorizont", coords: "525, 145, 15", tooltip: "Регулировка по высоте", hint_text: ""});
+  area.push({shape: "circle", key: "vremya", coords: "525, 200, 20", tooltip: "Регулировка по высоте", hint_text: ""});
 
   //Канал А
   area.push({shape: "rect", key: "inversionA", coords: "355,90,390,110", tooltip: "Кнопка инвертирования", hint_text: "Кнопка инвертирования канала А"});
@@ -116,6 +117,8 @@ DeviceS125.prototype.definitionControl = function () {
   c.push({key: 'powerIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
 	c.push({key: 'power', cls: Button, param: 'd.power = !s.power;'});
   c.push({key: 'gorizont', cls: Reostat, param: {action: 'd.gorizont=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
+         fill: 'red'}, indr: 3, inddr: -11}}});
+  c.push({key: 'vremya', cls: Reostat, param: {action: 'd.vremya=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: 1, maxValue: 500}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
 
   //Канал А
@@ -184,6 +187,7 @@ var S125 = {};
 S125.getStateIndicator = function(t, name) {
 	if (!t.power) return false;
 	m = {};
+  m['vremya'] = t.power && t.vremya;
   m['gorizont'] = t.power && t.gorizont;
   m['powerIndicator'] = t.power;
   m['closeAIndicator'] = t.power && t.closedA;
