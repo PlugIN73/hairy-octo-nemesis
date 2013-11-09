@@ -29,8 +29,8 @@ GraphVisio.prototype.setMap = function (map) {
 			tickFormatter: function (val, axis) {return val;},
 		},
 		yaxis: {
-			min: -10,
-			max: 10,
+			min: -6,
+			max: 6,
 			axisLabel: 'Вольты'
 		},
 		legend: {
