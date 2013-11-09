@@ -71,7 +71,8 @@ S125.Generator.prototype.getAOptions = function() {
     earth: state.earthA,
     closed: state.closedA,
     vertical: state.verticalA,
-    amp: state.ampA / 1000
+    amp: state.ampA / 1000,
+    gorizont: state.gorizont
   };
 }
 
@@ -84,19 +85,20 @@ S125.Generator.prototype.getBOptions = function() {
     earth: state.earthB,
     closed: state.closedB,
     vertical: state.verticalB,
-    amp: state.ampB / 1000
+    amp: state.ampB / 1000,
+    gorizont: state.gorizont
   };
 }
 
 S125.Generator.prototype.generatePlot = function(options, color) {
-  // Максимальное значение по X
+  // Максимальное oзначение по X
   var MAX_X = 14;
   // Шаг по X
   var STEP_X = 0.5;
 
   var points = [];
-  for (var i = 0; i < MAX_X; i += STEP_X) {
-    points.push([ i, this.yFunction(i, options) ]);
+  for (var i = 0; i < MAX_X + 0; i += STEP_X) {
+    points.push([ i, this.yFunction(i + options.gorizont, options) ]);
   }
 
   return {data: points, lines: {fill: false}, color: color};
