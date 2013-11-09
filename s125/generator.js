@@ -86,8 +86,8 @@ S125.Generator.prototype.getAOptions = function() {
     inputPulseFn: function(x) { return 5 * Math.sin(x); },
     inversion: state.inversion,
     earth: state.earthA,
-    closed: state.closed,
-    vertical_offset: state.vertical_offset
+    closed: state.closedA,
+    vertical_offset: state.verticalA
   };
 }
 
@@ -97,9 +97,9 @@ S125.Generator.prototype.getBOptions = function() {
   return {
     inputPulseFn: function(x) { return 3 * Math.cos(x); },
     inversion: state.inversion,
-    earth: state.earthA,
-    closed: state.closed,
-    vertical_offset: state.vertical_offset
+    earth: state.earthB,
+    closed: state.closedB,
+    vertical_offset: state.verticalB
   };
 }
 
