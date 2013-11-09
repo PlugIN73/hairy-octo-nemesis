@@ -1,7 +1,7 @@
 function DeviceS125(node, width, height) {
 	DeviceS125.superclass.constructor.call(this, node, width, height);
   this.state = {
-    power: 0, inversion: 0, closedA: 0, earthA: 0, openA: 1,
+    power: 0, inversion: 0, closedA: 0, earthA: 0, openA: 1, connectedSignalA: 0,
     earthB:0, closedB: 1, openB: 0,
     p: [], vertical_offset: 0,
     def: {}
@@ -55,6 +55,7 @@ DeviceS125.prototype.getArea = function () {
 DeviceS125.prototype.getAreaPre = function () {
 	var area = [];
 	area.push({shape: "rect", key: "power", coords: "120,280,145,300", tooltip: "Кнопка включения прибора", hint_text: "Кнопка включения прибора"});
+  area.push({shape: "circle", key: "powerIndicator", coords: "127,275,3", tooltip: "Индикатор кнопки включения прибора", hint_text: "Прибор включен"});
 
   area.push({shape: "rect", key: "inversion", coords: "355,90,390,120", tooltip: "Кнопка инвертирования", hint_text: "Кнопка инвертирования"});
   //Канал А
@@ -87,6 +88,7 @@ DeviceS125.prototype.definitionControl = function () {
 	var c = []
   c.push({key: 'inversion', cls: Button, param: 'd.inversion = !d.inversion; '});
 
+  c.push({key: 'powerIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
   //Канал А
 	c.push({key: 'closeAIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
 	c.push({key: 'earthAIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
@@ -128,6 +130,7 @@ var S125 = {};
 S125.getStateIndicator = function(t, name) {
 	if (!t.power) return false;
 	m = {};
+  m['powerIndicator'] = t.power
   m['closeAIndicator'] = t.power && t.closedA
   m['earthAIndicator'] = t.power && t.earthA
   m['openAIndicator'] = t.power && t.openA
