@@ -118,11 +118,6 @@
 		s125 = new DeviceS125($('#map'), 800, 521);
 		s125.renderAreaControl();
 
-		var outer = new Oscilloscope('outer_pulse', {container : $('#outer_pulse'), options: {yaxis: {max: 5, axisLabel: 'Вольты'}, xaxis: {axisLabel: 'Наносекунды'}}, scale: 100});
-		s125.add(outer);
-
-		var clock = new Oscilloscope('clock_pulse', {container : $('#clock_pulse'), options: {yaxis: {max: 2, axisLabel: 'Вольты'}, xaxis: {axisLabel: 'Наносекунды'}}, scale: 100});
-		s125.add(clock);
 
 		s125_menu = s125.GetControlByName('menu');
 		s125.draw();
@@ -145,26 +140,9 @@
 			<td>
 				<div id='tabs' style="max-height: 610px; width: 650px">
 					<ul>
-						<li><a href="#tab-1"><span>Меню</span></a></li>
 						<li><a href="#tab-2"><span>Осциллограмма</span></a></li>
 						<li><a href="#tab-3"><span>Внешний имульс</span></a></li>
-						<li><a href="#tab-4"><span>Синхроимпульс</span></a></li>
-						<li><a href="#tab-5"><span>Трасса произведённых действий</span></a></li>
 					</ul>
-					<div id="tab-1">
-						<div id="menu" style="font-size:90%; width: 100%; display: block;">
-							<h3 style="font-weight: bolder; font-size: 150%">Осцилограф C1-125</h3>
-							<div align="justify">
-							</div>
-							<h3 id="mode_header">Режим тренажера: Режим эмулятора</h3>
-							<div id="state_list">
-								<input type="radio" name="mode" checked onclick="setMode(s125, deviceMode.EMULATOR)"> Режим эмулятора<br/>
-								<input type="radio" name="mode" onclick="setMode(s125, deviceMode.HELP)"> Режим справки<br/>
-								<input type="radio" name="mode" onclick="setMode(s125, deviceMode.TRAINING)"> Режим обучения<br/>
-								<input type="radio" name="mode" onclick="setMode(s125, deviceMode.CONTROL)"> Режим контроля
-							</div>
-						</div>
-					</div>
                     <div id="tab-2">
                         <div>
                             Выход:  (Замедление времени 1 к <span id="time">1 000 000</span>):
@@ -195,14 +173,6 @@
 
                             </table>
                         </div>
-                    </div>
-                    <div id="tab-3">
-                        Внешний импульс (Замедление времени 1 к 1 000 000):
-                        <div style="width:400px;height:150px" id="outer_pulse"></div>
-                    </div>
-                    <div id="tab-4">
-                        Синхроимпульс (Замедление времени 1 к 1 000 000):
-                        <div style="width:400px;height:150px" id="clock_pulse"></div>
                     </div>
 				</div>
 			</td>
