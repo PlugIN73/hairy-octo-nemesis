@@ -113,21 +113,21 @@ S125.Generator.prototype.signal = function() {
 
   var graphics = [];
 
-  // Если подключен 1 сигнал
-  if (state.connectedSignalA && !state.closedA) {
-    // Генерируем график для него 
+  // Если подключен сигнал А и он не закрыт и включен тумблер показа сигнала
+  if (state.connectedSignalA && !state.closedA && (state.showSignalA || state.showSignalAB)) {
+    // Генерируем график для него
     var plotA = this.generatePlot(this.getAOptions(), colorA);
     graphics.push(plotA);
   }
 
-  // Если подключен 2 сигнал
-  if (state.connectedSignalB && !state.closedB) {
-    // Генерируем график для него 
+  // Если подключен сигнал B и он не закрыт и включен тумблер показа сигнала
+  if (state.connectedSignalB && !state.closedB && (state.showSignalB || state.showSignalAB))  {
+    // Генерируем график для него
     var plotB = this.generatePlot(this.getBOptions(), colorB);
     graphics.push(plotB);
   }
 
-  // Если прибор включен и есть графики то 
+  // Если прибор включен и есть графики то
   if (state.power && graphics.length > 0) {
     // Рисуем графики
     this.map.action(this, 'signal', graphics);
