@@ -25,19 +25,7 @@ S125.Generator.prototype.setMap = function (map) {
 }
 
 S125.Generator.prototype.startSignal = function() {
-  // Интервал проверки сигнала (генерации графика)
-	var interval = 500;
-
-	this.timerSignal = setInterval(function() {
-		// var state = this.map.state;
-    // Если прибор выключен то ничего не делаем
-		// if (state.power == 0) {
-      // return;
-    // } else {
-      return this.signal();
-    // }
-
-	}.bind(this), interval );
+	this.timerSignal = setInterval(this.signal.bind(this), 500);
 }
 
 S125.Generator.prototype.stopSignal = function() {
@@ -58,19 +46,14 @@ S125.Generator.prototype.yFunction = function(x, state) {
   y *= state.amp;
 
   // Если включен переключатель инвертирования, то инвертируем график
- 	if (state.inversionA == true) {
+ 	if (state.inversionA) {
  		y = y * -1;
  	}
 
   // Если подключена "Земля"
- 	if (state.earth == true) {
+ 	if (state.earth) {
  		y = 0;
  	}
-
-  // Если канал А закрыт. Если у кого-то есть идеи как это сделать лучше - велкам.
-  // if (state.closed == true) {
-  //   y = -2000000;
-  // }
 
   // Добавляем смещение по вертикали
   y += state.vertical;

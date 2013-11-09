@@ -1,7 +1,7 @@
 function DeviceS125(node, width, height) {
 	DeviceS125.superclass.constructor.call(this, node, width, height);
   this.state = {
-    power: 0, inversionA: 0, closedA: 0, earthA: 0, openA: 1, connectedSignalA: 0, connectedSignalB: 0, ampA: 1000,
+    power: 0, inversionA: 0, closedA: 0, earthA: 0, openA: 1, connectedSignalA: 0, connectedSignalB: 0, ampA: 1000, ampB: 1000,
     showSignalA: 1, showSignalB: 0, showSignalAB: 0,
     earthB:0, closedB: 1, openB: 0,
     p: [], verticalA: 0, verticalB:0,
