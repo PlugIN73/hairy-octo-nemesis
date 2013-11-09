@@ -29,13 +29,13 @@ S125.Generator.prototype.startSignal = function() {
 	var interval = 500;
 
 	this.timerSignal = setInterval(function() {
-		var state = this.map.state;
+		// var state = this.map.state;
     // Если прибор выключен то ничего не делаем
-		if (state.power == 0) {
-      return;
-    } else {
+		// if (state.power == 0) {
+      // return;
+    // } else {
       return this.signal();
-    }
+    // }
 
 	}.bind(this), interval );
 }
@@ -138,7 +138,9 @@ S125.Generator.prototype.signal = function() {
     graphics.push(plotB);
   }
 
-  if (graphics.length > 0) {
+  if (state.power && graphics.length > 0) {
     this.map.action(this, 'signal', graphics);
+  } else {
+    this.map.action(this, 'signal', [{data: [[0, 0]], lines: {fill: false}, color: 1}]);
   }
 }
