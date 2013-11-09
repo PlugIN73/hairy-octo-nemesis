@@ -1,7 +1,7 @@
 function DeviceS125(node, width, height) {
 	DeviceS125.superclass.constructor.call(this, node, width, height);
   this.state = {
-    power: 0, inversion: 0, closedA: 0, earthA: 0, openA: 1, connectedSignalA: 0,
+    power: 0, inversion: 0, closedA: 0, earthA: 0, openA: 1, connectedSignalA: 0, connectedSignalB: 0,
     earthB:0, closedB: 1, openB: 0,
     p: [], verticalA: 0, verticalB:0,
     def: {}
@@ -81,6 +81,10 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "circle", key: "closeBIndicator", coords: "463, 232, 3", tooltip: "Индикатор закрытого канала Б", hint_text: "Канал Б закрыт"});
   area.push({shape: "circle", key: "earthBIndicator", coords: "443, 242, 3", tooltip: "Индикатор закрытого канала Б", hint_text: "Канал Б закрыт"});
   area.push({shape: "circle", key: "openBIndicator", coords: "423, 232, 3", tooltip: "Индикатор закрытого канала Б", hint_text: "Канал Б закрыт"});
+
+  area.push({shape: "circle", key: "connectedSignalB", coords: "443,280,18", tooltip: "Индикатор подключения канала B", hint_text: "Индикатор подключения канала B"});
+
+
   return area;
 }
 
@@ -121,6 +125,9 @@ DeviceS125.prototype.definitionControl = function () {
 	c.push({key: 'menu', cls: Menu, param: null});
   c.push({key: 'graph', cls: GraphVisio, param: null});
   c.push({key: 'generator', cls: S125.Generator, param: null});
+
+  c.push({key: 'connectedSignalB', cls: ButtonBoxImage, param: {act: 'd.connectedSignalB=!s.connectedSignalB', on: 't.connectedSignalB', image_on: "s125/s125-signal.png;41;53", image_off: null}});
+
 
   return c;
 }
