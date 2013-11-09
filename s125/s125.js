@@ -93,12 +93,12 @@ DeviceS125.prototype.getAreaPre = function () {
   //Каналы А и Б
 
   area.push({shape: "rect", key: "showSignalA", coords: "395,83,420,98", tooltip: "Тумблер отображения сигнала А", hint_text: "Отображение сигнала А"});
-  area.push({shape: "rect", key: "showSignalB", coords: "395,98,420,107", tooltip: "Тумблер отображения сигнала B", hint_text: "Отображение сигнала B"});
-  area.push({shape: "rect", key: "showSignalAB", coords: "395,107,420,119", tooltip: "Тумблер отображения сигнала АB", hint_text: "Отображение сигнала АB"});
+  area.push({shape: "rect", key: "showSignalAB", coords: "395,98,420,107", tooltip: "Тумблер отображения сигнала B", hint_text: "Отображение сигнала B"});
+  area.push({shape: "rect", key: "showSignalB", coords: "395,107,420,119", tooltip: "Тумблер отображения сигнала АB", hint_text: "Отображение сигнала АB"});
 
   area.push({shape: "circle", key: "showSignalAIndicator", coords: "395, 90, 3", tooltip: "Индикатор отображения сигнала А", hint_text: "Отображаем А"});
-  area.push({shape: "circle", key: "showSignalBIndicator", coords: "395, 100, 3", tooltip: "Индикатор отображения сигнала B", hint_text: "Отображаем B"});
-  area.push({shape: "circle", key: "showSignalABIndicator", coords: "395, 115, 3", tooltip: "Индикатор отображения сигнала АB", hint_text: "Отображаем АB"});
+  area.push({shape: "circle", key: "showSignalABIndicator", coords: "395, 100, 3", tooltip: "Индикатор отображения сигнала B", hint_text: "Отображаем B"});
+  area.push({shape: "circle", key: "showSignalBIndicator", coords: "395, 115, 3", tooltip: "Индикатор отображения сигнала АB", hint_text: "Отображаем АB"});
 
 
   return area;
