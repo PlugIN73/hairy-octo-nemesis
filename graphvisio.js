@@ -10,7 +10,7 @@ GraphVisio.prototype.setMap = function (map) {
 	this.max = 10;
 	var series = [{data: [], lines: {fill: true	}}];
 	this.plot = $.plot(this.container, series, {
-		grid: {	borderWidth: 1,	minBorderMargin: 20,labelMargin: 10,
+		grid: {	borderWidth: 1,	minBorderMargin: 20,
 			backgroundColor: { 	colors: ["#E6E6FA", "#E6E6FA"]	},
 			margin: { top: 8, bottom: 20, left: 20},
 			markings: function(axes) {
@@ -24,17 +24,17 @@ GraphVisio.prototype.setMap = function (map) {
 		},
 		xaxis: {
 			min: 0,
-			max: this.max, 
-			axisLabel: 'Наносекунды', 
-			tickFormatter: function (val, axis) {return val;},
+      max: this.max, 
+			//axisLabel: 'Наносекунды', 
+      tickFormatter: function (val, axis) {return val;},
 		},
-		yaxis: {
-			min: -6,
-			max: 6,
-			axisLabel: 'Вольты'
-		},
+    yaxis: {
+      min: -6,
+      max: 6,
+      //axisLabel: 'Вольты'
+    },
 		legend: {
-			show: true
+			show: false
 		}
 	});
 
