@@ -181,9 +181,9 @@ function isShowSignalB(state) {
 S125.Generator.prototype.signal = function() {
   var state = this.map.state;
 
-  var colorA = 0;
-  var colorB = 1;
-  var colorAB = 2;
+  var colorA = 3;
+  var colorB = 3;
+  var colorAB = 3;
 
   var graphics = [];
 
