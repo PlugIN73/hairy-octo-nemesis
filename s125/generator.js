@@ -25,7 +25,7 @@ S125.Generator.prototype.setMap = function (map) {
 }
 
 S125.Generator.prototype.startSignal = function() {
-	this.timerSignal = setInterval(this.signal.bind(this), 500);
+	this.timerSignal = setInterval(this.signal.bind(this), 1000);
 }
 
 S125.Generator.prototype.stopSignal = function() {
@@ -61,13 +61,27 @@ S125.Generator.prototype.yFunction = function(x, state) {
  return y;
 }
 
+$(function() {
+  $('#applySignalA').on('click', function(e) {
+    window.formulaSignalA = $('#signalA').val();
+    e.preventDefault();
+  });
+  $('#applySignalB').on('click', function(e) {
+    window.formulaSignalB = $('#signalB').val();
+    e.preventDefault();
+  });
+});
+
 // Функция для получения импульса A канала
 // Здесь пока захардкожена синусоида, надо будет динамически получать
 S125.Generator.prototype.getAOptions = function() {
-  var formula_signalA = document.getElementById('signalA');
   var state = this.map.state;
   return {
-    inputPulseFn: function(x) { return Math.sin(x); },
+    inputPulseFn: function(x) {
+      var sin = Math.sin,
+      cos = Math.cos;
+      return eval(window.formulaSignalA || 'sin(x)');
+    },
     inversionA: state.inversionA,
     earth: state.earthA,
     closed: state.closedA,
@@ -80,10 +94,13 @@ S125.Generator.prototype.getAOptions = function() {
 
 // Функция для получения импульса B канала
 S125.Generator.prototype.getBOptions = function() {
-  var formula_signalB = document.getElementById('signalB')
   var state = this.map.state;
   return {
-    inputPulseFn: function(x) { return -Math.sin(x); },
+    inputPulseFn: function(x) {
+      var sin = Math.sin,
+      cos = Math.cos;
+      return eval(window.formulaSignalB || 'cos(x)');
+    },
     inversionA: state.inversionA,
     earth: state.earthB,
     closed: state.closedB,
