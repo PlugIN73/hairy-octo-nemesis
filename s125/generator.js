@@ -39,8 +39,14 @@ S125.Generator.prototype.stopAuto = function() {
 // Здесь в этой функции идет основное преобразование координаты X в Y
 S125.Generator.prototype.yFunction = function(x, state) {
 
+  var y;
+
   // Получаем функцию входного импульса и применяем ее
-  var y = state.inputPulseFn(x);
+  if (state.signalX5) { // Если включена опция X5 увеличиваем график(x) в 5 раз
+    y = state.inputPulseFn(x / 5);
+  } else {
+    y = state.inputPulseFn(x);
+  }
 
   // Добавляем амплитуду
   y *= state.amp;
@@ -88,7 +94,8 @@ S125.Generator.prototype.getAOptions = function() {
     vertical: state.verticalA,
     amp: state.ampA / 1000,
     gorizont: state.gorizont,
-    vremya: state.vremya
+    vremya: state.vremya,
+    signalX5: state.signalX5
   };
 }
 
@@ -107,7 +114,8 @@ S125.Generator.prototype.getBOptions = function() {
     vertical: state.verticalB,
     amp: state.ampB / 1000,
     gorizont: state.gorizont,
-    vremya: state.vremya
+    vremya: state.vremya,
+    signalX5: state.signalX5
   };
 }
 
