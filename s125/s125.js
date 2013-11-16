@@ -3,8 +3,8 @@ function DeviceS125(node, width, height) {
   this.state = {
     power: 0, inversionA: 0, closedA: 0, earthA: 0, openA: 1, connectedSignalA: 0, connectedSignalB: 0, ampA: 1000, ampB: 1000,
     showSignalA: 1, showSignalB: 0, showSignalAB: 0, showSignalComboAB: 1, showSignalComboAwithB: 0, showSignalComboBlink: 0,
-    earthB:0, closedB: 0, openB: 1, signalX5: 0, signalX1: 1, signalXY: 0,
-    p: [], verticalA: 0, verticalB:0, gorizont:0, vremya: 1,
+    earthB:0, closedB: 0, openB: 1, signalX5: 0, signalX1: 1, signalXY: 0, vremyaMilli: 1,
+    p: [], verticalA: 0, verticalB:0, gorizont:0, vremya: 1, vremyaMilli: 1, vremyaNano: 0,
     def: {}
   };
 
@@ -59,6 +59,10 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "circle", key: "powerIndicator", coords: "127,275,3", tooltip: "Индикатор кнопки включения прибора", hint_text: "Прибор включен"});
   area.push({shape: "circle", key: "gorizont", coords: "525, 145, 15", tooltip: "Регулировка по высоте", hint_text: ""});
   area.push({shape: "circle", key: "vremya", coords: "525, 200, 20", tooltip: "Регулировка по высоте", hint_text: ""});
+  area.push({shape: "rect", key: "vremyaMilli", coords: "500, 222, 512, 242",tooltip: "", hint_text: "Время микро"});
+  area.push({shape: "circle", key: "vremyaMilliIndicator", coords: "482,195,5", tooltip: "Индикатор Милли", hint_text: "Индикатор милли"});
+  area.push({shape: "rect", key: "vremyaNano", coords: "515, 222, 535, 242",tooltip: "", hint_text: "Время микро"});
+  area.push({shape: "circle", key: "vremyaNanoIndicator", coords: "545,195,5", tooltip: "Индикатор Милли", hint_text: "Индикатор милли"});
 
   //Канал А
   area.push({shape: "rect", key: "inversionA", coords: "355,90,390,110", tooltip: "Кнопка инвертирования", hint_text: "Кнопка инвертирования канала А"});
@@ -129,6 +133,10 @@ DeviceS125.prototype.definitionControl = function () {
          fill: 'red'}, indr: 3, inddr: -11}}});
   c.push({key: 'vremya', cls: Reostat, param: {action: 'd.vremya=val', options: {minAngle: 0, maxAngle: 230, angleOffset: 30, minValue: 5, maxValue: 1}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
+	c.push({key: 'vremyaMilliIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
+  c.push({key: 'vremyaMilli', cls: Button, param: 'd.vremyaMilli=1; d.vremyaNano=0'});
+  c.push({key: 'vremyaNanoIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
+  c.push({key: 'vremyaNano', cls: Button, param: 'd.vremyaMilli=0; d.vremyaNano=1'});
 
   //Канал А
   c.push({key: 'noinversionAIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
@@ -205,6 +213,8 @@ S125.getStateIndicator = function(t, name) {
 	if (!t.power) return false;
 	m = {};
   m['vremya'] = t.power && t.vremya;
+  m['vremyaMilliIndicator'] = t.power && t.vremyaMilli;
+  m['vremyaNanoIndicator'] = t.power && t.vremyaNano;
   m['gorizont'] = t.power && t.gorizont;
   m['powerIndicator'] = t.power;
   m['closeAIndicator'] = t.power && t.closedA;
