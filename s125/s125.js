@@ -127,7 +127,7 @@ DeviceS125.prototype.definitionControl = function () {
 	c.push({key: 'power', cls: Button, param: 'd.power = !s.power;'});
   c.push({key: 'gorizont', cls: Reostat, param: {action: 'd.gorizont=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
-  c.push({key: 'vremya', cls: Reostat, param: {action: 'd.vremya=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: 1, maxValue: 500}, ropt: {cont: {opacity: 0}, ind: {
+  c.push({key: 'vremya', cls: Reostat, param: {action: 'd.vremya=val', options: {minAngle: 0, maxAngle: 230, angleOffset: 30, minValue: 5, maxValue: 1}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
 
   //Канал А

@@ -73,7 +73,8 @@ S125.Generator.prototype.getAOptions = function() {
     closed: state.closedA,
     vertical: state.verticalA,
     amp: state.ampA / 1000,
-    gorizont: state.gorizont
+    gorizont: state.gorizont,
+    vremya: state.vremya
   };
 }
 
@@ -88,7 +89,8 @@ S125.Generator.prototype.getBOptions = function() {
     closed: state.closedB,
     vertical: state.verticalB,
     amp: state.ampB / 1000,
-    gorizont: state.gorizont
+    gorizont: state.gorizont,
+    vremya: state.vremya
   };
 }
 
@@ -100,7 +102,7 @@ S125.Generator.prototype.generatePlot = function(options, color) {
 
   var points = [];
   for (var i = 0; i < MAX_X + 0; i += STEP_X) {
-    points.push([ i, this.yFunction(i + options.gorizont, options) ]);
+    points.push([ i, this.yFunction((i + options.gorizont) / options.vremya, options) ]);
   }
 
   return {data: points, lines: {fill: false}, color: color};
@@ -116,7 +118,7 @@ S125.Generator.prototype.generatePlot = function(options, color) {
   var points = [];
   for (var i = 0; i < MAX_X + 0; i += STEP_X) {
     var y1 =
-    points.push([ i, this.yFunction(i + options.gorizont, options) ]);
+    points.push([ i, this.yFunction((i + options.gorizont) / options.vremya, options) ]);
   }
 
   return {data: points, lines: {fill: false}, color: color};
