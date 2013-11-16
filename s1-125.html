@@ -133,7 +133,6 @@
 	</script>
 
 	<div style="text-align:right">
-	<a href="#" onclick="teststat(s125);return false;">Посмотреть статистику</a>
 	</div>
 	<table>
 		<tr>
@@ -143,7 +142,7 @@
         </div>
 			</td>
 			<td>
-				<div id='tabs' style="max-height: 610px; width: 650px">
+				<div id='tabs' style="max-height: 500px; width: 500px">
 					<ul>
 						<li><a href="#tab-0"><span>Сигнал А</span></a></li>
             <li><a href="#tab-1"><span>Сигнал B</span></a></li>
@@ -151,53 +150,17 @@
 
                     <div id="tab-0">
                         <div id="attrGenA">
-                            <ul>
-                                <li><input type="radio" name="input" value="sin|150|1" checked> -  sin, 0.15В, 1Гц</li>
-                                <li><input type="radio" name="input" value="imp|230|15"> -  имульс, 0.23В, 15Гц</li>
-                                <li><input type="radio" name="input" value="sin|7000|15000000"> -  sin, 7В, 15МГц</li>
-                                <li><input type="radio" name="input" value="sin|500|512345678"> -  sin, 0.5В, 512МГц</li>
-                                <li><input type="radio" name="input" value="0"> -  своё</li>
-                            </ul>
-                            <table>
-                                <tr><td>импульс: </td><td><input type="checkbox" name="type"></td><td></td><td></td><td></td><td></td></tr>
-                                <tr>
-                                    <td>амплитуда, мВ: </td><td><input type="text" name="amp" value="0"></td>
-                                    <td>длительность, нс: </td><td><input type="text" name="t" value="0"></td>
-                                    <td>смещение, нс: </td><td><input type="text" name="of" value="0"></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="radio" name="signal" value="hz"> частота, Гц: </td><td><input type="text" name="hz" value="0"></td>
-                                    <td><input type="radio" name="signal" value="period"> период, нс: </td><td><input type="text" name="period" value="0"></td><td></td><td></td></td>
-                                </tr>
-
-                            </table>
+                            <input type="text" name="signalA" value="sin(x)" id="signalA">
                         </div>
                     </div>
+
 
                     <div id="tab-1">
                         <div id="attrGenB">
-                            <ul>
-                                <li><input type="radio" name="input" value="sin|150|1" checked> -  sin, 0.15В, 1Гц</li>
-                                <li><input type="radio" name="input" value="imp|230|15"> -  имульс, 0.23В, 15Гц</li>
-                                <li><input type="radio" name="input" value="sin|7000|15000000"> -  sin, 7В, 15МГц</li>
-                                <li><input type="radio" name="input" value="sin|500|512345678"> -  sin, 0.5В, 512МГц</li>
-                                <li><input type="radio" name="input" value="0"> -  своё</li>
-                            </ul>
-                            <table>
-                                <tr><td>импульс: </td><td><input type="checkbox" name="type"></td><td></td><td></td><td></td><td></td></tr>
-                                <tr>
-                                    <td>амплитуда, мВ: </td><td><input type="text" name="amp" value="0"></td>
-                                    <td>длительность, нс: </td><td><input type="text" name="t" value="0"></td>
-                                    <td>смещение, нс: </td><td><input type="text" name="of" value="0"></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="radio" name="signal" value="hz"> частота, Гц: </td><td><input type="text" name="hz" value="0"></td>
-                                    <td><input type="radio" name="signal" value="period"> период, нс: </td><td><input type="text" name="period" value="0"></td><td></td><td></td></td>
-                                </tr>
-
-                            </table>
+                            <input type="text" name="signalB" value="cos(x)" id="signalB">
                         </div>
                     </div>
+
 				</div>
 			</td>
 		</tr>

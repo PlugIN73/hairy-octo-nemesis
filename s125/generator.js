@@ -64,6 +64,7 @@ S125.Generator.prototype.yFunction = function(x, state) {
 // Функция для получения импульса A канала
 // Здесь пока захардкожена синусоида, надо будет динамически получать
 S125.Generator.prototype.getAOptions = function() {
+  var formula_signalA = document.getElementById('signalA');
   var state = this.map.state;
   return {
     inputPulseFn: function(x) { return Math.sin(x); },
@@ -78,6 +79,7 @@ S125.Generator.prototype.getAOptions = function() {
 
 // Функция для получения импульса B канала
 S125.Generator.prototype.getBOptions = function() {
+  var formula_signalB = document.getElementById('signalB')
   var state = this.map.state;
   return {
     inputPulseFn: function(x) { return -Math.sin(x); },
@@ -113,7 +115,7 @@ S125.Generator.prototype.generatePlot = function(options, color) {
 
   var points = [];
   for (var i = 0; i < MAX_X + 0; i += STEP_X) {
-    var y1 = 
+    var y1 =
     points.push([ i, this.yFunction(i + options.gorizont, options) ]);
   }
 

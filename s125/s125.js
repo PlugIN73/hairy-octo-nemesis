@@ -10,7 +10,7 @@ function DeviceS125(node, width, height) {
 
   this.start_state = jQuery.extend(true, {}, this.state);
 
-  this.name = "s1-125";											// Название папки для поиска изображений
+  this.name = "s1-125";
   this.title = 'Осциллограф С1-125';
 }
 
