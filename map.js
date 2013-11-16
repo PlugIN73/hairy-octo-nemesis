@@ -17,7 +17,6 @@ function Map(node, width, height) {
 	
 	this.addListener('control_action', this, function(source, params) {
 		var control = params.control;
-		console.log(control.name, control.box());
 	})
 }
 
@@ -58,7 +57,6 @@ Map.prototype.add = function (c) {
 }
 
 Map.prototype.stateChange = function () {
-	//console.log(this.state);
 }
 
 Map.prototype.stateChangeFail = function (control, param) {
@@ -126,8 +124,6 @@ Map.prototype.draw = function (c) {
 
 Map.prototype.action = function (control, name, params) {
 	var m = this.listener[name];
-  console.log(name)
-  console.log(m)
 	if (m === undefined) {
 		return;
 	}
@@ -173,7 +169,6 @@ Map.prototype.renderAreaControl = function() {
 		if (control.haveArea()) {
 			var area = m_a[controldef.key];
 			if (area === undefined){
-				//console.log(controldef);
 				throw new Error("not found area: " + controldef.key);
 			}
 			var render = new Render(area, control);
@@ -200,7 +195,6 @@ Map.prototype.logControl = function() {
 			t = m_a[control.name].tooltip;
 		s += control.name + "\t" + control.constructor.name + "\t" + t + "\n";
 	}
-	console.log(s);
 }
 
 Map.prototype.GetControlByName = function(name) {		// функция для получения доступа к компонентам map. Троицкий
