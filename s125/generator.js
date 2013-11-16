@@ -119,19 +119,19 @@ S125.Generator.prototype.getBOptions = function() {
   };
 }
 
-S125.Generator.prototype.generatePlot = function(options, color) {
-  // Максимальное oзначение по X
-  var MAX_X = 14;
-  // Шаг по X
-  var STEP_X = 0.5;
-
-  var points = [];
-  for (var i = 0; i < MAX_X + 0; i += STEP_X) {
-    points.push([ i, this.yFunction((i + options.gorizont) / options.vremya, options) ]);
-  }
-
-  return {data: points, lines: {fill: false}, color: color};
-}
+// S125.Generator.prototype.generatePlot = function(options, color) {
+//   // Максимальное oзначение по X
+//   var MAX_X = 14;
+//   // Шаг по X
+//   var STEP_X = 0.5;
+// 
+//   var points = [];
+//   for (var i = 0; i < MAX_X + 0; i += STEP_X) {
+//     points.push([ i, this.yFunction((i + options.gorizont) / options.vremya, options) ]);
+//   }
+// 
+//   return {data: points, lines: {fill: false}, color: color};
+// }
 
 // Функция для генерирования алгебраич. суммы 2ух графиков
 S125.Generator.prototype.generatePlot = function(options, color) {
@@ -141,13 +141,34 @@ S125.Generator.prototype.generatePlot = function(options, color) {
   var STEP_X = 0.5;
 
   var points = [];
-  for (var i = 0; i < MAX_X + 0; i += STEP_X) {
-    var y1 =
+  for (var i = -10; i < MAX_X + 0; i += STEP_X) {
     points.push([ i, this.yFunction((i + options.gorizont) / options.vremya, options) ]);
   }
 
   return {data: points, lines: {fill: false}, color: color};
 }
+
+S125.Generator.prototype.generatePlotAByPlotB = function(optionsA, optionsB, color) {
+  // Максимальное oзначение по X
+  var MAX_X = 14;
+  // Шаг по X
+  var STEP_X = 0.5;
+
+  var points = [];
+  for (var i = -10; i < MAX_X + 0; i += STEP_X) {
+    var fnX = optionsA.inputPulseFn;
+    var fnY = optionsB.inputPulseFn;
+    var x = fnX(i);
+    var y = fnY(i + optionsB.gorizont);
+    points.push([x, y]);
+
+    // points.push([ x, this.yFunction((x + optionsA.gorizont) / optionsA.vremya, optionsA) ]);
+  }
+
+  return {data: points, lines: {fill: false}, color: color};
+
+}
+
 S125.Generator.prototype.generateComboPlot = function(options1, options2, color) {
   // Максимальное oзначение по X
   var MAX_X = 14;
@@ -155,7 +176,7 @@ S125.Generator.prototype.generateComboPlot = function(options1, options2, color)
   var STEP_X = 0.5;
 
   var points = [];
-  for (var i = 0; i < MAX_X + 0; i += STEP_X) {
+  for (var i = -10; i < MAX_X + 0; i += STEP_X) {
     var y1 = this.yFunction(i + options1.gorizont, options1);
     var y2 = this.yFunction(i + options2.gorizont, options2);
     points.push([ i, y1 + y2]);
@@ -177,6 +198,11 @@ function isShowSignalB(state) {
   return state.connectedSignalB && !state.closedB && (state.showSignalB || state.showSignalAB);
 }
 
+function isShowXByY(state) {
+  return ( state.connectedSignalA && !state.closedA)
+      && ( state.connectedSignalB && !state.closedB) && state.signalXY;
+}
+
 // Здесь идет генерация точек для графика
 S125.Generator.prototype.signal = function() {
   var state = this.map.state;
@@ -184,11 +210,18 @@ S125.Generator.prototype.signal = function() {
   var colorA = 3;
   var colorB = 3;
   var colorAB = 3;
+  var colorXByY = 3;
 
   var graphics = [];
 
+  // Если включен режим X по Y то рисуем график зависимости первого сигнала от второго
+  if(isShowXByY(state)) {
+    graphics = [
+      this.generatePlotAByPlotB(this.getAOptions(), this.getBOptions(), colorXByY)
+    ];
+  }
   // если включен переключатель A и Б
-  if (isShowSignalAWithB(state)) {
+  else if (isShowSignalAWithB(state)) {
     // Показываем оба графика
     if (state.showSignalComboAB) {
       graphics = [

@@ -23,7 +23,7 @@ GraphVisio.prototype.setMap = function (map) {
 			}
 		},
 		xaxis: {
-			min: 0,
+			min: -10,
       max: this.max, 
 			//axisLabel: 'Наносекунды', 
       tickFormatter: function (val, axis) {return val;},
