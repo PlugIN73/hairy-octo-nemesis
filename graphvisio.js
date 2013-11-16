@@ -12,7 +12,7 @@ GraphVisio.prototype.setMap = function (map) {
 	this.plot = $.plot(this.container, series, {
 		grid: {	borderWidth: 1,	minBorderMargin: 20,
 			backgroundColor: { 	colors: ["#E6E6FA", "#E6E6FA"]	},
-			margin: { top: 8, bottom: 20, left: 20},
+			margin: { top: 8, bottom: 10, left: 6},
 			markings: function(axes) {
 				var markings = [];
 				var xaxis = axes.xaxis;
@@ -30,7 +30,7 @@ GraphVisio.prototype.setMap = function (map) {
 		},
     yaxis: {
       min: -6,
-      max: 6,
+      max: 6
       //axisLabel: 'Вольты'
     },
 		legend: {
