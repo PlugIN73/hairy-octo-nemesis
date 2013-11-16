@@ -145,23 +145,42 @@
 			<td>
 				<div id='tabs' style="max-height: 610px; width: 650px">
 					<ul>
-						<li><a href="#tab-2"><span>Осциллограмма</span></a></li>
-						<li><a href="#tab-3"><span>Внешний имульс</span></a></li>
+						<li><a href="#tab-0"><span>Сигнал А</span></a></li>
+                        <li><a href="#tab-1"><span>Сигнал B</span></a></li>
 					</ul>
-                    <div id="tab-2">
-                        <div>
-                            Выход:  (Замедление времени 1 к <span id="time">1 000 000</span>):
-                            <div id="placeholder"></div>
-                            <a href="#" onclick="return startstopmap()"><img id="startstop" style="max-height: 50px" src="img/stop.png"></a>
+
+                    <div id="tab-0">
+                        <div id="attrGenA">
+                            <ul>
+                                <li><input type="radio" name="input" value="sin|150|1" checked> -  sin, 0.15В, 1Гц</li>
+                                <li><input type="radio" name="input" value="imp|230|15"> -  имульс, 0.23В, 15Гц</li>
+                                <li><input type="radio" name="input" value="sin|7000|15000000"> -  sin, 7В, 15МГц</li>
+                                <li><input type="radio" name="input" value="sin|500|512345678"> -  sin, 0.5В, 512МГц</li>
+                                <li><input type="radio" name="input" value="0"> -  своё</li>
+                            </ul>
+                            <table>
+                                <tr><td>импульс: </td><td><input type="checkbox" name="type"></td><td></td><td></td><td></td><td></td></tr>
+                                <tr>
+                                    <td>амплитуда, мВ: </td><td><input type="text" name="amp" value="0"></td>
+                                    <td>длительность, нс: </td><td><input type="text" name="t" value="0"></td>
+                                    <td>смещение, нс: </td><td><input type="text" name="of" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="radio" name="signal" value="hz"> частота, Гц: </td><td><input type="text" name="hz" value="0"></td>
+                                    <td><input type="radio" name="signal" value="period"> период, нс: </td><td><input type="text" name="period" value="0"></td><td></td><td></td></td>
+                                </tr>
+
+                            </table>
                         </div>
                     </div>
-                    <div id="tab-3">
-                        <div id="attrGen">
+
+                    <div id="tab-1">
+                        <div id="attrGenB">
                             <ul>
-                                <li><input type="radio" name="input" value="sin|150|1|500000000|10000000" checked> -  sin, 0.15В, 1Гц, дл:500мс, смещение:10м </li>
-                                <li><input type="radio" name="input" value="imp|230|15|30000000|50000000"> -  имульс, 0.23В, 15Гц,  дл:30 мс, смещение:50м </li>
-                                <li><input type="radio" name="input" value="sin|7000|15000000|30|10"> -  sin, 7В, 15МГц, дл:30нс, смещение:10нс </li>
-                                <li><input type="radio" name="input" value="sin|500|512345678|1|2"> -  sin, 0.5В, 512МГц, дл:1нс, смещение:2нс  </li>
+                                <li><input type="radio" name="input" value="sin|150|1" checked> -  sin, 0.15В, 1Гц</li>
+                                <li><input type="radio" name="input" value="imp|230|15"> -  имульс, 0.23В, 15Гц</li>
+                                <li><input type="radio" name="input" value="sin|7000|15000000"> -  sin, 7В, 15МГц</li>
+                                <li><input type="radio" name="input" value="sin|500|512345678"> -  sin, 0.5В, 512МГц</li>
                                 <li><input type="radio" name="input" value="0"> -  своё</li>
                             </ul>
                             <table>
