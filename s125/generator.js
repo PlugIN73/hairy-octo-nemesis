@@ -82,6 +82,10 @@ $(function() {
 // Здесь пока захардкожена синусоида, надо будет динамически получать
 S125.Generator.prototype.getAOptions = function() {
   var state = this.map.state;
+  var vremya = state.vremya;
+  if (state.vremyaNano == 1) {
+    vremya = vremya / 10;
+  }
   return {
     inputPulseFn: function(x) {
       var sin = Math.sin,
@@ -94,7 +98,7 @@ S125.Generator.prototype.getAOptions = function() {
     vertical: state.verticalA,
     amp: state.ampA / 1000,
     gorizont: state.gorizont,
-    vremya: state.vremya,
+    vremya: vremya,
     signalX5: state.signalX5
   };
 }
@@ -102,6 +106,10 @@ S125.Generator.prototype.getAOptions = function() {
 // Функция для получения импульса B канала
 S125.Generator.prototype.getBOptions = function() {
   var state = this.map.state;
+  var vremya = state.vremya;
+  if (state.vremyaNano == 1) {
+    vremya = vremya / 10;
+  }
   return {
     inputPulseFn: function(x) {
       var sin = Math.sin,
@@ -114,7 +122,7 @@ S125.Generator.prototype.getBOptions = function() {
     vertical: state.verticalB,
     amp: state.ampB / 1000,
     gorizont: state.gorizont,
-    vremya: state.vremya,
+    vremya: vremya,
     signalX5: state.signalX5
   };
 }
