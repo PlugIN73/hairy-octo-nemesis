@@ -69,10 +69,10 @@ DeviceS125.prototype.getAreaPre = function () {
   //Канал А
   area.push({shape: "rect", key: "inversionA", coords: "355,90,390,110", tooltip: "Кнопка инвертирования канала А", hint_text: "Кнопка инвертирования канала А"});
   area.push({shape: "circle", key: "verticalA", coords: "380, 145, 15", tooltip: "Регулировка по высоте в канале А", hint_text: "Регулировка по высоте в канале А"});
-  area.push({shape: "circle", key: "ampA", coords: "375, 200, 20", tooltip: "Регулировка по высоте в канале А", hint_text: "Регулировка по высоте в канале А"});
+  area.push({shape: "circle", key: "ampA", coords: "375, 200, 20", tooltip: "Регулировка амплитуды в канале А", hint_text: "Регулировка по высоте в канале А"});
   area.push({shape: "rect", key: "earthA", coords: "360,222,375,242", tooltip: "Переключить канал А на землю", hint_text: "Кнопка земли"});
   area.push({shape: "rect", key: "closedA", coords: "375, 222, 390, 242",tooltip: "Закрыть канал А", hint_text: "Закрыть канал А"});
-  area.push({shape: "rect", key: "openA", coords: "345, 222, 360, 242",tooltip: "Откруть канал А", hint_text: "Открыть канал А"});
+  area.push({shape: "rect", key: "openA", coords: "345, 222, 360, 242",tooltip: "Открыть канал А", hint_text: "Открыть канал А"});
 
   area.push({shape: "circle", key: "noinversionAIndicator", coords: "355, 95, 3", tooltip: "Индикатор не инвертированного сигнала в канале А", hint_text: "Индикатор не инвертированного сигнала в канале А"});
   area.push({shape: "circle", key: "inversionAIndicator", coords: "355, 115, 3", tooltip: "Индикатор инвертированного сигнала в канале А", int_text: "Индикатор инвертированного сигнала в канале А"});
@@ -81,7 +81,7 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "circle", key: "earthAIndicator", coords: "370, 242, 3", tooltip: "Индикатор земли в канале А", hint_text: "Земля в канале А"});
   area.push({shape: "circle", key: "openAIndicator", coords: "350, 232, 3", tooltip: "Индикатор открытого канала А", hint_text: "Канал А открыт"});
 
-  area.push({shape: "circle", key: "connectedSignalA", coords: "373,280,18", tooltip: "Индикатор подключения канала А", hint_text: "Индикатор подключения канала А"});
+  area.push({shape: "circle", key: "connectedSignalA", coords: "373,280,18", tooltip: "Подключить канал А", hint_text: "Подключить канал А"});
 
   //Канал Б
   area.push({shape: "circle", key: "verticalB", coords: "453, 145, 15", tooltip: "Регулировка по высоте в канале Б", hint_text: "Регулировка по высоте в канале Б"});
@@ -93,7 +93,7 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "circle", key: "earthBIndicator", coords: "443, 242, 3", tooltip: "Индикатор земли в канале Б", hint_text: "Земля в канале Б"});
   area.push({shape: "circle", key: "openBIndicator", coords: "423, 232, 3", tooltip: "Индикатор открытого канала Б", hint_text: "Канал Б открыт"});
 
-  area.push({shape: "circle", key: "connectedSignalB", coords: "443,280,18", tooltip: "Индикатор подключения канала B", hint_text: "Индикатор подключения канала B"});
+  area.push({shape: "circle", key: "connectedSignalB", coords: "443,280,18", tooltip: "Подключить канал Б", hint_text: "Подключить канал Б"});
 
   //Каналы А и Б
 
