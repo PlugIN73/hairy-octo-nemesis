@@ -85,13 +85,13 @@ DeviceS125.prototype.getAreaPre = function () {
 
   //Канал Б
   area.push({shape: "circle", key: "verticalB", coords: "453, 145, 15", tooltip: "Регулировка по высоте в канале Б", hint_text: "Регулировка по высоте в канале Б"});
-  area.push({shape: "circle", key: "ampB", coords: "448, 200, 20", tooltip: "Регулировка по высоте", hint_text: ""});
-  area.push({shape: "rect", key: "earthB", coords: "433,222,448,242", tooltip: "Кнопка земли", hint_text: "Кнопка земли"});
-  area.push({shape: "rect", key: "closedB", coords: "448, 222, 463, 242", tooltip: "", hint_text: "Закрыть канал Б"});
-  area.push({shape: "rect", key: "openB", coords: "418, 222, 433, 242", tooltip: "", hint_text: "Открыть канал Б"});
+  area.push({shape: "circle", key: "ampB", coords: "448, 200, 20", tooltip: "Регулировка амплитуды в канале Б", hint_text: "Регулировка амплитуды в канале Б"});
+  area.push({shape: "rect", key: "earthB", coords: "433,222,448,242", tooltip: "Переключить канал Б на землю", hint_text: "Переключить канал Б на землю"});
+  area.push({shape: "rect", key: "closedB", coords: "448, 222, 463, 242", tooltip: "Открыть канал Б", hint_text: "Закрыть канал Б"});
+  area.push({shape: "rect", key: "openB", coords: "418, 222, 433, 242", tooltip: "Открыть канал Б", hint_text: "Открыть канал Б"});
   area.push({shape: "circle", key: "closeBIndicator", coords: "463, 232, 3", tooltip: "Индикатор закрытого канала Б", hint_text: "Канал Б закрыт"});
-  area.push({shape: "circle", key: "earthBIndicator", coords: "443, 242, 3", tooltip: "Индикатор закрытого канала Б", hint_text: "Канал Б закрыт"});
-  area.push({shape: "circle", key: "openBIndicator", coords: "423, 232, 3", tooltip: "Индикатор закрытого канала Б", hint_text: "Канал Б закрыт"});
+  area.push({shape: "circle", key: "earthBIndicator", coords: "443, 242, 3", tooltip: "Индикатор земли в канале Б", hint_text: "Земля в канале Б"});
+  area.push({shape: "circle", key: "openBIndicator", coords: "423, 232, 3", tooltip: "Индикатор открытого канала Б", hint_text: "Канал Б открыт"});
 
   area.push({shape: "circle", key: "connectedSignalB", coords: "443,280,18", tooltip: "Индикатор подключения канала B", hint_text: "Индикатор подключения канала B"});
 
