@@ -127,7 +127,12 @@ $(document).ready(function() {
     s125_menu.initMenuUI();
     s125.start();
 
+    $('.signal_radio').change(function() {
+      var target = $(this).data('target');
+      var value = $(this).val();
+      $('#' + target).val(value);
     });
+});
 
 function setMode2(map, mode)	{
 		map.setMode(mode);
@@ -174,12 +179,30 @@ function setMode2(map, mode)	{
               <input type="text" name="signalA" value="sin(x)" id="signalA" />
               <input id="applySignalA" type="button" value="Выполнить" />
             </div>
+            <div style="margin-top: 15px;">
+              <label for="a_sin_x">
+                <input class="signal_radio" data-target="signalA" name="signalA_func" id="a_sin_x" type="radio" value="sin(x)" checked /> Sin(x)
+              </label>
+              <br />
+              <label for="a_cos_x">
+                <input class="signal_radio" data-target="signalA" name="signalA_func" id="a_cos_x" type="radio" value="cos(x)" /> Cos(x)
+              </label>
+            </div>
           </div>
 
           <div id="tab-1">
             <div id="attrGenB">
               <input type="text" name="signalB" value="cos(x)" id="signalB" />
               <input id="applySignalB" type="button" value="Выполнить" />
+            </div>
+            <div style="margin-top: 15px;">
+              <label for="b_sin_x">
+                <input class="signal_radio" data-target="signalB" name="signalB_func" id="b_sin_x" type="radio" value="sin(x)" /> Sin(x)
+              </label>
+              <br />
+              <label for="b_cos_x">
+                <input class="signal_radio" data-target="signalB" name="signalB_func" id="b_cos_x" type="radio" value="cos(x)" checked /> Cos(x)
+              </label>
             </div>
           </div>
 
