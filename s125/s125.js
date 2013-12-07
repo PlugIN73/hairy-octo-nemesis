@@ -65,12 +65,12 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "circle", key: "vremyaNanoIndicator", coords: "545,195,5", tooltip: "Индикатор Милли", hint_text: "Индикатор милли"});
 
   //Канал А
-  area.push({shape: "rect", key: "inversionA", coords: "355,90,390,110", tooltip: "Кнопка инвертирования", hint_text: "Кнопка инвертирования канала А"});
-  area.push({shape: "circle", key: "verticalA", coords: "380, 145, 15", tooltip: "Регулировка по высоте", hint_text: ""});
-  area.push({shape: "circle", key: "ampA", coords: "375, 200, 20", tooltip: "Регулировка по высоте", hint_text: ""});
-  area.push({shape: "rect", key: "earthA", coords: "360,222,375,242", tooltip: "Кнопка земли", hint_text: "Кнопка земли"});
-  area.push({shape: "rect", key: "closedA", coords: "375, 222, 390, 242",tooltip: "", hint_text: "Закрыть канал А"});
-  area.push({shape: "rect", key: "openA", coords: "345, 222, 360, 242",tooltip: "", hint_text: "Открыть канал А"});
+  area.push({shape: "rect", key: "inversionA", coords: "355,90,390,110", tooltip: "Кнопка инвертирования канала А"f hint_text: "Кнопка инвертирования канала А"});
+  area.push({shape: "circle", key: "verticalA", coords: "380, 145, 15", tooltip: "Регулировка по высоте в канале А", hint_text: "Регулировка по высоте в канале А"});
+  area.push({shape: "circle", key: "ampA", coords: "375, 200, 20", tooltip: "Регулировка по высоте в канале А", hint_text: "Регулировка по высоте в канале А"});
+  area.push({shape: "rect", key: "earthA", coords: "360,222,375,242", tooltip: "Переключить канал А на землю", hint_text: "Кнопка земли"});
+  area.push({shape: "rect", key: "closedA", coords: "375, 222, 390, 242",tooltip: "Закрыть канал А", hint_text: "Закрыть канал А"});
+  area.push({shape: "rect", key: "openA", coords: "345, 222, 360, 242",tooltip: "Откруть канал А", hint_text: "Открыть канал А"});
 
   area.push({shape: "circle", key: "noinversionAIndicator", coords: "355, 95, 3", tooltip: "Индикатор закрытого канала А", hint_text: "Канал А  не инвртирован"});
   area.push({shape: "circle", key: "inversionAIndicator", coords: "355, 115, 3", tooltip: "Индикатор закрытого канала А", hint_text: "Канал А инвертирван"});
