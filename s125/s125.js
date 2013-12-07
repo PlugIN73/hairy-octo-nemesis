@@ -74,17 +74,17 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "rect", key: "closedA", coords: "375, 222, 390, 242",tooltip: "Закрыть канал А", hint_text: "Закрыть канал А"});
   area.push({shape: "rect", key: "openA", coords: "345, 222, 360, 242",tooltip: "Откруть канал А", hint_text: "Открыть канал А"});
 
-  area.push({shape: "circle", key: "noinversionAIndicator", coords: "355, 95, 3", tooltip: "Индикатор закрытого канала А", hint_text: "Канал А  не инвртирован"});
-  area.push({shape: "circle", key: "inversionAIndicator", coords: "355, 115, 3", tooltip: "Индикатор закрытого канала А", hint_text: "Канал А инвертирван"});
+  area.push({shape: "circle", key: "noinversionAIndicator", coords: "355, 95, 3", tooltip: "Индикатор не инвертированного сигнала в канале А", hint_text: "Индикатор не инвертированного сигнала в канале А"});
+  area.push({shape: "circle", key: "inversionAIndicator", coords: "355, 115, 3", tooltip: "Индикатор инвертированного сигнала в канале А", int_text: "Индикатор инвертированного сигнала в канале А"});
 
   area.push({shape: "circle", key: "closeAIndicator", coords: "390, 232, 3", tooltip: "Индикатор закрытого канала А", hint_text: "Канал А закрыт"});
-  area.push({shape: "circle", key: "earthAIndicator", coords: "370, 242, 3", tooltip: "Индикатор закрытого канала А", hint_text: "Канал А закрыт"});
-  area.push({shape: "circle", key: "openAIndicator", coords: "350, 232, 3", tooltip: "Индикатор закрытого канала А", hint_text: "Канал А закрыт"});
+  area.push({shape: "circle", key: "earthAIndicator", coords: "370, 242, 3", tooltip: "Индикатор земли в канале А", hint_text: "Земля в канале А"});
+  area.push({shape: "circle", key: "openAIndicator", coords: "350, 232, 3", tooltip: "Индикатор открытого канала А", hint_text: "Канал А открыт"});
 
   area.push({shape: "circle", key: "connectedSignalA", coords: "373,280,18", tooltip: "Индикатор подключения канала А", hint_text: "Индикатор подключения канала А"});
 
   //Канал Б
-  area.push({shape: "circle", key: "verticalB", coords: "453, 145, 15", tooltip: "Регулировка по высоте", hint_text: "Регулировка по высоте в канале Б"});
+  area.push({shape: "circle", key: "verticalB", coords: "453, 145, 15", tooltip: "Регулировка по высоте в канале Б", hint_text: "Регулировка по высоте в канале Б"});
   area.push({shape: "circle", key: "ampB", coords: "448, 200, 20", tooltip: "Регулировка по высоте", hint_text: ""});
   area.push({shape: "rect", key: "earthB", coords: "433,222,448,242", tooltip: "Кнопка земли", hint_text: "Кнопка земли"});
   area.push({shape: "rect", key: "closedB", coords: "448, 222, 463, 242", tooltip: "", hint_text: "Закрыть канал Б"});
