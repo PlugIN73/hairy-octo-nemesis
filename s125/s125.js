@@ -59,12 +59,12 @@ DeviceS125.prototype.getAreaPre = function () {
 	var area = [];
 	area.push({shape: "rect", key: "power", coords: "120,280,145,300", tooltip: "Кнопка включения прибора", hint_text: "Кнопка включения прибора"});
   area.push({shape: "circle", key: "powerIndicator", coords: "127,275,3", tooltip: "Индикатор кнопки включения прибора", hint_text: "Прибор включен"});
-  area.push({shape: "circle", key: "gorizont", coords: "525, 145, 15", tooltip: "Регулировка по высоте", hint_text: ""});
-  area.push({shape: "circle", key: "vremya", coords: "525, 200, 20", tooltip: "Регулировка по высоте", hint_text: ""});
-  area.push({shape: "rect", key: "vremyaMilli", coords: "500, 222, 512, 242",tooltip: "", hint_text: "Время микро"});
+  area.push({shape: "circle", key: "gorizont", coords: "525, 145, 15", tooltip: "Регулировка сигналов по горизонтали", hint_text: "Регулировка сигналов по горизонтали"});
+  area.push({shape: "circle", key: "vremya", coords: "525, 200, 20", tooltip: "Развертка по времени", hint_text: "Развертка по вермени"});
+  area.push({shape: "rect", key: "vremyaMilli", coords: "500, 222, 512, 242", tooltip: "Развертка времени (микро)", hint_text: "Развертка по времени милли"});
   area.push({shape: "circle", key: "vremyaMilliIndicator", coords: "482,195,5", tooltip: "Индикатор Милли", hint_text: "Индикатор милли"});
-  area.push({shape: "rect", key: "vremyaNano", coords: "515, 222, 535, 242",tooltip: "", hint_text: "Время микро"});
-  area.push({shape: "circle", key: "vremyaNanoIndicator", coords: "545,195,5", tooltip: "Индикатор Милли", hint_text: "Индикатор милли"});
+  area.push({shape: "rect", key: "vremyaNano", coords: "515, 222, 535, 242",tooltip: "Развертка по времени (нано)", hint_text: "Время микро(нано)"});
+  area.push({shape: "circle", key: "vremyaNanoIndicator", coords: "545,195,5", tooltip: "Индикатор нано", hint_text: "Индикатор нано"});
 
   //Канал А
   area.push({shape: "rect", key: "inversionA", coords: "355,90,390,110", tooltip: "Кнопка инвертирования канала А", hint_text: "Кнопка инвертирования канала А"});
