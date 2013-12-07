@@ -10,7 +10,9 @@ function DeviceS125(node, width, height) {
 
   this.start_state = jQuery.extend(true, {}, this.state);
 
-  this.name = "s1-125";
+	this.InitEx(); 												// загрузить упражнения из файла s125-exersises.js
+
+  this.name = "s125";
   this.title = 'Осциллограф С1-125';
 }
 
@@ -65,7 +67,7 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "circle", key: "vremyaNanoIndicator", coords: "545,195,5", tooltip: "Индикатор Милли", hint_text: "Индикатор милли"});
 
   //Канал А
-  area.push({shape: "rect", key: "inversionA", coords: "355,90,390,110", tooltip: "Кнопка инвертирования канала А"f hint_text: "Кнопка инвертирования канала А"});
+  area.push({shape: "rect", key: "inversionA", coords: "355,90,390,110", tooltip: "Кнопка инвертирования канала А", hint_text: "Кнопка инвертирования канала А"});
   area.push({shape: "circle", key: "verticalA", coords: "380, 145, 15", tooltip: "Регулировка по высоте в канале А", hint_text: "Регулировка по высоте в канале А"});
   area.push({shape: "circle", key: "ampA", coords: "375, 200, 20", tooltip: "Регулировка по высоте в канале А", hint_text: "Регулировка по высоте в канале А"});
   area.push({shape: "rect", key: "earthA", coords: "360,222,375,242", tooltip: "Переключить канал А на землю", hint_text: "Кнопка земли"});
