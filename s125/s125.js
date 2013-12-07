@@ -113,13 +113,13 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "circle", key: "showSignalComboAwithBIndicator", coords: "432, 100, 3", tooltip: "Индикатор отображения доп сигнала B", hint_text: "Отображаем B"});
   area.push({shape: "circle", key: "showSignalComboBlinkIndicator", coords: "432, 115, 3", tooltip: "Индикатор отображения доп сигнала АB", hint_text: "Отображаем АB"});
 
-  area.push({shape: "rect", key: "signalX5", coords: "460,83,490,98", tooltip: "Тумблер множителя на 5", hint_text: ""});
-  area.push({shape: "rect", key: "signalX1", coords: "460,98,490,107", tooltip: "Тумблер множителя на 1", hint_text: ""});
-  area.push({shape: "rect", key: "signalXY", coords: "460,107,490,119", tooltip: "Тумблер множителя X-Y", hint_text: ""});
+  area.push({shape: "rect", key: "signalX5", coords: "460,83,490,98", tooltip: "Тумблер множителя на 5", hint_text: "Тумблер множителя на 5"});
+  area.push({shape: "rect", key: "signalX1", coords: "460,98,490,107", tooltip: "Тумблер множителя на 1", hint_text: "Тумблер множителя на 1"});
+  area.push({shape: "rect", key: "signalXY", coords: "460,107,490,119", tooltip: "Тумблер множителя X-Y", hint_text: "Тумблер множителя X-Y"});
 
-  area.push({shape: "circle", key: "signalX5Indicator", coords: "477, 90, 3", tooltip: "Индикатор множителя на 5", hint_text: ""});
-  area.push({shape: "circle", key: "signalX1Indicator", coords: "477, 100, 3", tooltip: "Индикатор множителя на 1", hint_text: ""});
-  area.push({shape: "circle", key: "signalXYIndicator", coords: "477, 115, 3", tooltip: "Индикатор множителя X-Y", hint_text: ""});
+  area.push({shape: "circle", key: "signalX5Indicator", coords: "477, 90, 3", tooltip: "Индикатор множителя на 5", hint_text: "Индикатор множителя на 5"});
+  area.push({shape: "circle", key: "signalX1Indicator", coords: "477, 100, 3", tooltip: "Индикатор множителя на 1", hint_text: "Индикатор множителя на 1"});
+  area.push({shape: "circle", key: "signalXYIndicator", coords: "477, 115, 3", tooltip: "Индикатор множителя X-Y", hint_text: "Индикатор множителя X-Y"});
 
 
   return area;
