@@ -173,7 +173,6 @@ DeviceS125.prototype.definitionControl = function () {
 	c.push({key: 'closedB', cls: Button, param: 'd.closedB = 1; d.earthB = 0; d.openB = 0;'});
 	c.push({key: 'openB', cls: Button, param: 'd.openB = 1; d.closedB = 0; d.earthB = 0;'});
 
-	c.push({key: 'menu', cls: Menu, param: null});
   c.push({key: 'graph', cls: GraphVisio, param: null});
   c.push({key: 'generator', cls: S125.Generator, param: null});
 
@@ -204,6 +203,8 @@ DeviceS125.prototype.definitionControl = function () {
   c.push({key: 'signalX1Indicator', cls: IndicatorDiode, param: S125.getStateIndicator});
   c.push({key: 'signalXYIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
 
+	c.push({key: 'menu', cls: Menu, param: null});
+	c.push({key: 'tutor', cls: Tutor, param: null});
   return c;
 }
 
