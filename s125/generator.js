@@ -78,6 +78,35 @@ $(function() {
   });
 });
 
+S125.Generator.prototype.getAmp = function(amp){
+  if (amp > 4410){
+    return 1;
+  }
+  if (amp > 3900 && amp <= 4410){
+    return 2;
+  }
+  if (amp > 3600 && amp <= 3900){
+    return 3;
+  }
+  if (amp > 3200 && amp <= 3600){
+    return 10;
+  }
+  if (amp > 2700 && amp <= 3200){
+    return 20;
+  }
+  if (amp > 1800 && amp <= 2700){
+    return 50;
+  }
+  if (amp > 1300 && amp <= 1800){
+    return 100;
+  }
+  if (amp > 900 && amp <= 1300){
+    return 200;
+  }
+  if (amp <= 900) {
+    return 500;
+  }
+}
 // Функция для получения импульса A канала
 // Здесь пока захардкожена синусоида, надо будет динамически получать
 S125.Generator.prototype.getAOptions = function() {
@@ -96,12 +125,13 @@ S125.Generator.prototype.getAOptions = function() {
     earth: state.earthA,
     closed: state.closedA,
     vertical: state.verticalA,
-    amp: state.ampA / 1000,
+    amp: this.getAmp(state.ampA) / 100,
     gorizont: state.gorizont,
     vremya: vremya,
     signalX5: state.signalX5
   };
 }
+
 
 // Функция для получения импульса B канала
 S125.Generator.prototype.getBOptions = function() {
@@ -120,7 +150,7 @@ S125.Generator.prototype.getBOptions = function() {
     earth: state.earthB,
     closed: state.closedB,
     vertical: state.verticalB,
-    amp: state.ampB / 1000,
+    amp: this.getAmp(state.ampB) / 100,
     gorizont: state.gorizont,
     vremya: vremya,
     signalX5: state.signalX5
