@@ -11,6 +11,19 @@ DeviceS125.prototype.InitEx = function() {
 			code: "s125.state.power=0; s125.state.closedA=0; s125.state.earthA=1; s125.state.openA=0; window.stateA.frequence = 10; window.formulas.sin; s125.draw(); "
 		},
 		{
+			name: "Получение алгебраической суммы сигналов",
+			nodes: [
+				{ hash: "3d0ceabbcc7556981c3ed8f813f68299", goal: "Включить прибор", button_hint: "Нажать на кнопку СЕТЬ <img class='button_img' id='power' src='s125/button_img/input3.png'>" },
+				{ hash: "f35e1eccc81666f8bfe606d96aef889d", goal: "Подключить канал А", button_hint: "<img id='connectedSignalA' class='button_img' src='s125/button_img/ng.png'>" },
+				{ hash: "f35e1eccc81666f8bfe606d96aef889d", goal: "Подключить канал Б", button_hint: "<img id='connectedSignalB' class='button_img' src='s125/button_img/ng.png'>" },
+				{ hash: "e7f01f412caeec67bafad2f9c9200f60", goal: "Включить отображение сигнала с канала А", button_hint: "Перевести переключатель в крайнее левое положение <img id='openA' class='button_img' src='s125/button_img/F.png'>" },
+				{ hash: "e7f01f412caeec67bafad2f9c9200f60", goal: "Включить отображение сигнала с канала Б", button_hint: "Перевести переключатель в крайнее левое положение <img id='openB' class='button_img' src='s125/button_img/F.png'>" },
+				{ hash: "e7f01f412caeec67bafad2f9c9200f60", goal: "Перевести переключатель в режим отображения данных с канала А и Б", button_hint: "Включить режим A и Б <img id='showSignalAB' class='button_img' src='s125/button_img/F.png'>" },
+				{ hash: "e7f01f412caeec67bafad2f9c9200f60", goal: "Перевести переключатель режим алгебраической суммы каналов А и Б", button_hint: "Включить режим А+Б <img id='showSignalComboAwithB' class='button_img' src='s125/button_img/F.png'>" },
+			],
+			code: "window.stateA.func=window.formulas.sin; window.stateA.func=window.formulas.cos; s125.state.power=0; s125.state.closedA=0; s125.state.earthA=1; s125.state.openA=0; s125.draw();"
+		},
+		{
 			name: "Получение фигуры Лиссажу(Начальные значения: Сигнал канала А: 5*sin(x), Сигнал канала Б: 5*cos(1.5*x)",
 			nodes: [
 				{ hash: "08f64994f9e876b5f33b0c2a921bdcf2", goal: "Включить прибор (нажать кнопку СЕТЬ)", button_hint: "Кликнуть на изображение входа А <img class='button_img' id='power' src='s125/images/power.png'>" },
