@@ -24,13 +24,17 @@ $(document).ready(function() {
     return this.state == 'one' ? this.amplitude : 0;
   }
 
+  InputPulseState.prototype.getSawAmplitude = function(x) {
+    return this.state == 'one' ? this.amplitude / this.lengthOne * x : 0;
+  }
+
   InputPulseState.prototype.getFunction = function() {
     var self = this;
     if (this.funcName == 'sin' || this.funcName == 'cos') {
       return function(x) { return self.amplitude * self.func(x * self.frequence + self.phase); }
     }
 
-    if (this.funcName == 'rect') {
+    if (this.funcName == 'rect' || this.funcName == 'saw') {
       return function(x) { return self.func(x); }
     }
   };
@@ -77,10 +81,20 @@ $(document).ready(function() {
       }
 
       return this.getAmplitude();
+    },
+    saw: function(x) {
+      if (x <= -10) { this.frontX = 0; }
+
+      if (this.state == 'zero' && Math.abs(x - this.frontX) >= this.lengthZero) {
+        this.switchState('one', x);
+      } if (this.state == 'one' && Math.abs(x - this.frontX) >= this.lengthOne) {
+        this.switchState('zero', x);
+      }
+
+      return this.getSawAmplitude(Math.abs(x - this.frontX));
     }
   }
-  // $('.signal_radio_block input:eq(0)').click();
-  // $('.signal_radio_block input:eq(3)').click();
+
   $('#tab-0 .signal_radio_block input:eq(0)').click();
   $('#tab-1 .signal_radio_block input:eq(2)').click();
   $('.signal_state input').change();
