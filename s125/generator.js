@@ -49,7 +49,7 @@ S125.Generator.prototype.yFunction = function(x, state) {
   }
 
   // Добавляем амплитуду
-  y *= state.amp;
+  y /= state.amp;
 
   // Если включен переключатель инвертирования, то инвертируем график
  	if (state.inversionA) {
