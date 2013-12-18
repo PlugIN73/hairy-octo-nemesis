@@ -68,39 +68,39 @@
 
           <div id="tab-0">
             <div id="attrGenA">
-              <input type="text" id="signalA" />
-              <input class="apply-signal-btn" data-field="formulaSignalA" data-source="#signalA" type="button" value="Выполнить" />
-              <input class="clear-signal-btn" data-field="formulaSignalA" data-source="#signalA" type="button" value="Очистить" />
+              <input class="apply-signal-btn" data-field="formulaSignalA" data-state="stateA" type="button" value="Выполнить" />
             </div>
             <div style="margin-top: 15px;" class="signal_radio_block">
-              <label for="a_sin_x">
-                <input data-function="sin"  data-target="signalA" name="sA_f" id="a_sin_x" type="radio" value="sin(x)" /> Sin(x)
-              </label>
-              <br />
-              <label for="a_cos_x">
-                <input data-function="cos"  data-target="signalA" name="sA_f" id="a_cos_x" type="radio" value="cos(x)" /> Cos(x)
-              </label>
-              <br />
-              <label for="a_rect_x">
-                <input data-function="rect" data-target="signalA" name="sA_f" id="a_rect_x" type="radio" value="Прямоугольный импульс" /> Прямоугольный импульс
-              </label>
+              <label for="a_sin_x"> <input data-state="stateA" data-function="sin"  name="sA_f" id="a_sin_x" type="radio" />Sin(x) </label><br />
+              <label for="a_cos_x"> <input data-state="stateA" data-function="cos"  name="sA_f" id="a_cos_x" type="radio" />Cos(x) </label><br />
+              <label for="a_rec_x"> <input data-state="stateA" data-function="rect" name="sA_f" id="a_rec_x" type="radio" />Прямоугольный импульс</label>
+            </div>
+
+            <div style="margin-top: 15px;" class="signal_state">
+              <div><label>Амплитуда</label><input type="text" data-state="stateA" data-field="amplitude" value="1" /></div>
+              <div><label>Частота</label><input type="text" data-state="stateA" data-field="frequence" value="1" /></div>
+              <div><label>Фаза</label><input type="text" data-state="stateA" data-field="phase" value="1" /></div>
+              <div><label>Ширина "0"</label><input type="text" data-state="stateA" data-field="lengthZero" value="2" /></div>
+              <div><label>Ширина "1"</label><input type="text" data-state="stateA" data-field="lengthOne" value="2" /></div>
             </div>
           </div>
 
           <div id="tab-1">
             <div id="attrGenB">
-              <input type="text" name="signalB" value="cos(x)" id="signalB" />
-              <input id="applySignalB" type="button" value="Выполнить" />
-              <input id="clearSignalB" type="button" value="Очистить" />
+              <input class="apply-signal-btn" data-field="formulaSignalB" data-state="stateB" type="button" value="Выполнить" />
             </div>
-            <div style="margin-top: 15px;">
-              <label for="b_sin_x">
-                <input class="signal_radio" data-target="signalB" name="signalB_func" id="b_sin_x" type="radio" value="sin(x)" /> Sin(x)
-              </label>
-              <br />
-              <label for="b_cos_x">
-                <input class="signal_radio" data-target="signalB" name="signalB_func" id="b_cos_x" type="radio" value="cos(x)" checked /> Cos(x)
-              </label>
+            <div style="margin-top: 15px;" class="signal_radio_block">
+              <label for="b_sin_x"><input data-state="stateB" data-function="sin"  name="sB_f" id="b_sin_x" type="radio" />Sin(x) </label><br />
+              <label for="b_cos_x"><input data-state="stateB" data-function="cos"  name="sB_f" id="b_cos_x" type="radio" />Cos(x) </label><br />
+              <label for="b_rec_x"><input data-state="stateB" data-function="rect" name="sB_f" id="b_rec_x" type="radio" />Прямоугольный импульс</label>
+            </div>
+
+            <div style="margin-top: 15px;" class="signal_state">
+              <div><label>Амплитуда</label><input type="text" data-state="stateB" data-field="amplitude" value="1" /></div>
+              <div><label>Частота</label><input type="text" data-state="stateB" data-field="frequence" value="1" /></div>
+              <div><label>Фаза</label><input type="text" data-state="stateB" data-field="phase" value="1" /></div>
+              <div><label>Ширина "0"</label><input type="text" data-state="stateB" data-field="lengthZero" value="2" /></div>
+              <div><label>Ширина "1"</label><input type="text" data-state="stateB" data-field="lengthOne" value="2" /></div>
             </div>
           </div>
 

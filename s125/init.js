@@ -10,75 +10,84 @@ $(document).ready(function() {
   s125_menu.initMenuUI();
   s125.start();
 
+  function InputPulseState(opts) {
+    this.field = opts.field;
+    this.frontX = 0; this.amplitude = 4; this.state = 'zero'; this.lengthOne = 5; this.lengthZero = 3;
+  }
+
+  InputPulseState.prototype.switchState = function(state, x) {
+    this.state = state;
+    this.frontX = x;
+  };
+
+  InputPulseState.prototype.getAmplitude = function() {
+    return this.state == 'one' ? this.amplitude : 0;
+  }
+
+  InputPulseState.prototype.getFunction = function() {
+    var self = this;
+    if (this.funcName == 'sin' || this.funcName == 'cos') {
+      return function(x) { return self.amplitude * self.func(x * self.frequence + self.phase); }
+    }
+
+    if (this.funcName == 'rect') {
+      return function(x) { return self.func(x); }
+    }
+  };
+
+  window.stateA = new InputPulseState({ field: 'formulaSignalA' });
+  window.stateB = new InputPulseState({ field: 'formulaSignalB' });
+
   $('.signal_radio_block input').change(function() {
-    var target = $(this).data('target');
-    var title = $(this).val();
+    var field = $(this).data('state');
     var func = $(this).data('function');
-    $('#' + target).val(title).data('function', func).attr('disabled', 1);
+
+    window[field].funcName = func;
+    window[field].func = window.formulas[func];
+  });
+
+  $('.signal_state input').change(function() {
+    var state = $(this).data('state');
+    var field = $(this).data('field');
+    var val = parseFloat($(this).val());
+    if (isNaN(val)) {
+      val = 1;
+      $(this).val(val);
+    }
+    window[state][field] = val;
   });
 
   $('.apply-signal-btn').on('click', function(e) {
-    var $source = $( $(this).data('source') );
-    var field = $(this).data('field');
-
-    var fName = $source.data('function');
-
-    var disabledAttr = $source.attr('disabled');
-    if (typeof disabledAttr !== 'undefined' && disabledAttr !== false) {
-      window[field] = window.formulas[fName];
-    } else {
-      window[field] = function() {
-        var sin = Math.sin, cos = Math.cos;
-        return eval(fName);
-      }
-    }
+    var state = window[$(this).data('state')];
+    window[state.field] = state.getFunction();
 
     e.preventDefault();
   });
-
-  $('.clear-signal-btn').on('click', function(e) {
-    var $source = $( $(this).data('source') );
-    var field = $(this).data('field');
-
-    window[field] = null;
-    $source.val('').removeAttr('disabled');
-    e.preventDefault();
-  });
-
-  var rectState = {
-    frontX: 0, amplitude: 4, state: 'zero', lengthOne: 5, lengthZero: 3,
-    switchState: function(state, x) {
-      this.state = state;
-      this.frontX = x;
-    },
-
-    getAmplitude: function() {
-      return this.state == 'one' ? this.amplitude : 0;
-    }
-  };
 
   window.formulas = {
     sin: function(x) { return Math.sin(x); },
     cos: function(x) { return Math.cos(x); },
     rect: function(x) {
-      if (x <= -10) { rectState.frontX = 0; }
-      // Грязный хак
-      x += 10;
-      if (rectState.state == 'zero' && x - rectState.frontX >= rectState.lengthZero) {
-        rectState.switchState('one', x);
-      } if (rectState.state == 'one' && x - rectState.frontX >= rectState.lengthOne) {
-        rectState.switchState('zero', x);
+      if (x <= -10) { this.frontX = 0; }
+
+      if (this.state == 'zero' && Math.abs(x - this.frontX) >= this.lengthZero) {
+        this.switchState('one', x);
+      } if (this.state == 'one' && Math.abs(x - this.frontX) >= this.lengthOne) {
+        this.switchState('zero', x);
       }
 
-      return rectState.getAmplitude();
+      return this.getAmplitude();
     }
   }
+  // $('.signal_radio_block input:eq(0)').click();
+  // $('.signal_radio_block input:eq(3)').click();
+  $('#tab-0 .signal_radio_block input:eq(0)').click();
+  $('#tab-1 .signal_radio_block input:eq(2)').click();
+  $('.signal_state input').change();
+  $('.apply-signal-btn').click();
 });
 
-function isOdd(x) { return x % 2 == 1; }
-function isEven(x) { return !isOdd(x); }
-
-function setMode2(map, mode)	{
+function setMode2(map, mode) {
   map.setMode(mode);
   map.draw();
 
