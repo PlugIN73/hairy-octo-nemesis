@@ -31,13 +31,16 @@ $(document).ready(function() {
   InputPulseState.prototype.getFunction = function() {
     var self = this;
     if (this.funcName == 'sin' || this.funcName == 'cos') {
-      return function(x) { return self.amplitude * self.func(x * self.frequence + self.phase); }
+      return function(x) { return 2.5 * self.amplitude * self.func(x * self.frequence + self.phase); }
     }
 
     if (this.funcName == 'rect' || this.funcName == 'saw') {
       return function(x) { return self.func(x); }
     }
   };
+
+  InputPulseState.prototype.fLengthZero = function() { return this.lengthZero * 2.5; }
+  InputPulseState.prototype.fLengthOne = function() { return this.lengthOne * 2.5; }
 
   window.stateA = new InputPulseState({ field: 'formulaSignalA' });
   window.stateB = new InputPulseState({ field: 'formulaSignalB' });
@@ -74,9 +77,9 @@ $(document).ready(function() {
     rect: function(x) {
       if (x <= -10) { this.frontX = 0; }
 
-      if (this.state == 'zero' && Math.abs(x - this.frontX) >= this.lengthZero) {
+      if (this.state == 'zero' && Math.abs(x - this.frontX) >= this.fLengthZero()) {
         this.switchState('one', x);
-      } if (this.state == 'one' && Math.abs(x - this.frontX) >= this.lengthOne) {
+      } if (this.state == 'one' && Math.abs(x - this.frontX) >= this.fLengthOne()) {
         this.switchState('zero', x);
       }
 
@@ -85,13 +88,13 @@ $(document).ready(function() {
     saw: function(x) {
       if (x <= -10) { this.frontX = 0; }
 
-      if (this.state == 'zero' && Math.abs(x - this.frontX) >= this.lengthZero) {
+      if (this.state == 'zero' && Math.abs(x - this.frontX) >= this.fLengthZero()) {
         this.switchState('one', x);
-      } if (this.state == 'one' && Math.abs(x - this.frontX) >= this.lengthOne) {
+      } if (this.state == 'one' && Math.abs(x - this.frontX) >= this.fLengthOne()) {
         this.switchState('zero', x);
       }
 
-      return this.getSawAmplitude(Math.abs(x - this.frontX));
+      return this.getSawAmplitude(Math.abs(x - this.frontX) / 2.5);
     }
   }
 
