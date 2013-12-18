@@ -231,7 +231,7 @@ Tutor.prototype.checkStateChanges = function() {
 	var _prev_state = this.map.state;
 	if (this.ex === undefined || this.next_goal_state == -1)
 		return;
-	if (this.next_goal_state < this.ex.nodes.length /* && this.new_state == this.ex.nodes[this.next_goal_state].hash */)
+	if (this.next_goal_state < this.ex.nodes.length && this.new_state == this.ex.nodes[this.next_goal_state].hash)
 	{
 		this.setNextGoal();
 	} else {
