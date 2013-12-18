@@ -24,7 +24,7 @@ DeviceS125.prototype.InitEx = function() {
 			code: "window.stateA.func=window.formulas.sin; window.stateA.func=window.formulas.cos; s125.state.power=0; s125.state.closedA=0; s125.state.earthA=1; s125.state.openA=0; s125.draw();"
 		},
 		{
-			name: "Получение фигуры Лиссажу(Начальные значения: Сигнал канала А: 5*sin(x), Сигнал канала Б: 5*cos(1.5*x)",
+			name: "Получение фигуры Лиссажу",
 			nodes: [
 				{ hash: "08f64994f9e876b5f33b0c2a921bdcf2", goal: "Включить прибор (нажать кнопку СЕТЬ)", button_hint: "Кликнуть на изображение входа А <img class='images' id='power' src='s125/images/power.png'>" },
 				{ hash: "3a6de4a02b117743f3dbc9bec8524635", goal: "Подключить канал А", button_hint: "Нажать кнопку <img class='images' id='ng' src='s125/images/channel.png'>" },
