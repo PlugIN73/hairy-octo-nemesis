@@ -67,16 +67,6 @@ S125.Generator.prototype.yFunction = function(x, state) {
  return y;
 }
 
-$(function() {
-  $('#applySignalA').on('click', function(e) {
-    window.formulaSignalA = $('#signalA').val();
-    e.preventDefault();
-  });
-  $('#applySignalB').on('click', function(e) {
-    window.formulaSignalB = $('#signalB').val();
-    e.preventDefault();
-  });
-});
 
 S125.Generator.prototype.getAmp = function(amp){
   if (amp > 4410){
@@ -116,11 +106,7 @@ S125.Generator.prototype.getAOptions = function() {
     vremya = vremya / 10;
   }
   return {
-    inputPulseFn: function(x) {
-      var sin = Math.sin,
-      cos = Math.cos;
-      return eval(window.formulaSignalA || 'sin(x)');
-    },
+    inputPulseFn: window.formulaSignalA,
     inversionA: state.inversionA,
     earth: state.earthA,
     closed: state.closedA,
@@ -141,11 +127,7 @@ S125.Generator.prototype.getBOptions = function() {
     vremya = vremya / 10;
   }
   return {
-    inputPulseFn: function(x) {
-      var sin = Math.sin,
-      cos = Math.cos;
-      return eval(window.formulaSignalB || 'cos(x)');
-    },
+    inputPulseFn: window.formulaSignalB,
     inversionA: state.inversionA,
     earth: state.earthB,
     closed: state.closedB,

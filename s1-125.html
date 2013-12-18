@@ -1,58 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <!-- Поставил кодировку по умолчанию utf. Троицкий -->
-    <link rel="stylesheet" type="text/css" href="ui-lightness/jquery-ui-1.10.3.custom.min.css">	<!-- css для интерфейса. Троицкий -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="ui-lightness/jquery-ui-1.10.3.custom.min.css" />
+    <link rel="stylesheet" type="text/css" href="s125/css/main.css" />
   </head>
   <body>
-    <style type="text/css">
-      .flot-tick-label{
-        display:none;
-      }
-      .ui-tooltip {
-        opacity: 0.8;
-      }
-
-      .control:hover {
-        /*cursor:pointer;*/
-      }
-
-      /*
-      @font-face {
-        font-family: Crystal;
-        src: url(font.ttf);
-      }*/
-
-      .text {
-        font-family: Crystal;
-        display:none;
-      }
-
-      #map {
-        background: url('s125/s1-125.jpg') no-repeat;
-        position: relative;
-        top: -50px
-      }
-
-      #placeholder {
-        width: 300px;
-        height: 250px;
-      }
-
-      #c3 {
-        background: url('c3/c32.jpg') no-repeat;
-      }
-
-      #path, #path_min, #recomend, #idea_path {
-        display:none;
-      }
-
-      .xaxisLabel {
-        margin-top: 20px;
-      }
-
-
-    </style>
 
     <script src="jquery-1.10.1.min.js"></script>
     <!--[if lt IE 9]>
@@ -94,70 +47,9 @@
     <script src="s125/s125.js"></script>
     <script src="s125/generator.js"></script>
     <script src="s125/s125-exersises.js"></script>
+    <script src="s125/init.js"></script>
 
-
-
-    <script type="text/javascript">
-
-      function startstopmap() {
-        if (s125.startstate) {
-          $('#startstop').attr('src', 'img/play.png');
-          s125.stop();
-        } else {
-          $('#startstop').attr('src', 'img/stop.png');
-          s125.start();
-        }
-
-        return false;
-      }
-
-
-$(document).ready(function() {
-    $('#tabs').tabs({ heightStyle: "fill" });
-
-
-    //s125 = new DeviceS125($('#map'), 640, 417);
-    s125 = new DeviceS125($('#map'), 800, 521);
-    s125.renderAreaControl();
-
-
-    s125_menu = s125.GetControlByName('menu');
-    s125.draw();
-    s125_menu.initTooltips();
-    s125_menu.initMenuUI();
-    s125.start();
-
-    $('.signal_radio').change(function() {
-      var target = $(this).data('target');
-      var value = $(this).val();
-      $('#' + target).val(value);
-    });
-});
-
-function setMode2(map, mode)	{
-		map.setMode(mode);
-		map.draw();
-
-		switch(mode)
-		{
-			case deviceMode.EMULATOR:
-				map.start();
-			break;
-			case deviceMode.HELP:
-				map.stop();
-			break;
-		}
-	}
-
-	function setMode(map, mode)	{
-		setMode2(s125, mode);
-
-		s125_menu.ModeChanged(mode);
-	}
-</script>
-
-<div style="text-align:right">
-</div>
+<div style="text-align:right"></div>
 <table>
   <tbody>
     <tr>
@@ -176,16 +68,21 @@ function setMode2(map, mode)	{
 
           <div id="tab-0">
             <div id="attrGenA">
-              <input type="text" name="signalA" value="sin(x)" id="signalA" />
-              <input id="applySignalA" type="button" value="Выполнить" />
+              <input type="text" id="signalA" />
+              <input class="apply-signal-btn" data-field="formulaSignalA" data-source="#signalA" type="button" value="Выполнить" />
+              <input class="clear-signal-btn" data-field="formulaSignalA" data-source="#signalA" type="button" value="Очистить" />
             </div>
-            <div style="margin-top: 15px;">
+            <div style="margin-top: 15px;" class="signal_radio_block">
               <label for="a_sin_x">
-                <input class="signal_radio" data-target="signalA" name="signalA_func" id="a_sin_x" type="radio" value="sin(x)" checked /> Sin(x)
+                <input data-function="sin"  data-target="signalA" name="sA_f" id="a_sin_x" type="radio" value="sin(x)" /> Sin(x)
               </label>
               <br />
               <label for="a_cos_x">
-                <input class="signal_radio" data-target="signalA" name="signalA_func" id="a_cos_x" type="radio" value="cos(x)" /> Cos(x)
+                <input data-function="cos"  data-target="signalA" name="sA_f" id="a_cos_x" type="radio" value="cos(x)" /> Cos(x)
+              </label>
+              <br />
+              <label for="a_rect_x">
+                <input data-function="rect" data-target="signalA" name="sA_f" id="a_rect_x" type="radio" value="Прямоугольный импульс" /> Прямоугольный импульс
               </label>
             </div>
           </div>
@@ -194,6 +91,7 @@ function setMode2(map, mode)	{
             <div id="attrGenB">
               <input type="text" name="signalB" value="cos(x)" id="signalB" />
               <input id="applySignalB" type="button" value="Выполнить" />
+              <input id="clearSignalB" type="button" value="Очистить" />
             </div>
             <div style="margin-top: 15px;">
               <label for="b_sin_x">

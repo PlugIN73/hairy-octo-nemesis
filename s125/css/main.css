@@ -1,0 +1,46 @@
+.flot-tick-label{
+  display:none;
+}
+.ui-tooltip {
+  opacity: 0.8;
+}
+
+.control:hover {
+  /*cursor:pointer;*/
+}
+
+/*
+@font-face {
+font-family: Crystal;
+src: url(font.ttf);
+}*/
+
+.text {
+  font-family: Crystal;
+  display:none;
+}
+
+#map {
+  background: url('../s1-125.jpg') no-repeat;
+  position: relative;
+  top: -50px
+}
+
+#placeholder {
+  width: 300px;
+  height: 250px;
+}
+
+#c3 {
+  background: url('../c32.jpg') no-repeat;
+}
+
+#path, #path_min, #recomend, #idea_path {
+  display:none;
+}
+
+.xaxisLabel {
+  margin-top: 20px;
+}
+
+
