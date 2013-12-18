@@ -68,6 +68,7 @@ Tutor.prototype.createDialog = function() {
 
 Tutor.prototype.state_hash = function() {
 	var foo = this.map.state_time_variables;
+	console.log(hex_md5(print_object(this.map.state, function(arg) { return $.inArray(arg, foo) != -1 } )));
 	return hex_md5(print_object(this.map.state, function(arg) { return $.inArray(arg, foo) != -1 } ));
 }
 
@@ -81,7 +82,7 @@ Tutor.prototype.enableExerciseEditor = function() {
 		if (!(control.haveArea === undefined) && control.haveArea())
 			foo = "Нажать кнопку " + control.name + " <img class='button_img' id='" + control.name + "' src='" + this.map.name + "/button_img/" + control.name + ".png'>"
 		$('div#exrciseEditor table').append("<tr><td><input disabled type=\"text\" style= \"width: 228px\" value=\"" + this.state_hash() + "\"/></td><td><input type=\"text\" style= \"width: 204px\"></td><td><input type=\"text\" style= \"width: 204px\" value=\"" + foo + "\"></td></tr>");
-	});	
+	});
 }
 
 Tutor.prototype.createExerciseEditor = function() {
@@ -90,7 +91,7 @@ Tutor.prototype.createExerciseEditor = function() {
 	var bar = this.map;
 	$('div#exrciseEditor button#go').click(function() { foo() });
 	$('div#exrciseEditor button#clear').click(function() { $('div#exrciseEditor table tr').remove(); });
-	$('div#exrciseEditor button#bshowstate').click(function() { 
+	$('div#exrciseEditor button#bshowstate').click(function() {
 		$('body').append("<div id=\"showstate\" style=\"overflow-y: scroll; border: 2px solid black; position: fixed; right: 0; top: 0; padding: 4px; width: 280px; height: 350px; background-color: white\">");
 		var timer = setInterval(function() {
 			$('div#showstate').html(print_object(bar.state));
@@ -299,7 +300,7 @@ Tutor.prototype.ControlReport = function (firstname, secondname, value) {
 	var ex = this.ex;
 	$.getJSON(
 		mainserver + "report/deviceinfo/?callback=?",
-		{type : 'ins', name : firstname, soname: secondname, device: device, value: value, testname: ex.name}, 
+		{type : 'ins', name : firstname, soname: secondname, device: device, value: value, testname: ex.name},
 		function() {}
 	);
 	//
