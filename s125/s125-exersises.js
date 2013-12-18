@@ -33,7 +33,7 @@ DeviceS125.prototype.InitEx = function() {
 				{ hash: "d8242d5336f15dce7959cc560182f341", goal: "Включить отображение сигнала с канала Б (перевести переключатель в крайнее левое положение)", button_hint: "<img class='button_img' id='ng' src='s125/images/zemlya.png'>" },
 				{ hash: "424e99acc3538190a7fc5634584122a2", goal: "Перевести переключатель отображения в положение X-Y", button_hint: "<img class='button_img' id='ngi1' src='s125/images/xy.png'>" },
 			],
-			code: "s125.state.power=1; s125.state.up=1; s125.state.mode_on=s125.state.def.symbolControl; s125.state.number_add=5; s125.state.metric=0; s125.state.signal_mode=s125.state.def.sin; s125.state.hand=0; s125.draw();"
+			code: "window.stateA.amplitude=5; window.stateA.func=window.formulas.sin; window.stateB.amplitude=5; window.stateB.frequence=1.5; window.stateA.func=window.formulas.cos; s125.state.power=0; s125.state.closedA=0; s125.state.earthA=1; s125.state.openA=0; s125.draw();"
 		}
 
 	];
