@@ -66,7 +66,7 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "circle", key: "gorizont", coords: "520, 145, 15", tooltip: "Регулировка сигналов по горизонтали", hint_text: "Регулировка сигналов по горизонтали"});
   area.push({shape: "circle", key: "level", coords: "580, 145, 15", tooltip: "Уровень запуска развертки и ее индикации", hint_text: "Уровень запуска развертки и ее индикации"});
   area.push({shape: "circle", key: "stable", coords: "580, 198, 15", tooltip: "Устойчивая синхронизация сигналов с высокой частотой следования", hint_text: "Устойчивая синхронизация сигналов с высокой частотой следования"});
-  area.push({shape: "circle", key: "vremya", coords: "517, 200, 20", tooltip: "Развертка по времени", hint_text: "Развертка по вермени"});
+  area.push({shape: "circle", key: "vremya", coords: "527, 200, 20", tooltip: "Развертка по времени", hint_text: "Развертка по вермени"});
   area.push({shape: "rect", key: "vremyaMilli", coords: "500, 222, 512, 242", tooltip: "Развертка времени (микро)", hint_text: "Развертка по времени милли"});
   area.push({shape: "circle", key: "vremyaMilliIndicator", coords: "482,195,5", tooltip: "Индикатор Милли", hint_text: "Индикатор милли"});
   area.push({shape: "rect", key: "vremyaNano", coords: "515, 222, 535, 242",tooltip: "Развертка по времени (нано)", hint_text: "Время микро(нано)"});
@@ -175,7 +175,7 @@ DeviceS125.prototype.definitionControl = function () {
 
   c.push({key: 'verticalA', cls: Reostat, param: {action: 'd.verticalA=val', options: {minAngle: 0, maxAngle: 230, angleOffset: 30, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
-  c.push({key: 'ampA', cls: Reostat, param: {action: 'd.ampA=val', options: {minAngle: 0, maxAngle: 230, angleOffset: 30, minValue: 1, maxValue: 5000}, ropt: {cont: {opacity: 0}, ind: {
+  c.push({key: 'ampA', cls: Reostat, param: {action: 'd.ampA=val', options: {angle: 180, minAngle: 0, maxAngle: 230, angleOffset: 0, minValue: 1, maxValue: 5000}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
   c.push({key: 'earthA', cls: Button, param: 'd.earthA = 1; d.closedA = 0; d.openA = 0;'});
 	c.push({key: 'closedA', cls: Button, param: 'd.closedA = 1; d.earthA = 0; d.openA = 0;'});
@@ -194,7 +194,7 @@ DeviceS125.prototype.definitionControl = function () {
 
   c.push({key: 'verticalB', cls: Reostat, param: {action: 'd.verticalB=val', options: {minAngle: 0, maxAngle: 230, angleOffset: 30, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
-  c.push({key: 'ampB', cls: Reostat, param: {action: 'd.ampB=val', options: {minAngle: 0, maxAngle: 230, angleOffset: 30, minValue: 1, maxValue: 5000}, ropt: {cont: {opacity: 0}, ind: {
+  c.push({key: 'ampB', cls: Reostat, param: {action: 'd.ampB=val', options: {angle: 160, minAngle: 0, maxAngle: 230, angleOffset: 30, minValue: 1, maxValue: 5000}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
   c.push({key: 'earthB', cls: Button, param: 'd.earthB = 1; d.closedB = 0; d.openB = 0;'});
 	c.push({key: 'closedB', cls: Button, param: 'd.closedB = 1; d.earthB = 0; d.openB = 0;'});
