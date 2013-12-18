@@ -57,19 +57,27 @@ DeviceS125.prototype.getArea = function () {
 
 DeviceS125.prototype.getAreaPre = function () {
 	var area = [];
-	area.push({shape: "rect", key: "power", coords: "120,280,145,300", tooltip: "Кнопка включения прибора", hint_text: "Кнопка включения прибора"});
-  area.push({shape: "circle", key: "powerIndicator", coords: "127,275,3", tooltip: "Индикатор кнопки включения прибора", hint_text: "Прибор включен"});
-  area.push({shape: "circle", key: "gorizont", coords: "525, 145, 15", tooltip: "Регулировка сигналов по горизонтали", hint_text: "Регулировка сигналов по горизонтали"});
-  area.push({shape: "circle", key: "vremya", coords: "525, 200, 20", tooltip: "Развертка по времени", hint_text: "Развертка по вермени"});
+  area.push({shape: "rect", key: "power", coords: "110,275,145,300", tooltip: "Кнопка включения прибора", hint_text: "Кнопка включения прибора"});
+  area.push({shape: "rect", key: "bright", coords: "160,275,193,300", tooltip: "Кнопка регулирования яркости", hint_text: "Кнопка регулирования яркости"});
+  area.push({shape: "rect", key: "focus", coords: "200,275,245,300", tooltip: "Кнопка регулирования фокуса", hint_text: "Кнопка регулирования фокуса"});
+	area.push({shape: "rect", key: "astigmatism", coords: "250,275,290,300", tooltip: "Кнопка регулирования астигматизма", hint_text: "Кнопка регулирования астигматизма"});
+
+  area.push({shape: "circle", key: "powerIndicator", coords: "115,270,3", tooltip: "Индикатор кнопки включения прибора", hint_text: "Прибор включен"});
+  area.push({shape: "circle", key: "gorizont", coords: "520, 145, 15", tooltip: "Регулировка сигналов по горизонтали", hint_text: "Регулировка сигналов по горизонтали"});
+  area.push({shape: "circle", key: "level", coords: "580, 145, 15", tooltip: "Уровень запуска развертки и ее индикации", hint_text: "Уровень запуска развертки и ее индикации"});
+  area.push({shape: "circle", key: "stable", coords: "580, 198, 15", tooltip: "Устойчивая синхронизация сигналов с высокой частотой следования", hint_text: "Устойчивая синхронизация сигналов с высокой частотой следования"});
+  area.push({shape: "circle", key: "vremya", coords: "517, 200, 20", tooltip: "Развертка по времени", hint_text: "Развертка по вермени"});
   area.push({shape: "rect", key: "vremyaMilli", coords: "500, 222, 512, 242", tooltip: "Развертка времени (микро)", hint_text: "Развертка по времени милли"});
   area.push({shape: "circle", key: "vremyaMilliIndicator", coords: "482,195,5", tooltip: "Индикатор Милли", hint_text: "Индикатор милли"});
   area.push({shape: "rect", key: "vremyaNano", coords: "515, 222, 535, 242",tooltip: "Развертка по времени (нано)", hint_text: "Время микро(нано)"});
+  area.push({shape: "rect", key: "source", coords: "550, 222, 585, 242", tooltip: "Выбор источника синхронизации", hint_text: "Выбор источника синхронизации"});
+  area.push({shape: "rect", key: "sourceX", coords: "550, 262, 585, 282", tooltip: "Выбор режима синхронизации по каналу", hint_text: "Выбор режима синхронизации по каналу"});
   area.push({shape: "circle", key: "vremyaNanoIndicator", coords: "545,195,5", tooltip: "Индикатор нано", hint_text: "Индикатор нано"});
 
   //Канал А
   area.push({shape: "rect", key: "inversionA", coords: "355,90,390,110", tooltip: "Кнопка инвертирования канала А", hint_text: "Кнопка инвертирования канала А"});
-  area.push({shape: "circle", key: "verticalA", coords: "380, 145, 15", tooltip: "Регулировка по высоте в канале А", hint_text: "Регулировка по высоте в канале А"});
-  area.push({shape: "circle", key: "ampA", coords: "375, 200, 20", tooltip: "Регулировка амплитуды в канале А", hint_text: "Регулировка по высоте в канале А"});
+  area.push({shape: "circle", key: "verticalA", coords: "375, 145, 15", tooltip: "Регулировка по высоте в канале А", hint_text: "Регулировка по высоте в канале А"});
+  area.push({shape: "circle", key: "ampA", coords: "372, 200, 20", tooltip: "Регулировка амплитуды в канале А", hint_text: "Регулировка по высоте в канале А"});
   area.push({shape: "rect", key: "earthA", coords: "360,222,375,242", tooltip: "Переключить канал А на землю", hint_text: "Кнопка земли"});
   area.push({shape: "rect", key: "closedA", coords: "375, 222, 390, 242",tooltip: "Закрыть канал А", hint_text: "Закрыть канал А"});
   area.push({shape: "rect", key: "openA", coords: "345, 222, 360, 242",tooltip: "Открыть канал А", hint_text: "Открыть канал А"});
@@ -84,8 +92,8 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "circle", key: "connectedSignalA", coords: "373,280,18", tooltip: "Подключить канал А", hint_text: "Подключить канал А"});
 
   //Канал Б
-  area.push({shape: "circle", key: "verticalB", coords: "453, 145, 15", tooltip: "Регулировка по высоте в канале Б", hint_text: "Регулировка по высоте в канале Б"});
-  area.push({shape: "circle", key: "ampB", coords: "448, 200, 20", tooltip: "Регулировка амплитуды в канале Б", hint_text: "Регулировка амплитуды в канале Б"});
+  area.push({shape: "circle", key: "verticalB", coords: "445, 145, 15", tooltip: "Регулировка по высоте в канале Б", hint_text: "Регулировка по высоте в канале Б"});
+  area.push({shape: "circle", key: "ampB", coords: "442, 200, 20", tooltip: "Регулировка амплитуды в канале Б", hint_text: "Регулировка амплитуды в канале Б"});
   area.push({shape: "rect", key: "earthB", coords: "433,222,448,242", tooltip: "Переключить канал Б на землю", hint_text: "Переключить канал Б на землю"});
   area.push({shape: "rect", key: "closedB", coords: "448, 222, 463, 242", tooltip: "Открыть канал Б", hint_text: "Закрыть канал Б"});
   area.push({shape: "rect", key: "openB", coords: "418, 222, 433, 242", tooltip: "Открыть канал Б", hint_text: "Открыть канал Б"});
@@ -121,6 +129,11 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "circle", key: "signalX1Indicator", coords: "477, 100, 3", tooltip: "Индикатор множителя на 1", hint_text: "Индикатор множителя на 1"});
   area.push({shape: "circle", key: "signalXYIndicator", coords: "477, 115, 3", tooltip: "Индикатор множителя X-Y", hint_text: "Индикатор множителя X-Y"});
 
+  area.push({shape: "circle", key: "connectedSignalX", coords: "518,280,18", tooltip: "Канал внешней синхронизации", hint_text: "Канал внешней синхронизации"});
+  area.push({shape: "rect", key: "autoWait", coords: "505,85,525,118", tooltip: "Режим работы трактата горизонтального отклонения", hint_text: "Режим работы трактата горизонтального отклонения"});
+  area.push({shape: "rect", key: "polarity", coords: "535,85,557,118", tooltip: "Полярность сигнала синхронизации", hint_text: "Полярность сигнала синхронизации"});
+  area.push({shape: "rect", key: "form", coords: "565,85,589,118", tooltip: "Выбор формы чистотной хор-ки канала синхронизации", hint_text: "Выбор формы чистотной хор-ки канала синхронизации"});
+
 
   return area;
 }
@@ -131,6 +144,18 @@ DeviceS125.prototype.definitionControl = function () {
 
   c.push({key: 'powerIndicator', cls: IndicatorDiode, param: S125.getStateIndicator});
 	c.push({key: 'power', cls: Button, param: 'd.power = !s.power;'});
+  c.push({key: 'bright', cls: Button, param: ''});
+  c.push({key: 'focus', cls: Button, param: ''});
+  c.push({key: 'astigmatism', cls: Button, param: ''});
+  c.push({key: 'connectedSignalX', cls: Button, param: ''});
+  c.push({key: 'level', cls: Button, param: ''});
+  c.push({key: 'stable', cls: Button, param: ''});
+  c.push({key: 'source', cls: Button, param: ''});
+  c.push({key: 'sourceX', cls: Button, param: ''});
+  c.push({key: 'autoWait', cls: Button, param: ''});
+  c.push({key: 'polarity', cls: Button, param: ''});
+  c.push({key: 'form', cls: Button, param: ''});
+
   c.push({key: 'gorizont', cls: Reostat, param: {action: 'd.gorizont=val', options: {minAngle: 0, maxAngle: 360, angleOffset: -90, minValue: -10, maxValue: 10}, ropt: {cont: {opacity: 0}, ind: {
          fill: 'red'}, indr: 3, inddr: -11}}});
   c.push({key: 'vremya', cls: Reostat, param: {action: 'd.vremya=val', options: {minAngle: 0, maxAngle: 230, angleOffset: 30, minValue: 5, maxValue: 1}, ropt: {cont: {opacity: 0}, ind: {
