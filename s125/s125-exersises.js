@@ -1,7 +1,7 @@
 DeviceS125.prototype.InitEx = function() {
 	this.exercises = [
 		{
-			name: "Получение графика входного сигнала с высокой частотой (Начальные значения: Сигнал канала А: sin(10*x))",
+			name: "Получение графика входного сигнала с высокой частотой",
 			nodes: [
 				{ hash: "", goal: "Включить прибор", button_hint: "Нажать кнопку СЕТЬ <img class='button_img' id='power' src='s125/button_img/'>" },
 				{ hash: "", goal: "Подключить канал А", button_hint: "Вставить штекер в канал А <img class='button_img' id='connectedSignalA' src='s125/button_img/'>" },
