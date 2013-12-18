@@ -97,13 +97,13 @@ S125.Generator.prototype.getAmp = function(amp){
   if (amp > 1800 && amp <= 2700){
     return 50;
   }
-  if (amp > 1300 && amp <= 1800){
+  if (amp > 1200 && amp <= 1800){
     return 100;
   }
-  if (amp > 900 && amp <= 1300){
+  if (amp > 700 && amp <= 1200){
     return 200;
   }
-  if (amp <= 900) {
+  if (amp <= 700) {
     return 500;
   }
 }
