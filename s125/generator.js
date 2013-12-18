@@ -68,43 +68,77 @@ S125.Generator.prototype.yFunction = function(x, state) {
 }
 
 
-S125.Generator.prototype.getAmp = function(amp){
-  if (amp > 4410){
-    return 1;
+  S125.Generator.prototype.getAmp = function(amp) {
+    if (amp > 4410) {
+      return 1;
+    }
+    if (amp > 3900 && amp <= 4410) {
+      return 2;
+    }
+    if (amp > 3600 && amp <= 3900) {
+      return 3;
+    }
+    if (amp > 3200 && amp <= 3600) {
+      return 10;
+    }
+    if (amp > 2700 && amp <= 3200) {
+      return 20;
+    }
+    if (amp > 1800 && amp <= 2700) {
+      return 50;
+    }
+    if (amp > 1200 && amp <= 1800) {
+      return 100;
+    }
+    if (amp > 700 && amp <= 1200) {
+      return 200;
+    }
+    if (amp <= 700) {
+      return 500;
+    }
   }
-  if (amp > 3900 && amp <= 4410){
-    return 2;
+
+  S125.Generator.prototype.getVremya = function(vremya) {
+    switch (vremya) {
+    case 1:
+      return 1;
+    case 2:
+      return 2;
+    case 3:
+      return 5;
+    case 4:
+      return 10;
+    case 5:
+      return 20;
+    case 6:
+      return 50;
+    case 7:
+      return 100;
+    case 8:
+      return 200;
+    case 9:
+      return 500;
+    default:
+      return 1;
   }
-  if (amp > 3600 && amp <= 3900){
-    return 3;
-  }
-  if (amp > 3200 && amp <= 3600){
-    return 10;
-  }
-  if (amp > 2700 && amp <= 3200){
-    return 20;
-  }
-  if (amp > 1800 && amp <= 2700){
-    return 50;
-  }
-  if (amp > 1200 && amp <= 1800){
-    return 100;
-  }
-  if (amp > 700 && amp <= 1200){
-    return 200;
-  }
-  if (amp <= 700) {
-    return 500;
-  }
+
 }
+
+
 // Функция для получения импульса A канала
 // Здесь пока захардкожена синусоида, надо будет динамически получать
 S125.Generator.prototype.getAOptions = function() {
   var state = this.map.state;
-  var vremya = state.vremya;
+  var vremya = this.getVremya(state.vremya);
+
   if (state.vremyaNano == 1) {
-    vremya = vremya / 10;
+    vremya = 1000 / vremya;
+  } else {
+    vremya = 1 / vremya;
   }
+
+  console.log(vremya);
+
   return {
     inputPulseFn: window.formulaSignalA,
     inversionA: state.inversionA,
@@ -122,10 +156,14 @@ S125.Generator.prototype.getAOptions = function() {
 // Функция для получения импульса B канала
 S125.Generator.prototype.getBOptions = function() {
   var state = this.map.state;
-  var vremya = state.vremya;
+  var vremya = this.getVremya(state.vremya);
+
   if (state.vremyaNano == 1) {
-    vremya = vremya / 10;
+    vremya = 1000 / vremya;
+  } else {
+    vremya = 1 / vremya;
   }
+
   return {
     inputPulseFn: window.formulaSignalB,
     inversionA: state.inversionA,
@@ -144,12 +182,12 @@ S125.Generator.prototype.getBOptions = function() {
 //   var MAX_X = 14;
 //   // Шаг по X
 //   var STEP_X = 0.5;
-// 
+//
 //   var points = [];
 //   for (var i = 0; i < MAX_X + 0; i += STEP_X) {
 //     points.push([ i, this.yFunction((i + options.gorizont) / options.vremya, options) ]);
 //   }
-// 
+//
 //   return {data: points, lines: {fill: false}, color: color};
 // }
 
