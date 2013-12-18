@@ -72,6 +72,7 @@ DeviceS125.prototype.getAreaPre = function () {
   area.push({shape: "rect", key: "vremyaNano", coords: "515, 222, 535, 242",tooltip: "Развертка по времени (нано)", hint_text: "Время микро(нано)"});
   area.push({shape: "rect", key: "source", coords: "550, 222, 585, 242", tooltip: "Выбор источника синхронизации", hint_text: "Выбор источника синхронизации"});
   area.push({shape: "rect", key: "sourceX", coords: "550, 262, 585, 282", tooltip: "Выбор режима синхронизации по каналу", hint_text: "Выбор режима синхронизации по каналу"});
+  area.push({shape: "circle", key: "vremyaNanoIndicator", coords: "545,195,5", tooltip: "Индикатор нано", hint_text: "Индикатор нано"});
 
   //Канал А
   area.push({shape: "rect", key: "inversionA", coords: "355,90,390,110", tooltip: "Кнопка инвертирования канала А", hint_text: "Кнопка инвертирования канала А"});
